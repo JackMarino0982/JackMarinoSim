@@ -1,0 +1,45 @@
+name: Architecture document
+on:
+  pull_request:
+  push:
+    branches: [week1-adc-architecture]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install document tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra texlive-extra-utils latexmk lmodern poppler-utils
+      - name: Build complete architecture book
+        run: |
+          make -f makefileMacLinux pdf
+          latexmk -pdf -interaction=nonstopmode -halt-on-error dsnManual.tex
+      - name: Check references and render review pages
+        run: |
+          if grep -E "LaTeX Warning: (Reference .* undefined|Citation .* undefined|There were undefined references|Label .* multiply defined)|^!|not found" dsnManual.log; then exit 1; fi
+          mkdir -p dsnReviewPages
+          pdftoppm -f 1 -l 30 -scale-to 1400 -png dsnManual.pdf dsnReviewPages/dsnPage
+          pdftotext -layout dsnManual.pdf dsnManual.txt
+          pdfinfo dsnManual.pdf
+          grep -E "Overfull|Underfull|Warning:" dsnManual.log > dsnLayoutWarnings.txt || true
+      - name: Retain PDF and build evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dsnArchitecture
+          path: |
+            dsnManual.pdf
+            dsnManual.log
+            dsnManual.blg
+            dsnManual.txt
+            dsnLayoutWarnings.txt
+            dsnReviewPages/
+          if-no-files-found: warn
