@@ -1,12 +1,122 @@
 \chapter{System Context}
 \ChapterLabel{SystemContext}
+\index{system boundary}
+\index{analog input}
+\index{digital readings}
+
 \section{Chapter Responsibility}
 \label{Section:SystemContextResponsibility}
-Define the system boundary and its relationship to the surrounding environment.
+Define the ADC system boundary, external participants, exchanged signals, and
+unresolved operating assumptions.
 
-\noindent\textbf{Expected result:} An agreed boundary for requirements and design decisions.
+\noindent\textbf{Expected result:} A shared boundary from which measurable
+requirements and interface decisions can be developed.
 
-\section{How to Use This Chapter}
-Define the problem, stakeholders, system boundary, external actors and systems, assumptions, dependencies, and exclusions. Add a context diagram when it clarifies interactions.
-\section{Example}
-\textit{[User role]} needs to \textit{[achieve outcome]} because \textit{[current problem]}. The system manages \textit{[owned capability]}; \textit{[external system]} remains outside the boundary and provides \textit{[interface]}. Record its owner, data exchanged, and failure assumptions.
+\section{Problem and Intended Outcome}
+The project owner needs an embedded system that accepts an analog input and
+converts it to sampled numeric ADC readings. The intended demonstration makes
+those readings observable for comparison with a known input. The demonstration
+method and pass criteria are proposals until the course reviewer confirms the
+decisions in \hyperref[Table:WeekOneTBDs]{the Week 1 decision register}.
+
+\section{System Boundary}
+The proposed system comprises the selected embedded target, ADC capability,
+firmware needed to initiate acquisition and obtain readings, and an output
+mechanism for observing those readings. Whether the ADC is integrated into
+the processor or connected externally is TBD. Any necessary input protection,
+conditioning, reference, or filtering must be allocated during hardware review;
+none is assumed to be present on an unselected board.
+
+The analog source and its measured physical quantity are outside the boundary.
+The external observer or receiving tool is outside; the target-side mechanism
+that exposes readings is inside. Power and programming equipment are external
+dependencies. Figure~\ref{Figure:ADCContext} presents this proposed boundary
+without selecting a board, communication protocol, or signal range.
+
+\begin{figure}[htbp]
+\centering
+\input{TikZ/dsnSystemContext/dsnADCContext.tex}
+\caption{Proposed ADC system context; electrical and digital interface details are TBD.}
+\label{Figure:ADCContext}
+\end{figure}
+
+\section{External Participants and Interfaces}
+\small
+\begin{tabularx}{\linewidth}{L{2.9cm}Y Y}
+\caption{External Interactions\label{Table:ADCExternalInteractions}}\\
+\toprule
+Participant & Exchange at the boundary & Ownership and unresolved contract\\
+\midrule
+\endfirsthead
+\toprule
+Participant & Exchange at the boundary & Ownership and unresolved contract\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Analog source & Analog input into the system; electrical reference or return
+as required by the chosen interface. &
+Jack Marino identifies the source, range, impedance, bandwidth, reference,
+protection, and calibration basis under TBD-02.\\
+Observer or receiving tool & Sampled numeric readings from the system;
+configuration or acquisition commands only if later selected. &
+Jack Marino selects the output interface, representation, scaling, framing,
+and observation tool under TBD-04.\\
+Power source & Electrical power into the system. &
+Jack Marino establishes supply limits, grounding, startup behavior, and
+available current under TBD-01 and TBD-05.\\
+Development and programming tools & Firmware image and programming/debug
+operations to the target; diagnostic information back to the tools. &
+Jack Marino selects the toolchain, host environment, programming connection,
+and compatible versions under TBD-01.\\
+Course reviewer & Review feedback and scope decisions; receives the
+architecture and demonstration evidence. &
+The course reviewer confirms the academic scope and acceptance approach.
+This is an engineering-process interaction, not a runtime electrical interface.\\
+\end{tabularx}
+\normalsize
+
+\section{Proposed Acquisition Scenario}
+\begin{enumerate}
+\item The project owner confirms the board's input and power limits before
+connecting a source.
+\item The owner builds and loads the firmware using a recorded configuration.
+\item The owner applies a known analog input within the approved range.
+\item The system acquires ADC readings and exposes them through the selected
+output mechanism.
+\item The owner compares the observed readings with an independent reference
+using the agreed conversion scale, tolerance, and sample timing.
+\end{enumerate}
+These steps describe the intended end-to-end demonstration. They are not a
+test procedure or an observed result; detailed procedures and mappings will
+be developed in \ChapterRef{Tests} after requirements are approved.
+
+\section{Assumptions, Dependencies, and Exclusions}
+A supervised bench setting is proposed; operating temperature, electrical
+noise, available instruments, and physical access remain to be confirmed.
+The project depends on access to a suitable target, its documentation,
+a controllable analog source, programming tools, and an independent reference
+instrument. Availability of these resources has not been verified.
+
+Channel count, resolution, sampling schedule, latency, accuracy, filtering,
+buffering, and output throughput are not fixed. No UART, USB, SPI, I2C,
+RTOS, DMA, or network dependency is selected by this draft.
+Custom hardware manufacture and actuators are outside the proposed initial
+scope described in \ChapterRef{Introduction}; the reviewer can revise these
+limits before requirements baseline.
+
+\section{Fault and Boundary Questions}
+An input outside the supported range, lost reference or ground, unstable power,
+ADC timeout, missed sample, or unavailable output consumer can invalidate a
+reading or damage a target. Their applicability and responses require decisions,
+not assumptions. TBD-02, TBD-03, TBD-04, and TBD-05 in
+\hyperref[Table:WeekOneTBDs]{the decision register} capture the required
+electrical limits, timing and integrity criteria, output behavior, and
+startup/fault policy. No safe operating range or fault recovery claim is made
+before hardware evidence is available.
+
+\section{Context Review Exit}
+The context is ready for requirements development when the owner and reviewer
+have agreed the scope, participants, boundary, and the disposition of any TBD
+that affects a binding requirement. Unresolved questions remain visible with
+owners and decision gates in \ChapterRef{DevelopmentPlan}.
