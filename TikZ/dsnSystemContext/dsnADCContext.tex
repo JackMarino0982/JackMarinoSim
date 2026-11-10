@@ -1,15 +1,15 @@
 \begin{tikzpicture}[
  box/.style={draw=dsnBlue,fill=dsnLightBlue,rounded corners,align=center,
- text width=3.5cm,minimum height=1.1cm,font=\small},
+ text width=4cm,minimum height=1.1cm,font=\small},
  ext/.style={draw=dsnGray,align=center,text width=2.8cm,
  minimum height=1cm,font=\small},
  >=Stealth]
-\node[box,minimum height=2cm] (sys) at (0,0)
+\node[box,minimum height=2.6cm] (sys) at (0,0)
  {Embedded ADC system\\Target, ADC, firmware\\and output mechanism\\Hardware TBD};
-\node[ext] (src) at (-4.6,0) {Analog source};
-\node[ext] (obs) at (4.6,0) {Observer /\\receiving tool};
-\node[ext] (power) at (0,2.7) {External power};
-\node[ext] (tools) at (0,-2.7) {Programming /\\debug tools};
+\node[ext] (src) at (-5.5,0) {Analog source};
+\node[ext] (obs) at (5.5,0) {Observer /\\receiving tool};
+\node[ext] (power) at (0,3.2) {External power};
+\node[ext] (tools) at (0,-3.2) {Programming /\\debug tools};
 \draw[->] (src.east) -- node[above,font=\scriptsize]{Analog input} (sys.west);
 \draw[->] (sys.east) -- node[above,font=\scriptsize]{ADC readings} (obs.west);
 \draw[->] (power.south) -- node[right,font=\scriptsize]{Power} (sys.north);
