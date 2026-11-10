@@ -1,205 +1,137 @@
 \chapter{Introduction}
 \ChapterLabel{Introduction}
 \index{introduction}
-\index{Chapter!Introduction}
-\index{normative language}
-\index{priority}
+\index{analog-to-digital conversion}
 \index{source of truth}
-\index{V-model}
 
 \section{Chapter Responsibility}
 \label{Section:IntroductionResponsibility}
-Establish the purpose, scope, audience, and conventions of the engineering record.
+Establish the purpose, scope, audience, and conventions for the embedded
+analog-to-digital conversion system engineering record.
 
-\noindent\textbf{Expected result:} A shared understanding of how to read and use the architecture.
-
-\section{How to Use This Chapter}
-State the document purpose, scope, audience, conventions, and relationship to
-other project artifacts. Replace bracketed text with project-specific content.
-Keep binding obligations in the Requirements chapter.
+\noindent\textbf{Expected result:} A reviewable Week 1 scope that distinguishes
+confirmed intent from decisions still to be made.
 
 \section{Purpose}
-This document is the authoritative engineering specification for
-\ProjectName. It records why the system is needed, what it shall do, how it is
-structured, how it will be tested, and what evidence is required before
-release. It is readable by people and structured for use by engineering and
-\gls{ai}-assisted development tools.
+\ProjectName\ is Jack Marino's embedded systems course project. Its confirmed
+purpose is to accept an analog input and produce sampled numeric readings
+using an \gls{adc}. Hardware has not yet been selected.
+The architecture book records the project intent, system context, development
+plan, and the decisions needed before detailed requirements and implementation.
 
-\begin{dsnNote}[Central lesson]
-A vague request produces unpredictable software. A precise, traceable
-specification allows engineers to generate, review, test, and, when necessary,
-regenerate a conforming implementation.
-\end{dsnNote}
+The source evidence for this draft is the project owner's description and
+follow-up confirming ADC readings and hardware TBD on November 10, 2026.
+No previous implementation or measurement evidence was supplied for this
+submission. The draft does not claim that hardware or firmware already exists.
 
 \section{Scope}
-Define the system boundary, included capabilities, exclusions, operating
-environment, major constraints, and the release covered by this document.
+The proposed initial demonstration covers the path from an analog input at
+the system boundary through acquisition and conversion to an observable digital
+reading at the output boundary. The particular input source, electrical limits,
+channel count, conversion performance, and output method remain open in
+\hyperref[Table:WeekOneTBDs]{the Week 1 decision register}.
+The hardware--software boundary is described in \ChapterRef{SystemContext}.
 
-\textit{Generic example: \ProjectName\ enables [primary user] to [achieve
-outcome]. This release includes [included capabilities] and excludes
-[out-of-scope capabilities]. It operates in [target environment] and depends
-on [external systems or services].}
+The Week 1 deliverable is the Introduction, Development Plan, and System Context,
+included in the complete architecture book. Later chapters retain the course
+template to support subsequent work. Their service-request examples, example
+requirements, and example tests are instructional material, not ADC-system
+requirements, architecture, implemented functions, or evidence. Project-specific
+requirements will be baselined after the Week 1 decisions are reviewed.
+
+\begin{dsnNote}[Proposed scope limits for reviewer confirmation]
+The initial demonstration is proposed as a supervised bench exercise.
+Custom board manufacture, closed-loop actuation, production deployment,
+remote connectivity, and certification are outside the proposed initial scope.
+These are proposed limits, not approved exclusions. Safety, security, and
+environmental applicability still require the review recorded in
+\hyperref[Table:WeekOneTBDs]{the decision register}.
+\end{dsnNote}
 
 \section{Audience}
-Identify the people who create, approve, implement, test, operate, maintain,
-audit, or use the system. State which sections are most relevant to each role.
+Jack Marino is the project owner and student author, responsible for resolving
+project details, implementation, and evidence collection. The course reviewer
+assesses scope, feasibility, document quality, and the proposed development
+gates. A demonstration observer can later assess whether the digital readings
+meet the agreed intended use. Any additional stakeholder remains TBD.
 
-\textit{Generic example: The primary audiences are customer representatives,
-systems engineers, architects, developers, testers, operators, maintainers,
-security reviewers, and project approvers. One person may perform several
-roles on a small project.}
+Readers can use this chapter for intent and document status,
+\ChapterRef{SystemContext} for the boundary and external interactions, and
+\ChapterRef{DevelopmentPlan} for ownership, milestones, risks, and decisions.
 
 \section{Normative Language and Priority}
-Use \textbf{shall} for every binding requirement. Do not use \textbf{should} as
-guidance in normative statements. Assign each requirement one priority:
-\textbf{\gls{must}}, \textbf{\gls{should}}, \textbf{\gls{could}}, or
-\textbf{\gls{would}}. Priority expresses delivery importance; it does not change
-whether a statement containing \textbf{shall} is binding for its assigned
-implementation version.
+Binding requirements use \textbf{shall} in \ChapterRef{Requirements}.
+Requirement priority uses \gls{must}, \gls{should}, \gls{could}, or \gls{would}
+as defined by the template. Statements labeled proposed, TBD, or planned are
+not approved requirements or evidence of completion. Week 1 introduces no
+numerical acquisition requirement because no numerical target has been supplied.
 
 \section{Document as Source of Truth}
-Requirements alone do not define a reproducible implementation. The complete
-source of truth consists of stakeholder needs, user stories, requirements, use
-cases, architecture and interface decisions, implementation constraints,
-tests, verification evidence, validation evidence, and release criteria.
-Generated code is an implementation artifact governed by this specification.
-
-\section{Architecture as Maintained Input for AI Design}
-\label{Section:ArchitectureAIDesign}
-\index{AI!architecture as maintained input}
-\index{architecture!AI-assisted design}
-Figure~\ref{Figure:MaintainedSourceComparison} distinguishes two workflows.
-A compiler regenerates lower-level output from reviewed C/C++ source and its
-build configuration. An AI request is often incomplete: it may omit interface
-assumptions, error behavior, or earlier decisions. Generated code therefore
-requires review, tests, and version control. Repeating a prompt does not
-reproduce an approved implementation by itself.
-
-\begin{figure}[htbp]
-\centering
-\resizebox{\textwidth}{!}{\input{TikZ/dsnIntroduction/dsnMaintainedSourceComparison.tex}}
-\caption{Maintained source in compiler and AI workflows, adapted from MSE Figure 2.1.}
-\label{Figure:MaintainedSourceComparison}
-\end{figure}
-
-The goal of this template is to make the approved architecture the maintained
-engineering input to AI-assisted design and implementation. Its linked needs,
-requirements, interfaces, responsibilities, constraints, and rationale give a
-bounded task its context. The task request identifies the affected baseline and
-change; the architecture remains the authoritative record of design intent.
-This analogy does not make an AI agent a deterministic compiler. Engineers must
-review, verify, and version its code and tests, and resolve missing acceptance
-criteria before claiming conformance.
-
-Figure~\ref{Figure:ArchitectureUpdateFeedback} shows how implementation and
-test findings can improve the architecture. An engineer may edit the affected
-views directly, or an AI agent may prepare a proposed update. In either route,
-authorized reviewers assess the evidence and approve changes before they enter
-the baseline. A finding may affect requirements, interfaces, allocations, and
-planned checks together; update those links before using the revised baseline
-for the next implementation task. \ChapterRef{AIAgentGuide} and
-\ChapterRef{AIImplementationWorkflow} define the task and execution controls.
-
-\begin{figure}[htbp]
-\centering
-\resizebox{\textwidth}{!}{\input{TikZ/dsnIntroduction/dsnArchitectureUpdateFeedback.tex}}
-\caption{Human and AI-assisted architecture feedback, adapted from MSE Figure 2.2.}
-\label{Figure:ArchitectureUpdateFeedback}
-\end{figure}
+The authored LaTeX and editable TikZ sources are the maintained engineering
+record. The generated PDF is a review artifact built from those sources.
+An implementation and its test evidence must identify the source baseline,
+hardware revision, firmware revision, and test configuration before a later
+claim of conformance. A successful document build establishes document
+buildability; it does not establish ADC accuracy, firmware correctness, or
+stakeholder acceptance.
 
 \section{Initializing a New Project from This Template}
 \label{Section:InitializeNewProject}
-\index{template!project initialization}
-\index{AI agent!project initialization}
-Create a project-specific architecture book from a copy of this template;
-keep the master template generic. Use
-\hyperref[Skill:AIS-02]{AIS-02: Initialize a Project} for the authoritative
-Context, Steps, and Acceptance, including confirmation of project information,
-review of supplied evidence, and replacement of supported placeholders.
-
-To start initialization with an AI agent, use the request in
-\hyperref[Section:AIInitializePrompt]{Section~\ref{Section:AIInitializePrompt},
-Initialize the Architecture Book}. Execute the task using
-\ChapterRef{AIImplementationWorkflow}.
+The existing \texttt{dsn} file namespace and required chapter filenames are
+retained for this course submission. Project metadata identifies the ADC
+project and its draft status. Unresolved information is centralized in
+\hyperref[Table:WeekOneTBDs]{the Week 1 decision register}, rather than replaced
+with invented hardware selections or performance values.
+Further initialization follows
+\hyperref[Skill:AIS-02]{AIS-02: Initialize a project}.
 
 \section{Template Tailoring and Domain Profiles}
 \label{Section:DomainProfiles}
-\index{domain tailoring profile}
-\index{template!tailoring}
-The core chapters form a generic software-architecture template. A domain
-tailoring profile augments those chapters with concerns, artifacts, diagrams,
-and review criteria for a particular class of system. It does not replace a
-core chapter or create a second authoritative location for project facts.
-Requirements, interfaces, architecture decisions, tests, and evidence remain
-in their normal core chapters and link to one another through their stable IDs.
+The Embedded Systems profile is Applicable because the owner explicitly
+identified an embedded ADC system. Its authoritative decision and rationale
+are in \hyperref[Table:ProjectDomainProfiles]{the profile decision table}.
+\ChapterRef{EmbeddedSystemsProfile} supplies hardware, timing, resource,
+power, fault, safety, security, and lifecycle questions for later requirements
+work. No extra domain profile is selected without evidence and human review.
 
-Select applicable profiles during project initialization. More than one
-profile may apply. Record each applicability decision and rationale in
-\ChapterRef{DevelopmentPlan}, retain applicable profile appendices as
-authoritative tailoring guidance, and exclude an inapplicable profile from an
-instantiated project only after recording the decision. If profile guidance
-conflicts, identify the conflict and obtain an authorized human decision before
-editing controlled project content.
-
-\small
-\begin{tabularx}{\linewidth}{L{4.0cm}L{3.8cm}Y}
-\caption{Domain Profile Applicability\label{Table:DomainProfileApplicability}}\\
+\begin{table}[htbp]
+\centering
+\caption{Domain Profile Applicability}
+\label{Table:DomainProfileApplicability}
+\begin{tabular}{p{3.5cm}p{8cm}}
 \toprule
-\textbf{Profile} & \textbf{Applicability} & \textbf{Decision and Rationale}\\
+Profile & Authoritative decision\\
 \midrule
-\endfirsthead
-\multicolumn{3}{l}{\small\itshape Domain Profile Applicability (continued)}\\
-\toprule
-\textbf{Profile} & \textbf{Applicability} & \textbf{Decision and Rationale}\\
-\midrule
-\endhead
+Embedded Systems & Applicable; see
+\hyperref[Table:ProjectDomainProfiles]{Development Plan}.\\
 \bottomrule
-\endlastfoot
-\hyperref[Chapter:EmbeddedSystemsProfile]{Embedded Systems} &
-\textit{[Applicable / Not Applicable / TBD]} &
-\textit{[System characteristics, scope, and decision authority]}\\
-\textit{[Additional profile]} &
-\textit{[Applicable / Not Applicable / TBD]} &
-\textit{[Reason and relationship to other profiles]}\\
-\end{tabularx}
-\normalsize
-
-When the Embedded Systems profile is Applicable or TBD, read
-\ChapterRef{EmbeddedSystemsProfile} during initialization and for every task
-affected by hardware, firmware, real-time behavior, constrained resources,
-physical interfaces, safety, security, manufacturing, or field service.
+\end{tabular}
+\end{table}
 
 \section{Using This Template with AI Agents}
 \label{Section:UsingTemplateAI}
-\index{AI agent!architecture workflow}
-Use \ChapterRef{AIAgentGuide} to select AI Skills and read their
-linked Context, Steps, and Acceptance. Use
-\ChapterRef{AIImplementationWorkflow} for execution with one or multiple
-agents. To start a task, use
-\hyperref[Section:AIStartSelectedTaskPrompt]{Start Any Selected AIS};
-\hyperref[Section:AIExamplePrompts]{the task-specific example requests}
-provide additional starting prompts. The
-\hyperref[Figure:AIGuideActivity]{guide activity diagram} shows the reading
-route from repository bootstrap files to task selection and execution.
+AI assistance can draft and check this record using
+\ChapterRef{AIAgentGuide} and \ChapterRef{AIImplementationWorkflow}.
+The human owner confirms project facts and decisions; AI output does not
+approve a baseline. Material inputs and unresolved assumptions are recorded in
+\ChapterRef{AIPromptLog}. For this Week 1 change, one agent performs
+coordination, drafting, build preparation, and a self-review. Human review
+remains pending.
 
-\section{V-Model Organization}
-Figure~\ref{Figure:VModel} connects development decisions with evidence.
-Stakeholder needs motivate requirements, which guide architecture, detailed
-design, and implementation. Unit tests address detailed behavior; integration
-tests address interactions; system verification assesses specified obligations;
-and stakeholder validation assesses intended use. These correspondences help
-identify the evidence needed for each design decision.
-
-The model includes iteration. Validation findings can return to stakeholder
-needs during development. After deployment, operational findings and change
-requests can trigger another cycle. A changed baseline requires review of its
-requirements, design links, and affected checks. This organization is
-compatible with the system and software life-cycle process frameworks in
-\cite{ISO15288,ISO12207}; those standards do not prescribe one life-cycle model.
+\section{Development and Evidence}
+The project proceeds from reviewed context to measurable requirements, then
+hardware and software design, implementation, and tests. Test findings feed
+back into affected decisions and traceability before the next baseline.
+The proposed milestones and evidence gates are in
+\hyperref[Table:WeekOneMilestones]{the development milestones}. No gate is
+reported passed without its required evidence and authorized disposition.
 
 \begin{figure}[htbp]
 \centering
-\resizebox{\textwidth}{!}{\input{TikZ/dsnIntroduction/dsnVModel.tex}}
-\caption{V-model relationships, agile iteration, and operational feedback, adapted from MSE Figure 1.2.}
+\input{TikZ/dsnIntroduction/dsnVModel.tex}
+\caption{Generic development-to-evidence relationships; the ADC project gates
+are defined in the Development Plan.}
 \label{Figure:VModel}
 \end{figure}
+Figure~\ref{Figure:VModel} illustrates the retained template's evidence
+organization. It is a lifecycle illustration, not a completed project baseline.

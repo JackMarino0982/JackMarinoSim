@@ -42,20 +42,20 @@
 
 % Replace the values below when starting a project.
 \newcommand{\FileNamespace}{dsn}
-\newcommand{\ProjectName}{[MSE Course Project]}
-\newcommand{\DocumentVersion}{2.33}
-\newcommand{\DocumentStatus}{Draft Template}
-\newcommand{\DocumentOwner}{[Jack Marino]}
-\newcommand{\Organization}{[Northrop Grumman GNC Engineer, Stevens Institute of Technology Student]}
-\newcommand{\DocumentDate}{[November 4th, 2026]}
+\newcommand{\ProjectName}{Embedded ADC System}
+\newcommand{\DocumentVersion}{0.1 (Week 1)}
+\newcommand{\DocumentStatus}{Week 1 Draft --- Review Pending}
+\newcommand{\DocumentOwner}{Jack Marino}
+\newcommand{\Organization}{Stevens Institute of Technology}
+\newcommand{\DocumentDate}{November 10, 2026}
 \newcommand{\VERSION}{Version \DocumentVersion}
 
 
 \hypersetup{
-  pdftitle={[MSE Course Project] - System and Software Architecture Design},
-  pdfauthor={[Jack Marino]},
+  pdftitle={Embedded ADC System - Week 1 Architecture},
+  pdfauthor={Jack Marino},
   pdfcreator={Darian Muresan, Ph.D., with OpenAI Codex and Anthropic Claude Code},
-  pdfsubject={Reusable software architecture design template},
+  pdfsubject={Week 1 ADC system scope, context, and development plan},
   pdfkeywords={software architecture, requirements, traceability, verification, validation}
 }
 
@@ -142,13 +142,15 @@
 \pagenumbering{arabic}
 \pagestyle{fancy}
 \fancyhf{}
+\setlength{\headheight}{30pt}
+\setlength{\footskip}{32pt}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \lhead{\small Chapter \thechapter}
 \chead{\small\nouppercase{\leftmark}}
 \rhead{\small\thepage}
 \lfoot{\small\ProjectName}
-\cfoot{\small\copyright\ \Organization}
-\rfoot{\small\VERSION}
+\cfoot{\footnotesize SPE 800}
+\rfoot{\footnotesize W1 Draft}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
