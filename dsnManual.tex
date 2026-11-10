@@ -63,6 +63,10 @@
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
+% Allow appendix subsection numbers to fit in the contents.
+\makeatletter
+\renewcommand*\l@subsection{\@dottedtocline{2}{3.8em}{3.7em}}
+\makeatother
 \setlength{\LTpre}{6pt}
 \setlength{\LTpost}{6pt}
 

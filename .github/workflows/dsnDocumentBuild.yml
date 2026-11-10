@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install document tools
         run: |
           sudo apt-get update
@@ -32,7 +32,7 @@ jobs:
           grep -E "Overfull|Underfull|Warning:" dsnManual.log > dsnLayoutWarnings.txt || true
       - name: Retain PDF and build evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: dsnArchitecture
           path: |

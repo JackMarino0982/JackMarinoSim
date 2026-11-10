@@ -166,7 +166,7 @@ before applying signals.\\
 Performance unspecified & No objective basis for a demonstration pass. &
 Jack Marino resolves TBD-03 and obtains reviewer agreement on acceptance
 criteria before implementing performance-dependent behavior.\\
-Acquisition/output mismatch & Missing or stale readings. &
+Output throughput mismatch & Missing or stale readings. &
 Jack Marino budgets acquisition and output throughput and tests overload
 behavior after the interface is selected.\\
 Incomplete document build & Submission cannot be reproduced. &
@@ -187,7 +187,7 @@ review of affected design, tests, and traceability.
 
 The complete document build uses
 \texttt{make -f makefileMacLinux pdf} on a configured Linux/macOS environment
-or \texttt{.\string\makefilePowerShell.ps1 -Action pdf} on configured Windows.
+or \texttt{.\textbackslash makefilePowerShell.ps1 -Action pdf} on configured Windows.
 \ChapterRef{DocumentGuide} provides the toolchain and manual command sequence.
 The repository build workflow retains the generated PDF and logs; its result
 is evidence for the associated commit only. Later target testing additionally
