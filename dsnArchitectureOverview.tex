@@ -8,20 +8,96 @@ Explain the major design choices and why they address the design drivers.
 
 \section{How to Use This Chapter}
 Explain the forces that shape the design, the major decisions, alternatives considered, and consequences. Use the 4+1 views only when they help readers answer different architectural questions.
-\section{Proposed Local and OMS Boundary Decision}
+\section{OMS Architecture Decision Record}
 \label{Section:ProposedOMSBoundary}
-\ArchitectureID{ARC-002}: Proposed, not approved. Keep the local sample
-record contract (\RequirementRef{REQ-IF-01}) distinct from the mission-facing
-derived sensor-status contract (\RequirementRef{REQ-OMS-01}). The former
-carries acquisition records; the latter depends on OMS applicability,
-version, CAL profile, UCI mapping, gateway ownership, and service decisions.
-Alternatives are a selected OMS boundary or another explicitly approved
-mission contract; neither has been selected here. Separate contracts permit
-local acquisition evolution but require an explicit mapping and end-to-end
-freshness/failure allocation. \hyperref[Parameter:PAR-07]{PAR-07} in
-\hyperref[Table:RequirementParameters]{the decision register} gates approval
-and conformance testing. No driver, FIFO mode, latch, or counter part is
-selected by this decision proposal.
+\ArchitectureID{ARC-002}: \textbf{Proposed; not approved}.
+Recorded November 12, 2026. Decision owner: Jack Marino.
+Decision date: TBD, as accepted by the owner. Applicability and the contract
+selections below have not been made. \RequirementRef{REQ-OMS-01} remains
+\textbf{Proposed} for approval and Open for implementation lifecycle progress;
+no OMS conformance or product commitment is claimed.
+
+\paragraph{Context and alternatives.}
+The local record governed by \RequirementRef{REQ-IF-01} is distinct from a
+mission-facing derived sensor-status product. The lecture proposes OMS for
+that mission boundary \cite[slides 15, 36]{SPE800Week02}. Evaluate either
+an approved OMS contract with the selected profile/message or an explicitly
+approved alternative mission contract. Neither alternative is selected.
+Separate contracts permit acquisition evolution but require an approved
+mapping and end-to-end freshness/failure allocation. No local schema, FTDI
+device mode, or USB transport choice establishes OMS compliance.
+\begin{landscape}
+\small
+\begin{tabularx}{\linewidth}{L{1.9cm}L{3.0cm}Y Y L{2cm}L{2cm}}
+\caption{OMS Decision Fields\label{Table:OMSDecisionFields}}\\
+\toprule
+\textbf{Decision ID} & \textbf{Field} & \textbf{Current value} & \textbf{Closure evidence} & \textbf{Owner} & \textbf{Decision date}\\
+\midrule
+\endfirsthead
+\textbf{Decision ID} & \textbf{Field} & \textbf{Current value} & \textbf{Closure evidence} & \textbf{Owner} & \textbf{Decision date}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\phantomsection\label{Decision:OMS-01}\texttt{OMS-01} & Applicability & TBD: decision whether OMS applies to the delivered mission boundary. & Record the scope/program rationale and human approval, including any decision that OMS is not applicable. & Jack Marino & TBD\\
+\phantomsection\label{Decision:OMS-02}\texttt{OMS-02} & Standard version & TBD: OMS standard release, revision, and controlled source. & Identify an accessible controlled specification and any required compliance subset. & Jack Marino & TBD\\
+\phantomsection\label{Decision:OMS-03}\texttt{OMS-03} & CAL profile & TBD: selected CAL profile and interface/service contract. & Identify the applicable service operations, transport/binding, behavior, and fault contract. & Jack Marino & TBD\\
+\phantomsection\label{Decision:OMS-04}\texttt{OMS-04} & UCI message & TBD: UCI message identifier, schema/version, and fields for the derived status product. & Review message compatibility and required field semantics against the selected standard/profile. & Jack Marino & TBD\\
+\phantomsection\label{Decision:OMS-05}\texttt{OMS-05} & Status mapping & TBD: exact mapping of local valid, stale, and faulted states to the selected UCI fields and values. & Complete the state mapping table, including unknown/startup/recovery behavior and lost gateway output. & Jack Marino & TBD\\
+\phantomsection\label{Decision:OMS-06}\texttt{OMS-06} & Responsible gateway & TBD: identified gateway component/service and accountable implementation/service owner. & Define who performs the mapping/publication and owns diagnostics, lifecycle, and failure handling; the decision owner is Jack Marino until assigned. & Jack Marino & TBD\\
+\phantomsection\label{Decision:OMS-07}\texttt{OMS-07} & End-to-end contract & TBD: publication/detection/propagation bounds, timestamp/freshness semantics, and gateway failure response. & Allocate the budget across acquisition, gateway, and consumer; do not copy a local teaching limit into a mission guarantee. & Jack Marino & TBD\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+\begin{landscape}
+\small
+\subsection{Unresolved Status Mapping}
+The local source states are from the proposed lecture requirement; destination fields and encodings are not yet selected. All values marked TBD require the decision record above.
+\begin{tabularx}{\linewidth}{L{3cm}Y Y L{2cm}L{2cm}}
+\caption{Proposed OMS Status Mapping\label{Table:OMSStatusMapping}}\\
+\toprule
+\textbf{Local condition} & \textbf{Destination message / field} & \textbf{Destination value / treatment} & \textbf{Owner} & \textbf{Decision date}\\
+\midrule
+\endfirsthead
+\textbf{Local condition} & \textbf{Destination message / field} & \textbf{Destination value / treatment} & \textbf{Owner} & \textbf{Decision date}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Valid & TBD & TBD: approved qualified-status representation & Jack Marino & TBD\\
+Stale & TBD & TBD: approved stale-state representation and age semantics & Jack Marino & TBD\\
+Faulted & TBD & TBD: approved fault-state/reason representation & Jack Marino & TBD\\
+Startup / unknown / recovering & TBD & TBD: approved non-valid or explicitly unknown representation & Jack Marino & TBD\\
+No gateway output & TBD & TBD: approved consumer timeout or unavailable-state treatment & Jack Marino & TBD\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+\subsection{Approval and Verification Gate}
+All decision fields and mapping cells remain TBD, owned by Jack Marino,
+decision date TBD. \hyperref[Parameter:PAR-07]{PAR-07} is their requirements
+dependency. Keep \RequirementRef{REQ-OMS-01} Proposed until applicability,
+version, profile, UCI message, status mapping, gateway responsibility, and
+service/budget decisions are recorded and approved by the authorized reviewer.
+An approval record will identify reviewer, date, rationale, and controlled
+contract; these values are currently TBD, owned by Jack Marino, decision date
+TBD. If OMS is rejected or not applicable, record that disposition and its
+replacement/rationale rather than claiming conformance or deleting the ID.
+\VerificationRef{VER-032}, \TestCaseRef{TC-032}, and
+\ValidationRef{VAL-04} remain Pending; their OMS-specific portions cannot
+receive a pass while these decisions or the execution evidence are missing.
+
+The lecture's 10 ms publication, 1 ms timestamp error, and 100 ms stale-state
+allocations concern local teaching candidates. They are not approved product
+commitments or mission-interface budgets. Project acceptance values and their
+approval dates remain TBD, owned by Jack Marino, decision date TBD under
+\hyperref[Parameter:PAR-03]{PAR-03} and
+\hyperref[Parameter:PAR-07]{PAR-07}.
 
 \section{Decision Template and Example}
 \textbf{ARC-001:} \textit{[Decision]}; \textbf{Drivers:} \textit{[quality attributes and constraints]}; \textbf{Rationale:} \textit{[why selected]}; \textbf{Consequences:} \textit{[benefits, trade-offs, and risks]}. Example: use an asynchronous message queue to protect request processing from transient downstream outages; this improves resilience but introduces eventual consistency.

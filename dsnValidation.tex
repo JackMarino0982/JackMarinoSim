@@ -12,56 +12,50 @@ Show that the completed system meets stakeholder needs in its intended context.
 Evaluate whether the completed system solves stakeholder needs in its intended context. Define realistic scenarios, participant roles, success criteria, observations, and disposition of requested changes.
 Validation answers ``Did we build the right system?''
 
-\section{ADC Story Validation Plans}
+\section{User Story Validation Register}
 \label{Section:ADCValidationPlans}
-These activities answer the acceptance questions in \ChapterRef{UserStories}.
-Jack Marino coordinates review with the named stakeholder role; representative
-participants and conditions must be agreed before execution. Retain scenario
-scripts, configurations, observed decisions or outputs, stakeholder feedback,
-and reviewer disposition. No activity has been executed or passed.
-\small
-\begin{tabularx}{\linewidth}{L{1.5cm}L{1.4cm}YY L{2.2cm}}
-\caption{Validation Register\label{Table:ValidationRegister}}\\
-\toprule
-\textbf{ID} & \textbf{Story} & \textbf{Scenario} & \textbf{Success criterion} & \textbf{Status}\\
-\midrule
-\endfirsthead
-\toprule
-\textbf{ID} & \textbf{Story} & \textbf{Scenario} & \textbf{Success criterion} & \textbf{Status}\\
-\midrule
-\endhead
-\bottomrule
-\endlastfoot
-\ValidationID{VAL-01} & \UserStoryRef{US-01} & Current valid input followed by interrupted input; record operator use/no-use decisions. & The mission operator uses the current valid reading, rejects stale or unavailable readings, and confirms that the information supports that decision. & \StatusPending\\
-\ValidationID{VAL-02} & \UserStoryRef{US-02} & Concurrent acquisition, processing, and delivery under agreed normal and degraded loads; review stream and status observations with the acquisition developer. & The acquisition developer confirms that acquisition continues at the agreed load and that the stream makes delays, loss, and degraded status interpretable. & \StatusPending\\
-\ValidationID{VAL-03} & \UserStoryRef{US-03} & Field engineer deploys and operates the subsystem on each agreed platform using its instructions; retain configuration and stakeholder feedback. & The field engineer completes the agreed workflow on all three supported platform configurations and confirms that deployment is practical in the intended setting. & \StatusPending\\
-\ValidationID{VAL-04} & \UserStoryRef{US-04} & Mission integrator reviews the contract and integrates a contract-compatible replacement sensor or consumer in an agreed representative scenario. & The mission integrator interprets the exchanged data and status and completes the compatible replacement without redesigning the agreed connection. & \StatusPending\\
-\end{tabularx}
-\normalsize
+There is one row for each current story, US-01--US-06. The first four are
+lecture stories; the last two are proposed bench stories. Validation concerns
+stakeholder success in context, not only a conforming software response.
+The stakeholder roles below identify perspectives; individual representatives
+are TBD. Jack Marino owns participant selection, scenario agreement, evidence
+collection, and review coordination. Decision date for every listed TBD: TBD,
+as accepted by the owner on November 12, 2026. No validation has been run.
 
-\section{Proposed Bench Validation Plans}
-These plans cover the newly proposed bench stories only. They do not validate the delivered mission system. Jack Marino agrees participants, setup and expected decisions before execution.
+Evidence IDs link to planned bundles in
+\hyperref[Table:PlannedValidationEvidence]{the validation evidence catalog};
+no result file or acceptance is claimed. Agree the scenario and expected
+stakeholder decisions before execution. OMS-dependent validation remains
+blocked while \ArchitectureRef{ARC-002} is Proposed.
 \begin{landscape}
 \small
-\begin{tabularx}{\linewidth}{L{1.6cm}L{1.5cm}Y Y L{2.1cm}}
-\caption{Bench Story Validation Plans\label{Table:BenchValidation}}\\
+\begin{tabularx}{\linewidth}{L{2.3cm}Y Y L{2.6cm}Y L{2.0cm}}
+\caption{Validation Register\label{Table:ValidationRegister}}\\
 \toprule
-\textbf{ID} & \textbf{Story} & \textbf{Scenario} & \textbf{Acceptance and evidence} & \textbf{Status}\\
+\textbf{Validation / Story} & \textbf{Scenario} & \textbf{Success criterion} & \textbf{Stakeholder / Coordinator} & \textbf{Planned evidence} & \textbf{Status}\\
 \midrule
 \endfirsthead
-\textbf{ID} & \textbf{Story} & \textbf{Scenario} & \textbf{Acceptance and evidence} & \textbf{Status}\\
+\textbf{Validation / Story} & \textbf{Scenario} & \textbf{Success criterion} & \textbf{Stakeholder / Coordinator} & \textbf{Planned evidence} & \textbf{Status}\\
 \midrule
 \endhead
 \midrule
-\multicolumn{5}{r}{\small\itshape Continued on next page}\\
+\multicolumn{6}{r}{\small\itshape Continued on next page}\\
 \endfoot
 \bottomrule
 \endlastfoot
-\ValidationID{VAL-05} & \UserStoryRef{US-05} & An acquisition developer reviews known counter captures with deliberate gaps, wraps, incoherent words, and reference faults. & The developer correctly distinguishes qualified timing/count evidence from missed or ambiguous observations; retain traces and stakeholder feedback. & \StatusPending\\
-\ValidationID{VAL-06} & \UserStoryRef{US-06} & An acquisition developer evaluates a known paired-FTDI stream under normal, stalled, corrupted, and reconnect conditions. & The developer accounts for data outcomes and understands rate/timing limitations; retain scenario, byte accounting, timing traces and feedback. & \StatusPending\\
+\ValidationID{VAL-01}\par \UserStoryRef{US-01} & In a representative mission workflow, show a current valid reading, then interrupted/stale input and sensor unavailability.\par Representative mission/field conditions, participant, expected decisions, display semantics, and scenario duration: TBD. & The mission operator chooses usable readings and rejects stale or unavailable readings, and confirms that displayed availability, validity, and age support the decision. & Mission operator\par Representative: TBD.\par Coordinator: Jack Marino.\par Decision date: TBD. & \ArtifactRef{Evidence}{EVL-01} (planned).\par Agreed scenario script and expected decisions; display captures; observed use/no-use choices; operator feedback and reviewer disposition. & \StatusPending\\
+\ValidationID{VAL-02}\par \UserStoryRef{US-02} & Operate concurrent acquisition, processing, and delivery under agreed normal, slow-consumer, overload, disconnect, and recovery conditions.\par Load/burst envelope, rate and timing bounds, loss policy, recovery conditions, and participant: TBD. & The acquisition developer confirms continuous acquisition within the agreed envelope and correctly interprets delay, loss, invalidity, and recovery without assuming zero loss outside that envelope. & Acquisition developer\par Representative: TBD.\par Coordinator: Jack Marino.\par Decision date: TBD. & \ArtifactRef{Evidence}{EVL-02} (planned).\par Scenario/workload configuration; read/process/output timelines and byte/sample accounting; observations; developer feedback and review disposition. & \StatusPending\\
+\ValidationID{VAL-03}\par \UserStoryRef{US-03} & Install, configure, and operate the subsystem on representative macOS, Windows, and Linux field computers using the deployment instructions.\par Supported OS/CPU versions, field resources, installation privileges, workflow, participant, and corresponding portability requirements: TBD. & The field engineer completes the agreed workflow on each supported platform without platform-specific source changes and can identify and address documented deployment dependencies. & Field engineer\par Representative: TBD.\par Coordinator: Jack Marino.\par Decision date: TBD. & \ArtifactRef{Evidence}{EVL-03} (planned).\par Platform/driver/version matrix; installation and operation logs; observed task completion; encountered dependencies; field-engineer feedback and review disposition. & \StatusPending\\
+\ValidationID{VAL-04}\par \UserStoryRef{US-04} & Interpret the documented data/status contract and integrate a compatible replacement sensor or consumer in a representative mission scenario.\par Compatible replacement boundary, mission conditions, participant, and all OMS applicability/profile/message/mapping/gateway choices: TBD. & The mission integrator interprets data and status and completes the compatible replacement without redesigning the approved connection. OMS-specific acceptance is blocked until the OMS decision is resolved. & Mission integrator\par Representative: TBD.\par Coordinator: Jack Marino.\par Decision date: TBD. & \ArtifactRef{Evidence}{EVL-04} (planned).\par Approved contract and compatibility baseline; integration script; exchanged data/status captures; replacement observations; integrator feedback and disposition. & \StatusPending\\
+\ValidationID{VAL-05}\par \UserStoryRef{US-05} & Evaluate known oscillator-driven counter captures with suppressed observations, full wraps, incoherent words, and reference faults.\par Counter selection/width, rate, capture and reference budgets, scenario duration, and participant: TBD. & The acquisition developer distinguishes qualified count/timing observations from missed increments, ambiguous wraps, and invalid reference evidence. & Acquisition developer\par Representative: TBD.\par Coordinator: Jack Marino.\par Decision date: TBD. & \ArtifactRef{Evidence}{EVL-05} (planned).\par Counter/reset/clock configuration; independent edge and capture traces; expected/observed and ambiguity reports; developer decisions and feedback. & \StatusPending\\
+\ValidationID{VAL-06}\par \UserStoryRef{US-06} & Evaluate a known paired-FTDI stream under normal transfer, stalls, corruption, partial transfers, and reconnect conditions.\par Electrical/host topology, protocol, rate, buffers, integrity algorithm, timing budgets, and participant: TBD. & The acquisition developer accounts for delivered, rejected, lost, or uncertain data and explains measured throughput and timing under the agreed stream contract. & Acquisition developer\par Representative: TBD.\par Coordinator: Jack Marino.\par Decision date: TBD. & \ArtifactRef{Evidence}{EVL-06} (planned).\par Topology/mode/frame/load configuration; byte accounting; frame/integrity results; clock-qualified traces; resynchronization observations and developer feedback. & \StatusPending\\
 \end{tabularx}
 \normalsize
 \end{landscape}
+\phantomsection\label{Table:BenchValidation}
+The bench stories \UserStoryRef{US-05} and \UserStoryRef{US-06} appear in the
+same register to preserve one row per current story; they do not establish
+approval of a delivered mission scope.
 
 \section{Retained Template Validation Examples}
 The service-request examples below are template provenance, not ADC

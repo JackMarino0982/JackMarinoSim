@@ -10,68 +10,76 @@ Maintain the canonical links from stakeholder need to release evidence.
 
 \section{How to Use This Chapter}
 Maintain the canonical mapping from stakeholder need or approved constraint through requirement, design decision, implementation, test, verification, validation, and release evidence. Review both missing backward links and missing forward links.
-\section{Candidate Requirement Traceability}
-The primary acquisition requirements link to lecture stories. Counter and
-paired-path requirements link to proposed owner-requested bench stories;
-they do not establish mission-scope approval. All test and verification links
-are plans. Portability story \UserStoryRef{US-03} still needs its own
-platform requirements; this update does not claim complete story coverage.
+\section{Candidate Evidence Traceability}
+The matrix links each source story to its requirement, planned check,
+verification, and planned verification evidence; it separately links the
+story to validation and planned stakeholder evidence. Multiple stories in one
+row share the requirement, not one stakeholder acceptance result. Evidence
+IDs identify collection plans only. Actual evidence locations and run results
+are TBD, owned by Jack Marino, decision date TBD.
+
+\UserStoryRef{US-03} has an explicit coverage-gap row: portability requirements,
+their verification, and their verification evidence are TBD, owned by Jack
+Marino, decision date TBD under \hyperref[Parameter:PAR-12]{PAR-12}.
+It still has a validation plan. This is not a claim of full requirements
+coverage. Template rows below are outside the project matrix.
 \begin{landscape}
 \small
-\begin{tabularx}{\linewidth}{YYYYYY}
+\begin{tabularx}{\linewidth}{Y Y Y Y Y Y Y}
 \caption{Traceability Register\label{Table:TraceabilityMatrix}}\\
 \toprule
-\textbf{User Story} & \textbf{Requirement} & \textbf{Use Case} & \textbf{Test Case} & \textbf{Verification} & \textbf{Validation}\\
+\textbf{Story} & \textbf{Requirement} & \textbf{Use case / Check} & \textbf{Verification} & \textbf{Planned evidence} & \textbf{Validation} & \textbf{Planned stakeholder evidence}\\
 \midrule
 \endfirsthead
-\textbf{User Story} & \textbf{Requirement} & \textbf{Use Case} & \textbf{Test Case} & \textbf{Verification} & \textbf{Validation}\\
+\textbf{Story} & \textbf{Requirement} & \textbf{Use case / Check} & \textbf{Verification} & \textbf{Planned evidence} & \textbf{Validation} & \textbf{Planned stakeholder evidence}\\
 \midrule
 \endhead
 \midrule
-\multicolumn{6}{r}{\small\itshape Continued on next page}\\
+\multicolumn{7}{r}{\small\itshape Continued on next page}\\
 \endfoot
 \bottomrule
 \endlastfoot
-\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-SMP-01} & \UseCaseRef{UC-01} & \TestCaseRef{TC-010} & \VerificationRef{VER-010} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02}\\
-\UserStoryRef{US-02} & \RequirementRef{REQ-F-004} & \UseCaseRef{UC-01} & \TestCaseRef{TC-011} & \VerificationRef{VER-011} & \ValidationRef{VAL-02}\\
-\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-F-005} & \UseCaseRef{UC-01} & \TestCaseRef{TC-012} & \VerificationRef{VER-012} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02}\\
-\UserStoryRef{US-01} & \RequirementRef{REQ-F-006} & \UseCaseRef{UC-02} & \TestCaseRef{TC-013} & \VerificationRef{VER-013} & \ValidationRef{VAL-01}\\
-\UserStoryRef{US-01} & \RequirementRef{REQ-F-007} & \UseCaseRef{UC-01} & \TestCaseRef{TC-014} & \VerificationRef{VER-014} & \ValidationRef{VAL-01}\\
-\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-F-008} & \UseCaseRef{UC-01} & \TestCaseRef{TC-015} & \VerificationRef{VER-015} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02}\\
-\UserStoryRef{US-02}, \UserStoryRef{US-04} & \RequirementRef{REQ-IF-01} & \UseCaseRef{UC-01} & \TestCaseRef{TC-016} & \VerificationRef{VER-016} & \ValidationRef{VAL-02}, \ValidationRef{VAL-04}\\
-\UserStoryRef{US-04} & \RequirementRef{REQ-I-002} & \UseCaseRef{UC-01} & \TestCaseRef{TC-017} & \VerificationRef{VER-017} & \ValidationRef{VAL-04}\\
-\UserStoryRef{US-02}, \UserStoryRef{US-04} & \RequirementRef{REQ-D-002} & \UseCaseRef{UC-01} & \TestCaseRef{TC-018} & \VerificationRef{VER-018} & \ValidationRef{VAL-02}, \ValidationRef{VAL-04}\\
-\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-TIM-01} & \UseCaseRef{UC-01} & \TestCaseRef{TC-019} & \VerificationRef{VER-019} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02}\\
-\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-TIM-02} & \UseCaseRef{UC-01} & \TestCaseRef{TC-020} & \VerificationRef{VER-020} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02}\\
-\UserStoryRef{US-02} & \RequirementRef{REQ-Q-002} & \UseCaseRef{UC-01} & \TestCaseRef{TC-021} & \VerificationRef{VER-021} & \ValidationRef{VAL-02}\\
-\UserStoryRef{US-02} & \RequirementRef{REQ-Q-003} & \UseCaseRef{UC-01} & \TestCaseRef{TC-022} & \VerificationRef{VER-022} & \ValidationRef{VAL-02}\\
-\UserStoryRef{US-01} & \RequirementRef{REQ-Q-004} & \UseCaseRef{UC-01} & \TestCaseRef{TC-023} & \VerificationRef{VER-023} & \ValidationRef{VAL-01}\\
-\UserStoryRef{US-02} & \RequirementRef{REQ-Q-005} & \UseCaseRef{UC-01} & \TestCaseRef{TC-024} & \VerificationRef{VER-024} & \ValidationRef{VAL-02}\\
-\UserStoryRef{US-02} & \RequirementRef{REQ-Q-006} & \UseCaseRef{UC-01} & \TestCaseRef{TC-025} & \VerificationRef{VER-025} & \ValidationRef{VAL-02}\\
-\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-F-009} & \UseCaseRef{UC-02} & \TestCaseRef{TC-026} & \VerificationRef{VER-026} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02}\\
-\UserStoryRef{US-01} & \RequirementRef{REQ-SMP-02} & \UseCaseRef{UC-02} & \TestCaseRef{TC-027} & \VerificationRef{VER-027} & \ValidationRef{VAL-01}\\
-\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-Q-007} & \UseCaseRef{UC-02} & \TestCaseRef{TC-028} & \VerificationRef{VER-028} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02}\\
-\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-F-010} & \UseCaseRef{UC-02} & \TestCaseRef{TC-029} & \VerificationRef{VER-029} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02}\\
-\UserStoryRef{US-02} & \RequirementRef{REQ-Q-008} & \UseCaseRef{UC-02} & \TestCaseRef{TC-030} & \VerificationRef{VER-030} & \ValidationRef{VAL-02}\\
-\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-F-011} & \UseCaseRef{UC-02} & \TestCaseRef{TC-031} & \VerificationRef{VER-031} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02}\\
-\UserStoryRef{US-04} & \RequirementRef{REQ-OMS-01} & \UseCaseRef{UC-03} & \TestCaseRef{TC-032} & \VerificationRef{VER-032} & \ValidationRef{VAL-04}\\
-\UserStoryRef{US-05} & \RequirementRef{REQ-F-012} & \UseCaseRef{UC-04} & \TestCaseRef{TC-033} & \VerificationRef{VER-033} & \ValidationRef{VAL-05}\\
-\UserStoryRef{US-05} & \RequirementRef{REQ-Q-009} & \UseCaseRef{UC-04} & \TestCaseRef{TC-034} & \VerificationRef{VER-034} & \ValidationRef{VAL-05}\\
-\UserStoryRef{US-05} & \RequirementRef{REQ-Q-010} & \UseCaseRef{UC-04} & \TestCaseRef{TC-035} & \VerificationRef{VER-035} & \ValidationRef{VAL-05}\\
-\UserStoryRef{US-05} & \RequirementRef{REQ-I-003} & \UseCaseRef{UC-04} & \TestCaseRef{TC-036} & \VerificationRef{VER-036} & \ValidationRef{VAL-05}\\
-\UserStoryRef{US-05} & \RequirementRef{REQ-F-013} & \UseCaseRef{UC-04} & \TestCaseRef{TC-037} & \VerificationRef{VER-037} & \ValidationRef{VAL-05}\\
-\UserStoryRef{US-05} & \RequirementRef{REQ-F-014} & \UseCaseRef{UC-04} & \TestCaseRef{TC-038} & \VerificationRef{VER-038} & \ValidationRef{VAL-05}\\
-\UserStoryRef{US-05} & \RequirementRef{REQ-Q-011} & \UseCaseRef{UC-04} & \TestCaseRef{TC-039} & \VerificationRef{VER-039} & \ValidationRef{VAL-05}\\
-\UserStoryRef{US-06} & \RequirementRef{REQ-I-004} & \UseCaseRef{UC-05} & \TestCaseRef{TC-040} & \VerificationRef{VER-040} & \ValidationRef{VAL-06}\\
-\UserStoryRef{US-06} & \RequirementRef{REQ-Q-012} & \UseCaseRef{UC-05} & \TestCaseRef{TC-041} & \VerificationRef{VER-041} & \ValidationRef{VAL-06}\\
-\UserStoryRef{US-06} & \RequirementRef{REQ-F-015} & \UseCaseRef{UC-05} & \TestCaseRef{TC-042} & \VerificationRef{VER-042} & \ValidationRef{VAL-06}\\
-\UserStoryRef{US-06} & \RequirementRef{REQ-F-016} & \UseCaseRef{UC-05} & \TestCaseRef{TC-043} & \VerificationRef{VER-043} & \ValidationRef{VAL-06}\\
-\UserStoryRef{US-06} & \RequirementRef{REQ-Q-013} & \UseCaseRef{UC-05} & \TestCaseRef{TC-044} & \VerificationRef{VER-044} & \ValidationRef{VAL-06}\\
-\UserStoryRef{US-06} & \RequirementRef{REQ-I-005} & \UseCaseRef{UC-05} & \TestCaseRef{TC-045} & \VerificationRef{VER-045} & \ValidationRef{VAL-06}\\
-\UserStoryRef{US-06} & \RequirementRef{REQ-Q-014} & \UseCaseRef{UC-05} & \TestCaseRef{TC-046} & \VerificationRef{VER-046} & \ValidationRef{VAL-06}\\
-\UserStoryRef{US-06} & \RequirementRef{REQ-D-003} & \UseCaseRef{UC-05} & \TestCaseRef{TC-047} & \VerificationRef{VER-047} & \ValidationRef{VAL-06}\\
-\UserStoryRef{US-06} & \RequirementRef{REQ-F-017} & \UseCaseRef{UC-05} & \TestCaseRef{TC-048} & \VerificationRef{VER-048} & \ValidationRef{VAL-06}\\
-\UserStoryRef{US-06} & \RequirementRef{REQ-Q-015} & \UseCaseRef{UC-05} & \TestCaseRef{TC-049} & \VerificationRef{VER-049} & \ValidationRef{VAL-06}\\
+\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-SMP-01} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-010} & \VerificationRef{VER-010} & \ArtifactRef{Evidence}{EVD-010} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-01}, \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-02} & \RequirementRef{REQ-F-004} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-011} & \VerificationRef{VER-011} & \ArtifactRef{Evidence}{EVD-011} & \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-F-005} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-012} & \VerificationRef{VER-012} & \ArtifactRef{Evidence}{EVD-012} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-01}, \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-01} & \RequirementRef{REQ-F-006} & \UseCaseRef{UC-02}\par \TestCaseRef{TC-013} & \VerificationRef{VER-013} & \ArtifactRef{Evidence}{EVD-013} & \ValidationRef{VAL-01} & \ArtifactRef{Evidence}{EVL-01}\\
+\UserStoryRef{US-01} & \RequirementRef{REQ-F-007} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-014} & \VerificationRef{VER-014} & \ArtifactRef{Evidence}{EVD-014} & \ValidationRef{VAL-01} & \ArtifactRef{Evidence}{EVL-01}\\
+\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-F-008} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-015} & \VerificationRef{VER-015} & \ArtifactRef{Evidence}{EVD-015} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-01}, \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-02}, \UserStoryRef{US-04} & \RequirementRef{REQ-IF-01} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-016} & \VerificationRef{VER-016} & \ArtifactRef{Evidence}{EVD-016} & \ValidationRef{VAL-02}, \ValidationRef{VAL-04} & \ArtifactRef{Evidence}{EVL-02}, \ArtifactRef{Evidence}{EVL-04}\\
+\UserStoryRef{US-04} & \RequirementRef{REQ-I-002} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-017} & \VerificationRef{VER-017} & \ArtifactRef{Evidence}{EVD-017} & \ValidationRef{VAL-04} & \ArtifactRef{Evidence}{EVL-04}\\
+\UserStoryRef{US-02}, \UserStoryRef{US-04} & \RequirementRef{REQ-D-002} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-018} & \VerificationRef{VER-018} & \ArtifactRef{Evidence}{EVD-018} & \ValidationRef{VAL-02}, \ValidationRef{VAL-04} & \ArtifactRef{Evidence}{EVL-02}, \ArtifactRef{Evidence}{EVL-04}\\
+\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-TIM-01} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-019} & \VerificationRef{VER-019} & \ArtifactRef{Evidence}{EVD-019} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-01}, \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-TIM-02} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-020} & \VerificationRef{VER-020} & \ArtifactRef{Evidence}{EVD-020} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-01}, \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-02} & \RequirementRef{REQ-Q-002} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-021} & \VerificationRef{VER-021} & \ArtifactRef{Evidence}{EVD-021} & \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-02} & \RequirementRef{REQ-Q-003} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-022} & \VerificationRef{VER-022} & \ArtifactRef{Evidence}{EVD-022} & \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-01} & \RequirementRef{REQ-Q-004} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-023} & \VerificationRef{VER-023} & \ArtifactRef{Evidence}{EVD-023} & \ValidationRef{VAL-01} & \ArtifactRef{Evidence}{EVL-01}\\
+\UserStoryRef{US-02} & \RequirementRef{REQ-Q-005} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-024} & \VerificationRef{VER-024} & \ArtifactRef{Evidence}{EVD-024} & \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-02} & \RequirementRef{REQ-Q-006} & \UseCaseRef{UC-01}\par \TestCaseRef{TC-025} & \VerificationRef{VER-025} & \ArtifactRef{Evidence}{EVD-025} & \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-F-009} & \UseCaseRef{UC-02}\par \TestCaseRef{TC-026} & \VerificationRef{VER-026} & \ArtifactRef{Evidence}{EVD-026} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-01}, \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-01} & \RequirementRef{REQ-SMP-02} & \UseCaseRef{UC-02}\par \TestCaseRef{TC-027} & \VerificationRef{VER-027} & \ArtifactRef{Evidence}{EVD-027} & \ValidationRef{VAL-01} & \ArtifactRef{Evidence}{EVL-01}\\
+\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-Q-007} & \UseCaseRef{UC-02}\par \TestCaseRef{TC-028} & \VerificationRef{VER-028} & \ArtifactRef{Evidence}{EVD-028} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-01}, \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-F-010} & \UseCaseRef{UC-02}\par \TestCaseRef{TC-029} & \VerificationRef{VER-029} & \ArtifactRef{Evidence}{EVD-029} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-01}, \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-02} & \RequirementRef{REQ-Q-008} & \UseCaseRef{UC-02}\par \TestCaseRef{TC-030} & \VerificationRef{VER-030} & \ArtifactRef{Evidence}{EVD-030} & \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-01}, \UserStoryRef{US-02} & \RequirementRef{REQ-F-011} & \UseCaseRef{UC-02}\par \TestCaseRef{TC-031} & \VerificationRef{VER-031} & \ArtifactRef{Evidence}{EVD-031} & \ValidationRef{VAL-01}, \ValidationRef{VAL-02} & \ArtifactRef{Evidence}{EVL-01}, \ArtifactRef{Evidence}{EVL-02}\\
+\UserStoryRef{US-04} & \RequirementRef{REQ-OMS-01} & \UseCaseRef{UC-03}\par \TestCaseRef{TC-032} & \VerificationRef{VER-032} & \ArtifactRef{Evidence}{EVD-032} & \ValidationRef{VAL-04} & \ArtifactRef{Evidence}{EVL-04}\\
+\UserStoryRef{US-05} & \RequirementRef{REQ-F-012} & \UseCaseRef{UC-04}\par \TestCaseRef{TC-033} & \VerificationRef{VER-033} & \ArtifactRef{Evidence}{EVD-033} & \ValidationRef{VAL-05} & \ArtifactRef{Evidence}{EVL-05}\\
+\UserStoryRef{US-05} & \RequirementRef{REQ-Q-009} & \UseCaseRef{UC-04}\par \TestCaseRef{TC-034} & \VerificationRef{VER-034} & \ArtifactRef{Evidence}{EVD-034} & \ValidationRef{VAL-05} & \ArtifactRef{Evidence}{EVL-05}\\
+\UserStoryRef{US-05} & \RequirementRef{REQ-Q-010} & \UseCaseRef{UC-04}\par \TestCaseRef{TC-035} & \VerificationRef{VER-035} & \ArtifactRef{Evidence}{EVD-035} & \ValidationRef{VAL-05} & \ArtifactRef{Evidence}{EVL-05}\\
+\UserStoryRef{US-05} & \RequirementRef{REQ-I-003} & \UseCaseRef{UC-04}\par \TestCaseRef{TC-036} & \VerificationRef{VER-036} & \ArtifactRef{Evidence}{EVD-036} & \ValidationRef{VAL-05} & \ArtifactRef{Evidence}{EVL-05}\\
+\UserStoryRef{US-05} & \RequirementRef{REQ-F-013} & \UseCaseRef{UC-04}\par \TestCaseRef{TC-037} & \VerificationRef{VER-037} & \ArtifactRef{Evidence}{EVD-037} & \ValidationRef{VAL-05} & \ArtifactRef{Evidence}{EVL-05}\\
+\UserStoryRef{US-05} & \RequirementRef{REQ-F-014} & \UseCaseRef{UC-04}\par \TestCaseRef{TC-038} & \VerificationRef{VER-038} & \ArtifactRef{Evidence}{EVD-038} & \ValidationRef{VAL-05} & \ArtifactRef{Evidence}{EVL-05}\\
+\UserStoryRef{US-05} & \RequirementRef{REQ-Q-011} & \UseCaseRef{UC-04}\par \TestCaseRef{TC-039} & \VerificationRef{VER-039} & \ArtifactRef{Evidence}{EVD-039} & \ValidationRef{VAL-05} & \ArtifactRef{Evidence}{EVL-05}\\
+\UserStoryRef{US-06} & \RequirementRef{REQ-I-004} & \UseCaseRef{UC-05}\par \TestCaseRef{TC-040} & \VerificationRef{VER-040} & \ArtifactRef{Evidence}{EVD-040} & \ValidationRef{VAL-06} & \ArtifactRef{Evidence}{EVL-06}\\
+\UserStoryRef{US-06} & \RequirementRef{REQ-Q-012} & \UseCaseRef{UC-05}\par \TestCaseRef{TC-041} & \VerificationRef{VER-041} & \ArtifactRef{Evidence}{EVD-041} & \ValidationRef{VAL-06} & \ArtifactRef{Evidence}{EVL-06}\\
+\UserStoryRef{US-06} & \RequirementRef{REQ-F-015} & \UseCaseRef{UC-05}\par \TestCaseRef{TC-042} & \VerificationRef{VER-042} & \ArtifactRef{Evidence}{EVD-042} & \ValidationRef{VAL-06} & \ArtifactRef{Evidence}{EVL-06}\\
+\UserStoryRef{US-06} & \RequirementRef{REQ-F-016} & \UseCaseRef{UC-05}\par \TestCaseRef{TC-043} & \VerificationRef{VER-043} & \ArtifactRef{Evidence}{EVD-043} & \ValidationRef{VAL-06} & \ArtifactRef{Evidence}{EVL-06}\\
+\UserStoryRef{US-06} & \RequirementRef{REQ-Q-013} & \UseCaseRef{UC-05}\par \TestCaseRef{TC-044} & \VerificationRef{VER-044} & \ArtifactRef{Evidence}{EVD-044} & \ValidationRef{VAL-06} & \ArtifactRef{Evidence}{EVL-06}\\
+\UserStoryRef{US-06} & \RequirementRef{REQ-I-005} & \UseCaseRef{UC-05}\par \TestCaseRef{TC-045} & \VerificationRef{VER-045} & \ArtifactRef{Evidence}{EVD-045} & \ValidationRef{VAL-06} & \ArtifactRef{Evidence}{EVL-06}\\
+\UserStoryRef{US-06} & \RequirementRef{REQ-Q-014} & \UseCaseRef{UC-05}\par \TestCaseRef{TC-046} & \VerificationRef{VER-046} & \ArtifactRef{Evidence}{EVD-046} & \ValidationRef{VAL-06} & \ArtifactRef{Evidence}{EVL-06}\\
+\UserStoryRef{US-06} & \RequirementRef{REQ-D-003} & \UseCaseRef{UC-05}\par \TestCaseRef{TC-047} & \VerificationRef{VER-047} & \ArtifactRef{Evidence}{EVD-047} & \ValidationRef{VAL-06} & \ArtifactRef{Evidence}{EVL-06}\\
+\UserStoryRef{US-06} & \RequirementRef{REQ-F-017} & \UseCaseRef{UC-05}\par \TestCaseRef{TC-048} & \VerificationRef{VER-048} & \ArtifactRef{Evidence}{EVD-048} & \ValidationRef{VAL-06} & \ArtifactRef{Evidence}{EVL-06}\\
+\UserStoryRef{US-06} & \RequirementRef{REQ-Q-015} & \UseCaseRef{UC-05}\par \TestCaseRef{TC-049} & \VerificationRef{VER-049} & \ArtifactRef{Evidence}{EVD-049} & \ValidationRef{VAL-06} & \ArtifactRef{Evidence}{EVL-06}\\
+\UserStoryRef{US-03} & TBD: portability allocation; \hyperref[Parameter:PAR-12]{PAR-12} & TBD & TBD & TBD & \ValidationRef{VAL-03} & \ArtifactRef{Evidence}{EVL-03}\\
 \end{tabularx}
 \normalsize
 \end{landscape}
