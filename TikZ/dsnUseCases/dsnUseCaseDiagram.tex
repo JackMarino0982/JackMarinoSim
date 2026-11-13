@@ -1,0 +1,15 @@
+\begin{tikzpicture}[>=Stealth,
+ actor/.style={draw,align=center,text width=2.2cm,font=\small},
+ uc/.style={draw=dsnBlue,ellipse,align=center,text width=4.5cm,
+ minimum height=1cm,font=\small}]
+\node[actor] (customer) at (-4.5,1) {Customer};
+\node[actor] (analyst) at (-4.5,-2) {Operations analyst};
+\node[uc] (submit) at (1,2) {\hyperref[UseCase:UC-001]{UC-001: Submit a service request}};
+\node[uc] (status) at (1,0) {\hyperref[UseCase:UC-002]{UC-002: View request status}};
+\node[uc] (export) at (1,-2) {\hyperref[UseCase:UC-003]{UC-003: Export request history}};
+\node[draw=dsnGray,fit=(submit)(status)(export),inner sep=0.45cm,
+ label=above:{\small Generic template system (not the ADC project)}] {};
+\draw (customer.east) -- ++(0.6,0) |- (submit.west);
+\draw (customer.east) -- ++(0.6,0) |- (status.west);
+\draw (analyst.east) -- (export.west);
+\end{tikzpicture}

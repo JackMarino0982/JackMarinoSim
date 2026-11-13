@@ -1,45 +1,203 @@
 \chapter{Development Plan}
 \ChapterLabel{DevelopmentPlan}
+\index{development plan}
+\index{risk}
+\index{TBD}
+
 \section{Chapter Responsibility}
 \label{Section:DevelopmentPlanResponsibility}
-Define how the project is governed, planned, reviewed, and changed.
+Define ownership, development gates, change control, risks, and the decisions
+needed to progress from Week 1 context to an evidenced ADC demonstration.
 
-\noindent\textbf{Expected result:} An actionable plan with visible ownership and decision gates.
+\noindent\textbf{Expected result:} An actionable proposed plan with named
+decision owners and explicit exit evidence.
 
-\section{How to Use This Chapter}
-Describe governance, roles, milestones, change control, and risks. Adapt the plan to the lifecycle the team will actually follow.
+\section{Governance and Roles}
+Jack Marino is the project owner, student author, and proposed hardware,
+firmware, integration, and test owner. He resolves technical TBDs and retains
+evidence. The course reviewer confirms the academic scope and submission
+acceptance; review has not yet occurred. Additional contributors, if any,
+will be recorded before ownership changes.
+
+AI assistance is limited to drafting, analysis, and checks under
+\ChapterRef{AIAgentGuide} and \ChapterRef{AIImplementationWorkflow}.
+One agent acts as aiaCoordinator and aiaDeveloper for this change and performs
+a self-review. It cannot approve requirements, safety decisions, or release.
+Human review of the resulting pull request remains pending.
 
 \section{Domain Profile Selection}
 \label{Section:DevelopmentPlanProfiles}
-Record every domain tailoring profile considered during initialization. An
-authorized human shall set each profile to Applicable, Not Applicable, or TBD
-and record the rationale, decision owner, and date. A TBD profile remains in
-the AI and human review context until resolved. When a profile is Applicable,
-identify the lifecycle gates, roles, evidence, and reviews it adds to this
-development plan.
-
 \small
-\begin{tabularx}{\linewidth}{L{3.5cm}L{2.7cm}Y}
+\begin{tabularx}{\linewidth}{L{3.1cm}L{2cm}Y}
 \caption{Project Domain Profile Decisions\label{Table:ProjectDomainProfiles}}\\
 \toprule
-\textbf{Profile} & \textbf{Status} & \textbf{Rationale, Owner, and Date}\\
+Profile & Status & Rationale, owner, and date\\
 \midrule
 \endfirsthead
-\multicolumn{3}{l}{\small\itshape Project Domain Profile Decisions (continued)}\\
 \toprule
-\textbf{Profile} & \textbf{Status} & \textbf{Rationale, Owner, and Date}\\
+Profile & Status & Rationale, owner, and date\\
 \midrule
 \endhead
 \bottomrule
 \endlastfoot
 \hyperref[Chapter:EmbeddedSystemsProfile]{Embedded Systems} &
-\textit{[Applicable / Not Applicable / TBD]} &
-\textit{[Decision basis, authorized owner, and decision date]}\\
-\textit{[Additional profile]} &
-\textit{[Applicable / Not Applicable / TBD]} &
-\textit{[Decision basis, authorized owner, and decision date]}\\
+Applicable &
+Jack Marino confirmed an embedded system producing ADC readings, with
+hardware TBD, on November 10, 2026. The profile adds hardware review,
+electrical-interface and timing decisions, target evidence, and power/fault
+reviews at the gates below.\\
+\end{tabularx}
+\normalsize
+This is the only supplied domain profile. Any additional safety, security,
+or regulatory tailoring depends on the intended environment and the decision
+in TBD-05; no certification applicability is asserted.
+
+\section{Milestones and Decision Gates}
+Calendar deadlines beyond this submission have not been supplied. The plan
+uses ordered gates; Jack Marino agrees dates with the course reviewer under
+TBD-06. Every gate below is planned, including Week 1 review.
+
+\small
+\begin{tabularx}{\linewidth}{L{2.4cm}Y L{3.1cm}}
+\caption{Proposed Development Milestones\label{Table:WeekOneMilestones}}\\
+\toprule
+Gate & Work and exit evidence & Accountable owner\\
+\midrule
+\endfirsthead
+\toprule
+Gate & Work and exit evidence & Accountable owner\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+G1: Week 1 review &
+Introduction, System Context, and Development Plan in a complete document
+build; review of scope, TBD ownership, and initial boundaries. &
+Jack Marino prepares; course reviewer confirms scope.\\
+G2: Requirements and hardware selection &
+Resolve TBD-01 through TBD-05 to the extent required for baseline; select
+hardware and record documentation, measurable conversion/interface
+requirements, and acceptance criteria. &
+Jack Marino proposes; course reviewer confirms course scope.\\
+G3: Design and bring-up &
+Review hardware--software allocation, acquisition timing, output protocol,
+resource use, power and fault behavior. Record successful programming and
+basic board bring-up evidence. &
+Jack Marino.\\
+G4: Integration and verification &
+Implement the acquisition path, run requirement-mapped tests using a known
+input and independent reference, and retain versions, setup, logs, readings,
+failures, and dispositions. &
+Jack Marino.\\
+G5: Demonstration and release review &
+Demonstrate the agreed intended use, obtain reviewer feedback, disclose open
+defects, and identify the delivered hardware/firmware/document baseline. &
+Jack Marino prepares; course reviewer accepts the submission.\\
 \end{tabularx}
 \normalsize
 
-\section{Example}
-The product owner prioritizes outcomes; the architect owns significant design decisions; developers implement approved work; and the test lead retains evidence. Typical gates are needs reviewed, requirements baselined, architecture approved, evidence complete, and release approved. Example risk: an external service may be unavailable; define the failure response and test it before release.
+\section{Week 1 Decision Register}
+\label{Section:WeekOneDecisions}
+All entries below are open. Jack Marino owns the technical proposals;
+the course reviewer confirms scope and academic acceptance where indicated.
+The IDs identify questions, not approved requirements.
+
+\small
+\begin{tabularx}{\linewidth}{L{1.8cm}Y L{2.7cm}L{2cm}}
+\caption{Week 1 TBDs and Decision Owners\label{Table:WeekOneTBDs}}\\
+\toprule
+ID & Decision needed and impact & Owner & Due gate\\
+\midrule
+\endfirsthead
+\toprule
+ID & Decision needed and impact & Owner & Due gate\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+TBD-01 & Board/processor, integrated or external ADC, board revision,
+toolchain, programming method, supply, and hardware availability.
+Blocks platform-specific design and bring-up. &
+Jack Marino & Before G2 closes\\
+TBD-02 & Input source, quantity measured, channel count, voltage range,
+reference, grounding, source impedance, bandwidth, conditioning, and
+protection. Blocks electrical interface requirements and wiring. &
+Jack Marino & Before G2; before connecting hardware\\
+TBD-03 & Resolution, sample rate and scheduling, accuracy/tolerance,
+latency, acceptable noise, and missed-sample behavior. Blocks measurable
+conversion requirements and test acceptance criteria. &
+Jack Marino & Before G2 closes\\
+TBD-04 & Output interface, receiving/observation tool, numeric format,
+units/scaling, framing, and behavior when output cannot keep up.
+Blocks the digital interface contract and demonstration method. &
+Jack Marino & Before G2 closes\\
+TBD-05 & Intended operating environment, startup/reset and fault responses,
+power/resource budgets, safety and security concerns, update/service needs,
+and any standards or certification relevance. Blocks unsupported safety
+claims and final applicability dispositions. &
+Jack Marino & At G2; before dependent work\\
+TBD-06 & Confirm bench demonstration scope and proposed exclusions,
+course deadlines, available equipment, demonstration participants, and
+evidence sufficient for academic acceptance. &
+Jack Marino proposes; course reviewer confirms & G1 scope; dates before scheduling\\
+\end{tabularx}
+\normalsize
+
+\section{Risks and Mitigations}
+\small
+\begin{tabularx}{\linewidth}{L{2.8cm}Y Y}
+\caption{Initial Project Risks\label{Table:WeekOneRisks}}\\
+\toprule
+Risk & Effect & Mitigation and owner\\
+\midrule
+\endfirsthead
+\toprule
+Risk & Effect & Mitigation and owner\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Hardware or tools unavailable & Bring-up and measurement cannot start. &
+Jack Marino checks availability before committing the G2 platform selection;
+agrees an alternative with the reviewer if blocked.\\
+Input/reference mismatch & Incorrect readings or damaged hardware. &
+Jack Marino resolves TBD-02 and checks selected documentation and wiring
+before applying signals.\\
+Performance unspecified & No objective basis for a demonstration pass. &
+Jack Marino resolves TBD-03 and obtains reviewer agreement on acceptance
+criteria before implementing performance-dependent behavior.\\
+Output throughput mismatch & Missing or stale readings. &
+Jack Marino budgets acquisition and output throughput and tests overload
+behavior after the interface is selected.\\
+Incomplete document build & Submission cannot be reproduced. &
+Jack Marino retains all included sources and checks the full build,
+references, bibliography, glossary, and index at each document baseline.\\
+Template examples mistaken for project facts & False requirements or evidence. &
+Jack Marino keeps the Week 1 status explicit and replaces later examples
+through reviewed, traceable changes in subsequent course work.\\
+\end{tabularx}
+\normalsize
+
+\section{Change Control and Evidence}
+Changes use a topic branch and focused commits reviewed through a pull request
+against \texttt{main}. A proposed change records its reason, affected chapters,
+decision-register impact, checks performed, and open issues. Human approval
+is recorded only when it occurs. A requirement or interface change triggers
+review of affected design, tests, and traceability.
+
+The complete document build uses
+\texttt{make -f makefileMacLinux pdf} on a configured Linux/macOS environment
+or \texttt{.\textbackslash makefilePowerShell.ps1 -Action pdf} on configured Windows.
+\ChapterRef{DocumentGuide} provides the toolchain and manual command sequence.
+The repository build workflow retains the generated PDF and logs; its result
+is evidence for the associated commit only. Later target testing additionally
+records the hardware revision, firmware commit, configuration, equipment,
+inputs, expected results, actual results, and defects.
+
+\section{Reviewer Decisions Requested}
+At G1, confirm the proposed bench demonstration scope, system boundary,
+Embedded Systems profile selection, TBD owners, and staged plan.
+Confirm that later template chapters are deferred course work and identify any
+additional Week 1 acceptance expectations. At G2, confirm the proposed
+requirements and demonstration criteria after the owner supplies hardware and
+performance decisions. These decisions remain pending in this submission.

@@ -8,5 +8,111 @@ Retain detailed evidence supporting test and verification conclusions.
 
 \section{How to Use This Appendix}
 Store or reference detailed test and verification evidence here when it would make the main chapters difficult to read. Evidence must identify the artifact, result, environment, date, and product revision.
-\section{Example Evidence Record}
+\section{Planned Evidence Catalog}
+\label{Section:PlannedEvidence}
+An evidence ID is a collection specification, not an existing artifact.
+All bundles below are Not collected. Jack Marino owns collection and storage;
+decision date is TBD. Actual artifact location, execution date, product and
+hardware revisions, operator/reviewer identity, observed measurements, and
+disposition are TBD until an executed run supplies them. These unresolved
+values inherit the owner/date in each row. Do not replace them with example
+Pass data or with this document's CI result.
+
+Every collected bundle will record its evidence ID, linked check and
+requirement/story, controlled baseline and parameter approvals, setup and
+instrument calibration/uncertainty, raw observations, reproducible calculation,
+acceptance comparison, deviations, reviewer disposition, and a usable artifact
+location. Validation bundles additionally retain stakeholder feedback and
+observed decisions. Revision and result are recorded only from evidence.
+
+\begin{landscape}
+\small
+\subsection{Verification Evidence Plans}
+\begin{tabularx}{\linewidth}{L{2.0cm}L{3.3cm}Y L{2.3cm}L{2.6cm}}
+\caption{Planned Verification Evidence\label{Table:PlannedVerificationEvidence}}\\
+\toprule
+\textbf{Evidence ID} & \textbf{Links} & \textbf{Expected retained content} & \textbf{Collection state} & \textbf{Owner / Decision date}\\
+\midrule
+\endfirsthead
+\textbf{Evidence ID} & \textbf{Links} & \textbf{Expected retained content} & \textbf{Collection state} & \textbf{Owner / Decision date}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\ArtifactID{Evidence}{EVD-010} & \VerificationRef{VER-010}\par \TestCaseRef{TC-010} & Ready-edge and 8-bit code logic trace, matching local records, and event-to-record reconciliation.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-011} & \VerificationRef{VER-011}\par \TestCaseRef{TC-011} & Concurrent read, processing, and delivery timelines; source/consumer counts, queue occupancy, and workload configuration.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-012} & \VerificationRef{VER-012}\par \TestCaseRef{TC-012} & ADC start, completion, read-control, and full data-bus traces showing capture relative to data-valid timing.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-013} & \VerificationRef{VER-013}\par \TestCaseRef{TC-013} & Injected qualification-fault log, resulting sample/reason states, and reference trace for each affected sample.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-014} & \VerificationRef{VER-014}\par \TestCaseRef{TC-014} & Independent applied voltage, raw codes, scaled outputs, transfer calculation, and active calibration revision.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-015} & \VerificationRef{VER-015}\par \TestCaseRef{TC-015} & Calibration test records and validity checks; activation/rejection log for valid, malformed, expired, wrong-device, and out-of-range cases.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-016} & \VerificationRef{VER-016}\par \TestCaseRef{TC-016} & Controlled local records, approved schema, decoded field report, and sequence-order inspection.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-017} & \VerificationRef{VER-017}\par \TestCaseRef{TC-017} & Versioned local contract and independent decoding report for normal, restart, and sequence-boundary records.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-018} & \VerificationRef{VER-018}\par \TestCaseRef{TC-018} & Per-epoch sequence/record logs through exhaustion and restart, with epoch markers and duplicate identification.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-019} & \VerificationRef{VER-019}\par \TestCaseRef{TC-019} & Paired ready-event and local-publication times, calibrated clock basis, workload, and latency/uncertainty calculation.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-020} & \VerificationRef{VER-020}\par \TestCaseRef{TC-020} & Per-event sample timestamps, calibrated independent event times, synchronization evidence, and absolute-error/uncertainty calculation.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-021} & \VerificationRef{VER-021}\par \TestCaseRef{TC-021} & Conversion acceptance times, workload/duration, sample-gap distribution, and invalid or missing-sample accounting.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-022} & \VerificationRef{VER-022}\par \TestCaseRef{TC-022} & Conversion start-to-ready traces with ADC clock, voltage, supply, and temperature setup and latency measurements.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-023} & \VerificationRef{VER-023}\par \TestCaseRef{TC-023} & Independent reference readings at fitted and unfitted voltage points, scaled outputs, error budget, and reference uncertainty.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-024} & \VerificationRef{VER-024}\par \TestCaseRef{TC-024} & Unique source/delivered sample logs, burst envelope, initial backlog, peak storage, and reconciliation report.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-025} & \VerificationRef{VER-025}\par \TestCaseRef{TC-025} & Arrival/service envelope analysis, usable-queue/storage calculation, margin, and corroborating burst/stall traces.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-026} & \VerificationRef{VER-026}\par \TestCaseRef{TC-026} & Forced-overflow trace, queue state, configured overflow policy, backpressure/drop counts, and consumer discontinuity indications.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-027} & \VerificationRef{VER-027}\par \TestCaseRef{TC-027} & Last valid publication time, source-pause trace, stale-state observation time, and detection-delay calculation.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-028} & \VerificationRef{VER-028}\par \TestCaseRef{TC-028} & Defined disconnect-event trace, driver/electrical observations, status transition time, and detection-delay calculation.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-029} & \VerificationRef{VER-029}\par \TestCaseRef{TC-029} & Reconnect/wrong-device scenarios, identity/configuration/time checks, epoch log, queued-data disposition, and first newly qualified sample.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-030} & \VerificationRef{VER-030}\par \TestCaseRef{TC-030} & Restored-prerequisite times, retry/state-machine log, first qualified publications, terminal faults, and recovery intervals.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-031} & \VerificationRef{VER-031}\par \TestCaseRef{TC-031} & Clock offset/drift/reset/loss injections, independent reference evidence, timing-qualification state, and fault-detection times.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-032} & \VerificationRef{VER-032}\par \TestCaseRef{TC-032} & Approved OMS contract/version/profile/message and status mapping; injected local states and captured CAL products with correlation.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-033} & \VerificationRef{VER-033}\par \TestCaseRef{TC-033} & Counter width/bit order/reset setup, known input edges, coherent capture trace, and observed modulo values through wrap.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-034} & \VerificationRef{VER-034}\par \TestCaseRef{TC-034} & Independent oscillator edges and capture times; measured gap/jitter/uncertainty and transition-completeness assessment.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-035} & \VerificationRef{VER-035}\par \TestCaseRef{TC-035} & Physical latch/capture event reference, reported capture timestamps, clock correlation, and timestamp-error calculation.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-036} & \VerificationRef{VER-036}\par \TestCaseRef{TC-036} & All counter bits and latch/handshake traces around carries and wrap, with complete-word setup/hold measurements.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-037} & \VerificationRef{VER-037}\par \TestCaseRef{TC-037} & Suppressed capture scenarios, independent edge counts, modular comparisons, full-wrap cases, and ambiguity/missed-increment reports.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-038} & \VerificationRef{VER-038}\par \TestCaseRef{TC-038} & Aligned reset/enable and independent edge trace, expected modulo counts, observed values, and discrepancy log.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-039} & \VerificationRef{VER-039}\par \TestCaseRef{TC-039} & Oscillator/reference stop and drift injections, independent watchdog/reference trace, and reference-fault report times.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-040} & \VerificationRef{VER-040}\par \TestCaseRef{TC-040} & Versioned frame contract, every-byte-value and boundary-length vectors, fragmented stream, and independent parse report.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-041} & \VerificationRef{VER-041}\par \TestCaseRef{TC-041} & Mode/rate/host-load setup, accepted and intact payload counts at defined boundaries, duration, overhead, and effective-rate calculation.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-042} & \VerificationRef{VER-042}\par \TestCaseRef{TC-042} & Short-write/read, timeout, and cancellation injections with requested/accepted/pending byte accounting and retry log.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-043} & \VerificationRef{VER-043}\par \TestCaseRef{TC-043} & Byte/frame deletion, duplication, reorder, and reset vectors; frame/epoch sequences, anomaly log, and declared ambiguity.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-044} & \VerificationRef{VER-044}\par \TestCaseRef{TC-044} & Producer burst and receiver stall trace, both queue high-water marks, accepted/delivered-byte reconciliation, and storage budgets.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-045} & \VerificationRef{VER-045}\par \TestCaseRef{TC-045} & Approved topology/wiring/directions and full-bus/control traces; ready/valid setup/hold observations through stalls and data changes.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-046} & \VerificationRef{VER-046}\par \TestCaseRef{TC-046} & Common-reference producer/consumer event traces, clock offset/drift perturbations, and clock-correlation error budget.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-047} & \VerificationRef{VER-047}\par \TestCaseRef{TC-047} & Approved integrity-check parameters/vectors, injected protected-field errors, received check results, and accept/reject log.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-048} & \VerificationRef{VER-048}\par \TestCaseRef{TC-048} & Mid-frame disconnect and framing/length/reset faults, discard accounting, epoch establishment, and resynchronization/delivery log.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVD-049} & \VerificationRef{VER-049}\par \TestCaseRef{TC-049} & Producer-acceptance and consumer-complete-frame times, payload/load configuration, clock qualification, and latency calculation.\par Actual location, run date, revisions, and result: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+\begin{landscape}
+\small
+\subsection{Validation Evidence Plans}
+\begin{tabularx}{\linewidth}{L{2cm}L{2.6cm}Y L{2.3cm}L{2.6cm}}
+\caption{Planned Validation Evidence\label{Table:PlannedValidationEvidence}}\\
+\toprule
+\textbf{Evidence ID} & \textbf{Links} & \textbf{Expected retained content} & \textbf{Collection state} & \textbf{Owner / Decision date}\\
+\midrule
+\endfirsthead
+\textbf{Evidence ID} & \textbf{Links} & \textbf{Expected retained content} & \textbf{Collection state} & \textbf{Owner / Decision date}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\ArtifactID{Evidence}{EVL-01} & \UserStoryRef{US-01}\par \ValidationRef{VAL-01} & Agreed scenario script and expected decisions; display captures; observed use/no-use choices; operator feedback and reviewer disposition.\par Actual location, execution date, participant, and outcome: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVL-02} & \UserStoryRef{US-02}\par \ValidationRef{VAL-02} & Scenario/workload configuration; read/process/output timelines and byte/sample accounting; observations; developer feedback and review disposition.\par Actual location, execution date, participant, and outcome: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVL-03} & \UserStoryRef{US-03}\par \ValidationRef{VAL-03} & Platform/driver/version matrix; installation and operation logs; observed task completion; encountered dependencies; field-engineer feedback and review disposition.\par Actual location, execution date, participant, and outcome: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVL-04} & \UserStoryRef{US-04}\par \ValidationRef{VAL-04} & Approved contract and compatibility baseline; integration script; exchanged data/status captures; replacement observations; integrator feedback and disposition.\par Actual location, execution date, participant, and outcome: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVL-05} & \UserStoryRef{US-05}\par \ValidationRef{VAL-05} & Counter/reset/clock configuration; independent edge and capture traces; expected/observed and ambiguity reports; developer decisions and feedback.\par Actual location, execution date, participant, and outcome: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\ArtifactID{Evidence}{EVL-06} & \UserStoryRef{US-06}\par \ValidationRef{VAL-06} & Topology, mode, frame, and load configuration; byte accounting; frame/integrity results; clock-qualified traces; resynchronization observations and developer feedback.\par Actual location, execution date, participant, and outcome: TBD. & Not collected & Jack Marino\par Decision date: TBD\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+
+\section{Retained Template Evidence Example}
+This service-request record is a template example, not collected project evidence.
+
 Test: \textit{TC-001}; Result: \textit{Pass}; Environment: \textit{[browser, operating system, or deployment]}; Revision: \textit{[build ID]}; Evidence: \textit{[link to report, log, screenshot, or automated result]}. Redact personal or production-sensitive data.

@@ -1,0 +1,20 @@
+\begin{tikzpicture}[>=Stealth,
+ box/.style={draw=dsnBlue,fill=dsnLightBlue,align=center,text width=3.2cm,
+ minimum height=0.85cm,font=\small}]
+\node[box] (needs) at (-3,2) {Stakeholder needs};
+\node[box] (req) at (-3,0) {Requirements};
+\node[box] (design) at (-3,-2) {Design};
+\node[box] (impl) at (0,-4) {Implementation};
+\node[box] (test) at (3,-2) {Unit / integration tests};
+\node[box] (verify) at (3,0) {System verification};
+\node[box] (valid) at (3,2) {Stakeholder validation};
+\draw[->] (needs.south)--(req.north);
+\draw[->] (req.south)--(design.north);
+\draw[->] (design.south)|-(impl.west);
+\draw[->] (impl.east)-|(test.south);
+\draw[->] (test.north)--(verify.south);
+\draw[->] (verify.north)--(valid.south);
+\draw[dashed,<->] (needs.east)--(valid.west);
+\draw[dashed,<->] (req.east)--(verify.west);
+\draw[dashed,<->] (design.east)--(test.west);
+\end{tikzpicture}

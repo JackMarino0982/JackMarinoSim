@@ -8,7 +8,79 @@ Define repeatable procedures that produce objective evidence.
 
 \section{How to Use This Chapter}
 Define repeatable test cases, levels, environments, data, entry conditions, procedures, expected results, and result recording. Tests produce evidence; they do not replace verification or validation.
-\section{Example Test Cases}
+\section{Week 2 Planned Checks}
+\label{Section:WeekTwoTests}
+These are candidate test specifications. Jack Marino configures and records
+the hardware, host, driver, versions, operating envelope, independent reference,
+instrument calibration/uncertainty, and applicable parameters from
+\hyperref[Table:RequirementParameters]{the decision register} before running
+each check. Resolve the mapped requirement's approval dependencies first.
+For each run retain inputs, raw logic/timing traces or records, calculations,
+observed results, reviewer, and disposition. A missing bound or reference
+blocks a pass/fail judgment; no check below has been executed.
+\begin{landscape}
+\small
+\begin{tabularx}{\linewidth}{L{2.0cm}L{3.0cm}Y Y}
+\caption{Week 2 Planned Requirement Checks\label{Table:WeekTwoTests}}\\
+\toprule
+\textbf{Test ID} & \textbf{Mappings} & \textbf{Procedure after approved setup} & \textbf{Expected pass observation}\\
+\midrule
+\endfirsthead
+\textbf{Test ID} & \textbf{Mappings} & \textbf{Procedure after approved setup} & \textbf{Expected pass observation}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\TestCaseID{TC-010} & \RequirementRef{REQ-SMP-01}\par \UseCaseRef{UC-01} & Inject known codes and ready events; capture bus activity and local records. & Acceptance bound: \VerificationRef{VER-010}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-011} & \RequirementRef{REQ-F-004}\par \UseCaseRef{UC-01} & Run a known continuous source while processing and output are loaded; record read, processing, and delivery intervals. & Acceptance bound: \VerificationRef{VER-011}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-012} & \RequirementRef{REQ-F-005}\par \UseCaseRef{UC-01} & Vary conversion start, completion, and read timing; observe INTR, read control, and data bus with a logic analyzer. & Acceptance bound: \VerificationRef{VER-012}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-013} & \RequirementRef{REQ-F-006}\par \UseCaseRef{UC-02} & Inject incomplete conversions, incoherent capture, and unavailable timing reference; inspect record status. & Acceptance bound: \VerificationRef{VER-013}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-014} & \RequirementRef{REQ-F-007}\par \UseCaseRef{UC-01} & Apply reference voltages spanning the approved range; compare raw codes and reported voltage with the documented transfer function. & Acceptance bound: \VerificationRef{VER-014}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-015} & \RequirementRef{REQ-F-008}\par \UseCaseRef{UC-01} & Load approved and deliberately malformed, wrong-device, out-of-range, or expired calibration records. & Acceptance bound: \VerificationRef{VER-015}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-016} & \RequirementRef{REQ-IF-01}\par \UseCaseRef{UC-01} & Inspect records from a controlled code stream using the approved schema. & Acceptance bound: \VerificationRef{VER-016}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-017} & \RequirementRef{REQ-I-002}\par \UseCaseRef{UC-01} & Inspect the versioned contract and decode representative records, including restart and sequence-boundary cases. & Acceptance bound: \VerificationRef{VER-017}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-018} & \RequirementRef{REQ-D-002}\par \UseCaseRef{UC-01} & Publish known streams through sequence exhaustion and restart, retaining epoch identifiers and records. & Acceptance bound: \VerificationRef{VER-018}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-019} & \RequirementRef{REQ-TIM-01}\par \UseCaseRef{UC-01} & Inject timestamped ready events at the approved load; independently observe local publication for each event. & Acceptance bound: \VerificationRef{VER-019}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-020} & \RequirementRef{REQ-TIM-02}\par \UseCaseRef{UC-01} & Compare event timestamps with a calibrated independent clock under the approved load and synchronization conditions. & Acceptance bound: \VerificationRef{VER-020}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-021} & \RequirementRef{REQ-Q-002}\par \UseCaseRef{UC-01} & Acquire a stable input under the agreed load; independently measure consecutive conversion acceptance times. & Acceptance bound: \VerificationRef{VER-021}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-022} & \RequirementRef{REQ-Q-003}\par \UseCaseRef{UC-01} & Measure start-to-ready intervals across approved input, clock, supply, and temperature conditions. & Acceptance bound: \VerificationRef{VER-022}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-023} & \RequirementRef{REQ-Q-004}\par \UseCaseRef{UC-01} & Sweep independent calibration-check points, including endpoints and intermediate points not used to fit calibration. & Acceptance bound: \VerificationRef{VER-023}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-024} & \RequirementRef{REQ-Q-005}\par \UseCaseRef{UC-01} & Inject uniquely identifiable samples at the approved burst envelope from the specified initial queue state. & Acceptance bound: \VerificationRef{VER-024}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-025} & \RequirementRef{REQ-Q-006}\par \UseCaseRef{UC-01} & Analyze arrival and service envelopes and corroborate the bound using paused-consumer and burst tests. & Acceptance bound: \VerificationRef{VER-025}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-026} & \RequirementRef{REQ-F-009}\par \UseCaseRef{UC-02} & Exceed the approved envelope and force queues full; inspect records, counters, and upstream behavior. & Acceptance bound: \VerificationRef{VER-026}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-027} & \RequirementRef{REQ-SMP-02}\par \UseCaseRef{UC-02} & Pause the qualified source immediately after a valid publication and observe output status with an independent timer. & Acceptance bound: \VerificationRef{VER-027}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-028} & \RequirementRef{REQ-Q-007}\par \UseCaseRef{UC-02} & Disconnect the selected sensor/USB path during acquisition and time the declared event to the observed status change. & Acceptance bound: \VerificationRef{VER-028}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-029} & \RequirementRef{REQ-F-010}\par \UseCaseRef{UC-02} & Reconnect the correct and wrong devices; vary timing-reference readiness and conversion availability. & Acceptance bound: \VerificationRef{VER-029}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-030} & \RequirementRef{REQ-Q-008}\par \UseCaseRef{UC-02} & Restore each approved recoverable fault and measure prerequisite-ready to first new qualified publication. & Acceptance bound: \VerificationRef{VER-030}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-031} & \RequirementRef{REQ-F-011}\par \UseCaseRef{UC-02} & Inject clock offset, drift, reset, and loss of synchronization; inspect timestamp and fault status. & Acceptance bound: \VerificationRef{VER-031}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-032} & \RequirementRef{REQ-OMS-01}\par \UseCaseRef{UC-03} & After interface approval, inspect the contract and inject valid, stale, and faulted acquisition states at the gateway input. & Acceptance bound: \VerificationRef{VER-032}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-033} & \RequirementRef{REQ-F-012}\par \UseCaseRef{UC-04} & Drive a known count sequence through zero, maximum count, and wrap; compare captured words against an independent trace. & Acceptance bound: \VerificationRef{VER-033}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-034} & \RequirementRef{REQ-Q-009}\par \UseCaseRef{UC-04} & Sweep oscillator rate and host load while independently logging counter edges and capture times. & Acceptance bound: \VerificationRef{VER-034}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-035} & \RequirementRef{REQ-Q-010}\par \UseCaseRef{UC-04} & Compare captured-word timestamps against independently observed latch/capture events across the approved run duration. & Acceptance bound: \VerificationRef{VER-035}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-036} & \RequirementRef{REQ-I-003}\par \UseCaseRef{UC-04} & Capture around multi-bit transitions, cascaded carries, and wrap; observe latch control and all counter bits. & Acceptance bound: \VerificationRef{VER-036}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-037} & \RequirementRef{REQ-F-013}\par \UseCaseRef{UC-04} & Suppress captures and introduce gaps shorter and longer than a full counter cycle while retaining independent edge counts. & Acceptance bound: \VerificationRef{VER-037}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-038} & \RequirementRef{REQ-F-014}\par \UseCaseRef{UC-04} & Apply reset, enable/disable, known edge sequences, and wrap; compare the evaluation log with the independent trace. & Acceptance bound: \VerificationRef{VER-038}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-039} & \RequirementRef{REQ-Q-011}\par \UseCaseRef{UC-04} & Stop or perturb the oscillator and reference independently, including loss of the common comparison basis. & Acceptance bound: \VerificationRef{VER-039}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-040} & \RequirementRef{REQ-I-004}\par \UseCaseRef{UC-05} & Inspect the contract and parse frames containing every byte value, especially delimiter-like bytes and boundary lengths. & Acceptance bound: \VerificationRef{VER-040}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-041} & \RequirementRef{REQ-Q-012}\par \UseCaseRef{UC-05} & Transmit a known framed stream for the approved duration; measure payload bytes at the electrical and application boundaries. & Acceptance bound: \VerificationRef{VER-041}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-042} & \RequirementRef{REQ-F-015}\par \UseCaseRef{UC-05} & Force short writes, fragmented reads, timeouts, and cancellation while retaining submitted and accepted byte counts. & Acceptance bound: \VerificationRef{VER-042}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-043} & \RequirementRef{REQ-F-016}\par \UseCaseRef{UC-05} & Delete bytes and frames, duplicate frames, reorder frames, and reset the producer during known transfers. & Acceptance bound: \VerificationRef{VER-043}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-044} & \RequirementRef{REQ-Q-013}\par \UseCaseRef{UC-05} & Apply the approved producer burst while stalling and resuming the receiver; trace queue occupancy and end-to-end byte counts. & Acceptance bound: \VerificationRef{VER-044}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-045} & \RequirementRef{REQ-I-005}\par \UseCaseRef{UC-05} & Inspect wiring and directions; observe all bits and control signals through receiver pauses and alternating data patterns. & Acceptance bound: \VerificationRef{VER-045}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-046} & \RequirementRef{REQ-Q-014}\par \UseCaseRef{UC-05} & Measure correlated producer and consumer events with a common analyzer; perturb clock offset and drift. & Acceptance bound: \VerificationRef{VER-046}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-047} & \RequirementRef{REQ-D-003}\par \UseCaseRef{UC-05} & Inject defined single-bit and multi-bit corruptions in payload and protected headers and run approved check vectors. & Acceptance bound: \VerificationRef{VER-047}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-048} & \RequirementRef{REQ-F-017}\par \UseCaseRef{UC-05} & Disconnect mid-frame, corrupt length/framing, and restart either endpoint with queued data. & Acceptance bound: \VerificationRef{VER-048}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\TestCaseID{TC-049} & \RequirementRef{REQ-Q-015}\par \UseCaseRef{UC-05} & Measure accepted-frame to validated-delivery intervals using the approved common/correlated reference under normal and burst loads. & Acceptance bound: \VerificationRef{VER-049}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+
+\section{Retained Template Test Examples}
+These service-request tests are template examples only.
+
 \begin{tabularx}{\linewidth}{L{2.1cm}L{3.0cm}YL{5.0cm}}
 \caption{Test Case Examples\label{Table:TestCaseExamples}}\\
 \toprule

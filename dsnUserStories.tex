@@ -1,26 +1,194 @@
-\chapter{User Stories}
+\chapter{Stakeholders and User Stories}
 \ChapterLabel{UserStories}
+\index{stakeholder}
 \index{user story}
-\index{acceptance criterion}
+\index{acceptance question}
+
 \section{Chapter Responsibility}
 \label{Section:UserStoriesResponsibility}
-Capture who needs a result and why that result has value.
+Identify the stakeholder roles, their desired capabilities and outcomes, and
+the operating contexts and acceptance questions that guide validation.
 
-\noindent\textbf{Expected result:} A reviewable statement of stakeholder value and acceptance intent.
+\noindent\textbf{Expected result:} Lecture-grounded stories and proposed bench stories with explicit
+validation intent and visible decisions still needed for requirements.
 
-\section{How to Use This Chapter}
-Capture stakeholder goals in accessible language. Stories express value and
-acceptance intent; precise obligations belong in Requirements. Give each story
-a stable ID, a priority, and links to one or more requirements that implement it.
+\section{Source and Scope}
+\label{Section:WeekTwoStoryScope}
+Stories US-01--US-04 reproduce the Week 2 lecture wording verbatim
+\cite[slides 19--20]{SPE800Week02}. The lecture identifies one role named
+\emph{acquisition developer}. The additional proposed bench stories use US-05 and US-06; new stories will start at US-07;
+these four lecture IDs are reserved and will not be reassigned.
+Operating contexts and acceptance questions below are proposed elaborations
+for human review, not observed results or approved performance limits.
+
+The lecture describes a sensor/ADC0804--FTDI245R--host acquisition path and
+a mission application \cite[slides 12--15]{SPE800Week02}. This provides course
+context; it does not approve project hardware or supersede the unresolved
+choices in \ChapterRef{SystemContext} and
+\hyperref[Table:WeekOneTBDs]{the Week 1 decision register}. Resolve those
+choices before deriving binding requirements. The numerical teaching bounds
+in the lecture are not adopted by these stories.
+
+\section{Stakeholder Roles}
+\label{Section:ADCStakeholders}
+Roles describe beneficiaries and review perspectives, not assigned project
+staff. Jack Marino coordinates stakeholder review under
+\ChapterRef{DevelopmentPlan}; individual representatives are TBD.
+\begin{tabularx}{\linewidth}{L{3.4cm}Y L{1.7cm}}
+\caption{Stakeholder Roles\label{Table:ADCStakeholders}}\\
+\toprule
+\textbf{Role} & \textbf{Stakeholder concern} & \textbf{Story}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Role} & \textbf{Stakeholder concern} & \textbf{Story}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Mission operator & Decide whether sensor readings are usable through the mission application. & \UserStoryRef{US-01}\\
+Acquisition developer & Sustain acquisition while processing and delivery proceed; understand degraded streaming. & \UserStoryRef{US-02}\\
+Field engineer & Deploy and operate the subsystem on available field computers. & \UserStoryRef{US-03}\\
+Mission integrator & Interpret a documented interface and replace compatible sensors or consumers. & \UserStoryRef{US-04}\\
+\end{tabularx}
 
 \section{User Story Register}
-\begin{tabularx}{\linewidth}{L{1.9cm}YL{1.8cm}L{3.4cm}}
+\label{Section:ADCUserStories}
+The four lecture stories are candidates for the course scope; the two added bench stories are owner-requested proposals. Their proposed priority
+is \gls{must}, subject to owner and course review. Candidate requirements and use cases are linked below; portability allocation remains open; generic service-request
+requirements do not implement these ADC stories. The
+\hyperref[Table:TraceabilityMatrix]{Traceability Register} exposes the pending
+mappings and links each story to a planned validation activity. A positive
+answer to an acceptance question requires stakeholder observations in the
+agreed context; document compilation is not stakeholder validation.
+
+\begin{tabularx}{\linewidth}{L{1.6cm}Y L{2.3cm}}
 \caption{User Story Register\label{Table:UserStories}}\\
+\toprule
+\textbf{ID} & \textbf{Role} & \textbf{Validation plan}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{ID} & \textbf{Role} & \textbf{Validation plan}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\UserStoryRef{US-01} & Mission Operator & \ValidationRef{VAL-01}\\
+\UserStoryRef{US-02} & Acquisition Developer & \ValidationRef{VAL-02}\\
+\UserStoryRef{US-03} & Field Engineer & \ValidationRef{VAL-03}\\
+\UserStoryRef{US-04} & Mission Integrator & \ValidationRef{VAL-04}\\
+\end{tabularx}
+
+\subsection{US-01: Mission Operator}
+\noindent\textbf{ID:} \UserStoryID{US-01}\quad\textbf{Priority:} \gls{must} (proposed).
+
+\noindent\textbf{Story.} As a mission operator, I need to see current sensor values and their availability, validity, and age so that I can decide whether to use a reading.
+
+\paragraph{Operating context.} During a representative mission workflow, the mission operator views readings through the mission application. The scenario includes a current valid reading, interrupted input, stale output, and an unavailable sensor. The display and field conditions remain to be agreed with the stakeholder.
+
+\paragraph{Acceptance questions.}
+\begin{enumerate}
+\item Can the mission operator identify which reading is current and valid and decide whether to use it?
+\item When input stops or the sensor becomes unavailable, can the mission operator distinguish stale or unavailable data from usable data?
+\item Are availability, validity, and age understandable without coaching in the agreed operating context?
+\end{enumerate}
+\paragraph{Open decisions.} Agree representative field conditions, sample-age meaning, stale-state criteria, and expected use/no-use decisions. Timing allocations remain TBD.
+
+\begingroup\raggedright
+\noindent\textbf{Validation:} \ValidationRef{VAL-01} (planned; \StatusPending). Candidate requirements: \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-F-005}, \RequirementRef{REQ-F-006}, \RequirementRef{REQ-F-007}, \RequirementRef{REQ-F-008}, \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-TIM-02}, \RequirementRef{REQ-Q-004}, \RequirementRef{REQ-F-009}, \RequirementRef{REQ-SMP-02}, \RequirementRef{REQ-Q-007}, \RequirementRef{REQ-F-010}, \RequirementRef{REQ-F-011}. Use cases: \UseCaseRef{UC-01}, \UseCaseRef{UC-02}.
+\par\endgroup
+
+\subsection{US-02: Acquisition Developer}
+\noindent\textbf{ID:} \UserStoryID{US-02}\quad\textbf{Priority:} \gls{must} (proposed).
+
+\noindent\textbf{Story.} As an acquisition developer, I need sensor acquisition to continue while prior samples are processed and delivered so that mission software receives a continuous stream of readings.
+
+\paragraph{Operating context.} In the lecture scenario, the sensor and ADC0804 supply an 8-bit code through an FTDI245R USB interface. USB reads, processing, and output writes proceed concurrently on the host. Review normal load, a slow consumer, overload, and disconnect/recovery; hardware selection and load bounds remain project decisions.
+
+\paragraph{Acceptance questions.}
+\begin{enumerate}
+\item Can the acquisition developer show that new reads continue while earlier samples are processed and delivered at the agreed operating load?
+\item Can the acquisition developer determine whether samples were delayed, lost, or invalid when processing or output falls behind?
+\item Can mission software interpret the stream and its status through disconnect and recovery without mistaking stale data for new data?
+\end{enumerate}
+\paragraph{Open decisions.} Define sample rate, supported processing load, queue capacity, loss policy, timing bounds, clock, and recovery behavior before validation. Continuous streaming does not establish an unconditional zero-loss guarantee.
+
+\begingroup\raggedright
+\noindent\textbf{Validation:} \ValidationRef{VAL-02} (planned; \StatusPending). Candidate requirements: \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-F-004}, \RequirementRef{REQ-F-005}, \RequirementRef{REQ-F-008}, \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-D-002}, \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-TIM-02}, \RequirementRef{REQ-Q-002}, \RequirementRef{REQ-Q-003}, \RequirementRef{REQ-Q-005}, \RequirementRef{REQ-Q-006}, \RequirementRef{REQ-F-009}, \RequirementRef{REQ-Q-007}, \RequirementRef{REQ-F-010}, \RequirementRef{REQ-Q-008}, \RequirementRef{REQ-F-011}. Use cases: \UseCaseRef{UC-01}, \UseCaseRef{UC-02}.
+\par\endgroup
+
+\subsection{US-03: Field Engineer}
+\noindent\textbf{ID:} \UserStoryID{US-03}\quad\textbf{Priority:} \gls{must} (proposed).
+
+\noindent\textbf{Story.} As a field engineer, I need the sensor subsystem to run on macOS, Windows, and Linux so that I can use the computers available in the field.
+
+\paragraph{Operating context.} A field engineer installs, configures, and runs the same sensor subsystem capability on representative macOS, Windows, and Linux field computers. OS versions, processor architectures, FTDI driver dependencies, permissions, and available resources must be selected before evaluating portability.
+
+\paragraph{Acceptance questions.}
+\begin{enumerate}
+\item Can the field engineer install and start the subsystem on each agreed macOS, Windows, and Linux configuration using the documented procedure?
+\item Can the field engineer acquire readings and inspect status on each platform without platform-specific source changes?
+\item Can the field engineer recognize and resolve a missing driver, permission, or configuration dependency using the deployment instructions?
+\end{enumerate}
+\paragraph{Open decisions.} Agree the supported platform matrix, installation prerequisites, deployment procedure, and representative field constraints. No platform support has yet been demonstrated.
+
+\noindent\textbf{Validation:} \ValidationRef{VAL-03} (planned; \StatusPending). Requirements and use-case allocation: TBD before requirements baseline.
+
+\subsection{US-04: Mission Integrator}
+\noindent\textbf{ID:} \UserStoryID{US-04}\quad\textbf{Priority:} \gls{must} (proposed).
+
+\noindent\textbf{Story.} As a mission integrator, I need a documented sensor data and status interface so that I can replace a sensor or mission consumer without redesigning their connection.
+
+\paragraph{Operating context.} A mission integrator uses a documented contract between the sensor subsystem and mission software. Local sample records and the mission-facing interface are separate boundaries. The lecture specifies OMS for the course mission interface; program applicability, standard version, CAL profile, UCI mapping, and service ownership remain open.
+
+\paragraph{Acceptance questions.}
+\begin{enumerate}
+\item Can the mission integrator interpret sensor data and availability, validity, age, and fault status from the documented contract without undocumented assumptions?
+\item Can a contract-compatible replacement sensor or mission consumer be integrated without redesigning the agreed connection?
+\item Are local record semantics and the proposed OMS mission exchange distinguished, with unresolved profile and mapping decisions visible?
+\end{enumerate}
+\paragraph{Open decisions.} Agree the interface contract, compatibility boundary, data/status mapping, and replacement scenario. Confirm OMS applicability, version, CAL profile, UCI mapping, and gateway ownership before conformance claims.
+
+\begingroup\raggedright
+\noindent\textbf{Validation:} \ValidationRef{VAL-04} (planned; \StatusPending). Candidate requirements: \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-I-002}, \RequirementRef{REQ-D-002}, \RequirementRef{REQ-OMS-01}. Use cases: \UseCaseRef{UC-01}, \UseCaseRef{UC-03}.
+\par\endgroup
+
+\section{Proposed Owner-Requested Bench Stories}
+These stories elaborate the owner request of November 12, 2026; they are not lecture wording or approved mission needs. Priority is proposed \gls{must} within each bench scenario only.
+\subsection{US-05: Counter Capture Evaluation}
+\UserStoryID{US-05}\quad\gls{must} (proposed).\par
+As an acquisition developer, I need compare sampled counter values and capture times with an independent edge reference so that I can identify missed transitions and qualify acquisition timing.
+\paragraph{Operating context.} Run a selected oscillator-driven 4-bit or 8-bit 74xx counter using coherent capture, known reset/enable events, and an independent reference.
+\paragraph{Acceptance question.} Can the developer distinguish a correctly captured count from missed increments, ambiguous wraps, or invalid timing evidence?
+\noindent Candidate requirements: \RequirementRef{REQ-F-012}, \RequirementRef{REQ-Q-009}, \RequirementRef{REQ-Q-010}, \RequirementRef{REQ-I-003}, \RequirementRef{REQ-F-013}, \RequirementRef{REQ-F-014}, \RequirementRef{REQ-Q-011}. Use case: \UseCaseRef{UC-04}. Validation plan: \ValidationRef{VAL-05}. Scope and test bounds remain open.
+\subsection{US-06: Paired FTDI Stream Evaluation}
+\UserStoryID{US-06}\quad\gls{must} (proposed).\par
+As an acquisition developer, I need send a known 8-bit stream through a defined producer/consumer path and inspect the received data so that I can evaluate framing, loss, timing, buffering, and end-to-end integrity.
+\paragraph{Operating context.} Use two selected FTDI devices connected through an approved electrical and handshake path, with documented host topology, modes, payload framing, and reference clocks.
+\paragraph{Acceptance question.} Can the developer account for delivered, rejected, lost, or uncertain data and explain throughput and timing using the agreed reference?
+\noindent Candidate requirements: \RequirementRef{REQ-I-004}, \RequirementRef{REQ-Q-012}, \RequirementRef{REQ-F-015}, \RequirementRef{REQ-F-016}, \RequirementRef{REQ-Q-013}, \RequirementRef{REQ-I-005}, \RequirementRef{REQ-Q-014}, \RequirementRef{REQ-D-003}, \RequirementRef{REQ-F-017}, \RequirementRef{REQ-Q-015}. Use case: \UseCaseRef{UC-05}. Validation plan: \ValidationRef{VAL-06}. Scope and test bounds remain open.
+
+\section{Review Rules}
+Check each story with its stakeholder for role, capability, outcome, operating
+context, and acceptance questions. Confirm priority and settle the open
+decisions before baselining requirements. Add reciprocal requirement and
+use-case links only when those artifacts exist; preserve the story-to-validation
+links and record observed stakeholder results in \ChapterRef{Validation}.
+
+\section{Retired Template Examples}
+\label{Section:RetiredTemplateStories}
+The following service-request examples are retained only to preserve template
+IDs and links in chapters awaiting tailoring. They are not ADC stakeholder
+needs, approved requirements, or validation evidence. IDs US-001--US-003 are
+distinct from the lecture IDs US-01--US-04 and will not be reused.
+\begin{tabularx}{\linewidth}{L{1.9cm}YL{1.8cm}L{3.4cm}}
+\caption{Retired Template Story Register\label{Table:TemplateUserStories}}\\
 \toprule
 \textbf{ID} & \textbf{Story and Acceptance Criteria} & \textbf{Priority} & \textbf{Requirement(s)}\\
 \midrule
 \endfirsthead
-\multicolumn{4}{l}{\small\itshape User Story Register (continued)}\\
+\multicolumn{4}{l}{\small\itshape Retired Template Story Register (continued)}\\
 \toprule
 \textbf{ID} & \textbf{Story and Acceptance Criteria} & \textbf{Priority} & \textbf{Requirement(s)}\\
 \midrule
@@ -34,8 +202,3 @@ a stable ID, a priority, and links to one or more requirements that implement it
 \UserStoryID{US-002} & As a customer, I want to view my request status so that I understand its progress. Acceptance: the current status and most recent update appear within the specified response time, and the transition history is retained. & \gls{should} & \RequirementRef{REQ-F-002}, \RequirementRef{REQ-Q-001}, \RequirementRef{REQ-D-001}, \RequirementRef{REQ-C-001}\\
 \UserStoryID{US-003} & As an operations analyst, I want to export request history so that I can perform approved analysis. Acceptance: an authorized actor prepares complete history within five minutes in the approved versioned format without changing source records. & \gls{would} & \RequirementRef{REQ-B-001}, \RequirementRef{REQ-F-003}, \RequirementRef{REQ-I-001}, \RequirementRef{REQ-S-001}, \RequirementRef{REQ-D-001}, \RequirementRef{REQ-C-001}\\
 \end{tabularx}
-
-\section{Review Rules}
-Confirm that every story identifies a beneficiary, outcome, acceptance
-criterion, priority, and at least one linked requirement. Maintain reciprocal
-story links in the traceability register.

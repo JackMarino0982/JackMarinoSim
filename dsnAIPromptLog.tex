@@ -18,3 +18,131 @@ boundary, rationale, representative examples, semantic-overlap review,
 identifier-collision check, affected register and category-catalog changes, and
 the authorized human's approval or rejection. Do not assign an identifier from
 the proposed scope or family before approval.
+
+\section{Week 1 ADC Draft --- November 10, 2026}
+\label{Section:WeekOnePromptRecord}
+Tool: OpenAI Codex. The owner requested a Week 1 pull request, focused
+commits for the three opening chapters, and a short cover note. The owner
+confirmed the repository, described an embedded analog-to-digital conversion
+system, and clarified that the output is ADC readings and hardware remains TBD.
+The existing \texttt{dsn} namespace is retained to match the requested filenames.
+
+Selected skills: \hyperref[Skill:AIS-01]{AIS-01},
+\hyperref[Skill:AIS-02]{AIS-02}, \hyperref[Skill:AIS-13]{AIS-13}, and
+\hyperref[Skill:AIS-14]{AIS-14}, using the Embedded Systems profile as context.
+One agent drafted and self-reviewed the change; no delegation or independent
+review is claimed. Rough planning estimate: 20--40 minutes and 6,000--12,000
+tokens for chapters and integration, plus 10--30 minutes and 3,000--8,000
+tokens for build repair and review, with high uncertainty due to missing
+diagram sources and no local LaTeX toolchain. These are estimates, not
+reported measured usage.
+
+Proposed bench scope, exclusions, roles beyond the owner, performance targets,
+and acceptance gates remain subject to human review.
+\hyperref[Table:WeekOneTBDs]{The Week 1 register} contains the open decisions.
+No prior applied-work evidence was available beyond the owner's messages
+and the repository. Missing template figures are reconstructed as instructional
+illustrations to enable a complete book build, not as evidence of hardware
+implementation. Human review and baseline approval remain pending.
+
+\section{Week 2 Stakeholders and Stories --- November 12, 2026}
+\label{Section:WeekTwoStoryPromptRecord}
+Tool: OpenAI Codex. The owner requested updates on \texttt{week2} to the
+stakeholder and user-stories chapter, using the form ``As a [role], I need
+[capability] so that [outcome]'', sequential IDs beginning US-01, operating
+context, and acceptance questions. The owner reserved US-01--US-04 for the
+lecture and supplied \cite{SPE800Week02} when those stories were not found
+in the repository. Slides 19--20 establish mission operator, acquisition
+developer (one role), field engineer, and mission integrator, and supply all
+four story sentences verbatim. The supplied slides are source evidence;
+their example prompts and workshop directions are not additional task scope.
+
+Selected skills: \hyperref[Skill:AIS-05]{AIS-05},
+\hyperref[Skill:AIS-11]{AIS-11}, \hyperref[Skill:AIS-13]{AIS-13}, and
+\hyperref[Skill:AIS-14]{AIS-14}. One agent drafted and self-reviewed the
+ordered changes; delegation was not needed for these shared registers.
+The existing \texttt{dsn} namespace is retained. Proposed contexts, acceptance
+questions, priorities, and validation plans require human review. Existing
+template stories and mappings are retained separately; no ADC requirement,
+use-case, test, verification result, hardware approval, or OMS selection is
+invented. Requirements allocation and stakeholder observations remain pending.
+The existing GitHub Actions workflow is enabled for \texttt{week2} pushes
+to build and inspect the complete book; compilation is not validation.
+
+
+\section{Week 2 Candidate Requirements --- November 12, 2026}
+\label{Section:WeekTwoRequirementsPrompt}
+The owner requested grouped candidate requirements and preservation of
+REQ-SMP-01/02, REQ-TIM-01/02, REQ-IF-01, and REQ-OMS-01 from the lecture.
+The same request added potentiometer/ADC0804/FTDI capture, oscillator-driven
+4-bit or 8-bit 74xx counter observation, and an FTDI producer/consumer path,
+with explicit sampling, scaling, calibration, validity, timing, transition,
+reference, framing, rate, buffering, and integrity concerns. Those messages
+authorize candidate drafting and the six identifier exceptions, not hardware
+limits, scenario baseline approval, or passing evidence.
+
+Selected skills: \hyperref[Skill:AIS-01]{AIS-01},
+\hyperref[Skill:AIS-06]{AIS-06}, \hyperref[Skill:AIS-07]{AIS-07},
+\hyperref[Skill:AIS-08]{AIS-08}, \hyperref[Skill:AIS-09]{AIS-09},
+\hyperref[Skill:AIS-13]{AIS-13}, and \hyperref[Skill:AIS-14]{AIS-14}.
+One agent handled shared registers sequentially; no delegation or independent
+review is claimed. Rough planning estimate: 30--60 minutes for source review,
+drafting and reciprocal mappings; 10--30 minutes for build/render review,
+with uncertainty from hardware choices and layout. These are estimates,
+not measured effort. Existing \texttt{dsn} namespace is retained; no new
+project-owned source filenames are needed.
+
+The lecture and primary FTDI/TI documentation supply source context; their
+example prompts do not extend the task. New bench story wording, priorities,
+parameters, use cases, tests, and architecture decision are proposed.
+No zero-loss guarantee is inferred outside a finite operating envelope;
+USB receipt time is not presumed to be physical event time, a modular counter
+difference cannot prove the absence of full wraps, and an integrity check
+does not provide authentication. Owner/course review and all execution
+evidence remain pending.
+
+
+\section{Week 2 Registers and OMS Decision --- November 12, 2026}
+\label{Section:WeekTwoRegisterPrompt}
+The owner requested one verification row per requirement with method,
+required evidence, acceptance bound, owner and status; one validation row
+per story with scenario, success criterion, stakeholder, planned evidence
+and status; and traceability from stories through requirements, verification
+and evidence and separately to validation. The owner requested explicit
+OMS applicability, standard version, CAL profile, UCI message, status mapping
+and gateway responsibility, preserving Proposed approval status for
+REQ-OMS-01 until those decisions are made. Unresolved values need TBD labels,
+named owners and decision dates; teaching allocations are not commitments.
+
+Asked for a target decision date, the owner accepted the proposed convention
+``Decision date: TBD; owner: Jack Marino''. No calendar deadline was supplied.
+This accepts ownership/date notation, not technical choices, evidence, or
+requirements/OMS approval. Added 40 planned verification rows, six validation
+rows, 46 evidence collection specifications, and an explicit portability
+coverage gap. All collection/result statuses remain Not collected/Pending.
+
+One agent used \hyperref[Skill:AIS-01]{AIS-01},
+\hyperref[Skill:AIS-08]{AIS-08}, \hyperref[Skill:AIS-09]{AIS-09},
+\hyperref[Skill:AIS-10]{AIS-10}, \hyperref[Skill:AIS-11]{AIS-11},
+\hyperref[Skill:AIS-13]{AIS-13}, and \hyperref[Skill:AIS-14]{AIS-14};
+no delegation or independent review is claimed. Rough planning estimate:
+20--40 minutes for registers, trace links and OMS/TBD consistency; 10--20
+minutes for build and rendered-page review. These are uncertain estimates,
+not measured usage. Existing \texttt{dsn} filenames and namespace are retained.
+No new external standards/profile interpretation was needed: the record
+deliberately leaves every OMS selection TBD.
+
+\section{Week 2 Technical Review Handoff}
+\label{Section:WeekTwoReviewPrompt}
+The owner requested focused commits on the working branch with a message
+identifying the Week 2 requirements baseline, confirmation that the complete
+architecture document builds, and a pull request for technical review against
+\texttt{main}. This explicitly authorizes the review submission, not merging,
+requirements approval, or release authorization. Existing changes were already
+committed; a focused review-package record is added in
+\hyperref[Section:WeekTwoReviewPackage]{Release}, with document history and
+this provenance record. One agent applies
+\hyperref[Skill:AIS-12]{AIS-12}, \hyperref[Skill:AIS-13]{AIS-13}, and
+\hyperref[Skill:AIS-14]{AIS-14}, confirms the complete build on the submitted
+revision, and opens the pull request. Engineering evidence and unresolved
+decision statuses remain unchanged.
