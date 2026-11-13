@@ -2,7 +2,7 @@ name: Architecture document
 on:
   pull_request:
   push:
-    branches: [week1-adc-architecture]
+    branches: [week1-adc-architecture, week2]
   workflow_dispatch:
 
 permissions:

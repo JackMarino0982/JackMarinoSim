@@ -12,10 +12,40 @@ Show that the completed system meets stakeholder needs in its intended context.
 Evaluate whether the completed system solves stakeholder needs in its intended context. Define realistic scenarios, participant roles, success criteria, observations, and disposition of requested changes.
 Validation answers ``Did we build the right system?''
 
-\section{Validation Register}
+\section{ADC Story Validation Plans}
+\label{Section:ADCValidationPlans}
+These activities answer the acceptance questions in \ChapterRef{UserStories}.
+Jack Marino coordinates review with the named stakeholder role; representative
+participants and conditions must be agreed before execution. Retain scenario
+scripts, configurations, observed decisions or outputs, stakeholder feedback,
+and reviewer disposition. No activity has been executed or passed.
+\small
+\begin{tabularx}{\linewidth}{L{1.5cm}L{1.4cm}YY L{1.7cm}}
+\caption{Validation Register\label{Table:ValidationRegister}}\\
+\toprule
+\textbf{ID} & \textbf{Story} & \textbf{Scenario} & \textbf{Success criterion} & \textbf{Status}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{ID} & \textbf{Story} & \textbf{Scenario} & \textbf{Success criterion} & \textbf{Status}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\ValidationID{VAL-01} & \UserStoryRef{US-01} & Current valid input followed by interrupted input; record operator use/no-use decisions. & The mission operator uses the current valid reading, rejects stale or unavailable readings, and confirms that the information supports that decision. & \StatusPending\\
+\ValidationID{VAL-02} & \UserStoryRef{US-02} & Concurrent acquisition, processing, and delivery under agreed normal and degraded loads; review stream and status observations with the acquisition developer. & The acquisition developer confirms that acquisition continues at the agreed load and that the stream makes delays, loss, and degraded status interpretable. & \StatusPending\\
+\ValidationID{VAL-03} & \UserStoryRef{US-03} & Field engineer deploys and operates the subsystem on each agreed platform using its instructions; retain configuration and stakeholder feedback. & The field engineer completes the agreed workflow on all three supported platform configurations and confirms that deployment is practical in the intended setting. & \StatusPending\\
+\ValidationID{VAL-04} & \UserStoryRef{US-04} & Mission integrator reviews the contract and integrates a contract-compatible replacement sensor or consumer in an agreed representative scenario. & The mission integrator interprets the exchanged data and status and completes the compatible replacement without redesigning the agreed connection. & \StatusPending\\
+\end{tabularx}
+\normalsize
+
+\section{Retained Template Validation Examples}
+The service-request examples below are template provenance, not ADC
+validation plans or results. Their IDs remain distinct from VAL-01--VAL-04.
+
 \small
 \begin{tabularx}{\linewidth}{L{1.6cm}L{2.4cm}YL{3.6cm}L{2.2cm}}
-\caption{Validation Register\label{Table:ValidationRegister}}\\
+\caption{Retained Template Validation\label{Table:TemplateValidationRegister}}\\
 \toprule
 \textbf{ID} & \textbf{Related Story} & \textbf{Scenario} & \textbf{Success Criterion} & \textbf{Status}\\
 \midrule
