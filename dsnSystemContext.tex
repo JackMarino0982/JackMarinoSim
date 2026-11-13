@@ -115,6 +115,19 @@ electrical limits, timing and integrity criteria, output behavior, and
 startup/fault policy. No safe operating range or fault recovery claim is made
 before hardware evidence is available.
 
+\section{Week 2 Candidate Scenario Elaboration}
+\label{Section:WeekTwoScenarioContext}
+The owner requested potentiometer-to-ADC0804 8-bit conversion followed by
+FT245R capture, plus separate oscillator-driven 74xx counter and paired-FTDI
+8-bit stream experiments on November 12, 2026. The requirements chapter
+records these as candidate scenarios with explicit hardware, timing,
+electrical, and protocol decisions in
+\hyperref[Table:RequirementParameters]{the parameter register}.
+This supersedes the absence of named candidate parts in the Week 1 draft;
+it does not establish reviewed wiring, hardware availability, electrical
+limits, or implementation. The counter and paired-path experiments are not
+approved replacements for the lecture's single sensor acquisition scenario.
+
 \section{Context Review Exit}
 The context is ready for requirements development when the owner and reviewer
 have agreed the scope, participants, boundary, and the disposition of any TBD

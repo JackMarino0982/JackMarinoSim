@@ -39,6 +39,30 @@ and reviewer disposition. No activity has been executed or passed.
 \end{tabularx}
 \normalsize
 
+\section{Proposed Bench Validation Plans}
+These plans cover the newly proposed bench stories only. They do not validate the delivered mission system. Jack Marino agrees participants, setup and expected decisions before execution.
+\begin{landscape}
+\small
+\begin{tabularx}{\linewidth}{L{1.6cm}L{1.5cm}Y Y L{2.1cm}}
+\caption{Bench Story Validation Plans\label{Table:BenchValidation}}\\
+\toprule
+\textbf{ID} & \textbf{Story} & \textbf{Scenario} & \textbf{Acceptance and evidence} & \textbf{Status}\\
+\midrule
+\endfirsthead
+\textbf{ID} & \textbf{Story} & \textbf{Scenario} & \textbf{Acceptance and evidence} & \textbf{Status}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\ValidationID{VAL-05} & \UserStoryRef{US-05} & An acquisition developer reviews known counter captures with deliberate gaps, wraps, incoherent words, and reference faults. & The developer correctly distinguishes qualified timing/count evidence from missed or ambiguous observations; retain traces and stakeholder feedback. & \StatusPending\\
+\ValidationID{VAL-06} & \UserStoryRef{US-06} & An acquisition developer evaluates a known paired-FTDI stream under normal, stalled, corrupted, and reconnect conditions. & The developer accounts for data outcomes and understands rate/timing limitations; retain scenario, byte accounting, timing traces and feedback. & \StatusPending\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+
 \section{Retained Template Validation Examples}
 The service-request examples below are template provenance, not ADC
 validation plans or results. Their IDs remain distinct from VAL-01--VAL-04.

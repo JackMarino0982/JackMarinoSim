@@ -13,6 +13,145 @@ Include preconditions, trigger, main flow, alternate or exception flows, and
 postconditions. Maintain the canonical relationships among stories,
 requirements, use cases, and tests in \ChapterRef{Traceability}.
 
+\section{Week 2 Candidate Use Cases}
+\label{Section:WeekTwoUseCases}
+These are planned interactions, not implemented behavior or approved scenarios. Counter and paired-path use cases are owner-requested bench candidates.
+\subsection{Acquire and publish qualified ADC samples}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Acquire and publish qualified ADC samples\label{Table:CandidateUC01}}\\
+\toprule
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endfirsthead
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+ID & \UseCaseID{UC-01}\\
+Actor & Mission application; acquisition developer supplies the configured source.\\
+Preconditions & Selected ADC/FTDI path, local contract, operating envelope, and time basis are approved.\\
+Trigger & A conversion-ready event occurs.\\
+Main flow & Apply potentiometer voltage; complete conversion; coherently capture the code; qualify and timestamp it; publish its local record while prior samples are processed.\\
+Alternate/exception flow & Unqualified capture is invalid; overflow follows its approved policy; disconnect and stale status follow \UseCaseRef{UC-02}.\\
+Postconditions & A qualified record or explicit invalid/discontinuity status is observable.\\
+Requirements & \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-F-004}, \RequirementRef{REQ-F-005}, \RequirementRef{REQ-F-007}, \RequirementRef{REQ-F-008}, \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-I-002}, \RequirementRef{REQ-D-002}, \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-TIM-02}, \RequirementRef{REQ-Q-002}, \RequirementRef{REQ-Q-003}, \RequirementRef{REQ-Q-004}, \RequirementRef{REQ-Q-005}, \RequirementRef{REQ-Q-006}\\
+Tests & \TestCaseRef{TC-010}, \TestCaseRef{TC-011}, \TestCaseRef{TC-012}, \TestCaseRef{TC-014}, \TestCaseRef{TC-015}, \TestCaseRef{TC-016}, \TestCaseRef{TC-017}, \TestCaseRef{TC-018}, \TestCaseRef{TC-019}, \TestCaseRef{TC-020}, \TestCaseRef{TC-021}, \TestCaseRef{TC-022}, \TestCaseRef{TC-023}, \TestCaseRef{TC-024}, \TestCaseRef{TC-025}\\
+\end{tabularx}
+\normalsize
+\subsection{Observe stale, disconnected, and recovering acquisition}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Observe stale, disconnected, and recovering acquisition\label{Table:CandidateUC02}}\\
+\toprule
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endfirsthead
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+ID & \UseCaseID{UC-02}\\
+Actor & Mission operator through the mission application.\\
+Preconditions & A configured acquisition path and observable status interface exist.\\
+Trigger & Input stops, a disconnect/reset occurs, or clock qualification changes.\\
+Main flow & Observe freshness and fault state; withhold valid output during failed qualifications; recover configuration, epoch and timing; resume with a newly completed sample.\\
+Alternate/exception flow & Excess recovery time or failed identity/configuration leaves a visible fault rather than valid output.\\
+Postconditions & The consumer sees the current state and can distinguish fresh, stale, invalid, and recovering output.\\
+Requirements & \RequirementRef{REQ-F-006}, \RequirementRef{REQ-F-009}, \RequirementRef{REQ-SMP-02}, \RequirementRef{REQ-Q-007}, \RequirementRef{REQ-F-010}, \RequirementRef{REQ-Q-008}, \RequirementRef{REQ-F-011}\\
+Tests & \TestCaseRef{TC-013}, \TestCaseRef{TC-026}, \TestCaseRef{TC-027}, \TestCaseRef{TC-028}, \TestCaseRef{TC-029}, \TestCaseRef{TC-030}, \TestCaseRef{TC-031}\\
+\end{tabularx}
+\normalsize
+\subsection{Exchange proposed OMS sensor status}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Exchange proposed OMS sensor status\label{Table:CandidateUC03}}\\
+\toprule
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endfirsthead
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+ID & \UseCaseID{UC-03}\\
+Actor & Mission integrator and external mission service.\\
+Preconditions & OMS applicability, version, CAL profile, UCI mapping, service contract and gateway ownership are approved.\\
+Trigger & A valid, stale, or faulted acquisition status is reported.\\
+Main flow & Map local acquisition state to the approved derived status product and publish it at the selected CAL boundary.\\
+Alternate/exception flow & An unresolved profile blocks execution; mapping/delivery faults are exposed according to the approved contract.\\
+Postconditions & The agreed mission-facing status product or explicit contract fault is observable.\\
+Requirements & \RequirementRef{REQ-OMS-01}\\
+Tests & \TestCaseRef{TC-032}\\
+\end{tabularx}
+\normalsize
+\subsection{Evaluate oscillator-driven counter capture}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Evaluate oscillator-driven counter capture\label{Table:CandidateUC04}}\\
+\toprule
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endfirsthead
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+ID & \UseCaseID{UC-04}\\
+Actor & Acquisition developer using an independent edge/timing reference.\\
+Preconditions & Selected 4-bit or 8-bit 74xx counter, coherent capture, reset alignment, and timing budgets are approved.\\
+Trigger & The oscillator advances the counter during a defined experiment.\\
+Main flow & Reset/align; capture full counter words and event times; compare modulo values and missed increments with independent edge evidence.\\
+Alternate/exception flow & Unknown wrap count, incoherent capture, or lost reference invalidates the corresponding inference and is recorded.\\
+Postconditions & Expected and observed behavior, gaps, mismatches, and reference qualification are retained.\\
+Requirements & \RequirementRef{REQ-F-012}, \RequirementRef{REQ-Q-009}, \RequirementRef{REQ-Q-010}, \RequirementRef{REQ-I-003}, \RequirementRef{REQ-F-013}, \RequirementRef{REQ-F-014}, \RequirementRef{REQ-Q-011}\\
+Tests & \TestCaseRef{TC-033}, \TestCaseRef{TC-034}, \TestCaseRef{TC-035}, \TestCaseRef{TC-036}, \TestCaseRef{TC-037}, \TestCaseRef{TC-038}, \TestCaseRef{TC-039}\\
+\end{tabularx}
+\normalsize
+\subsection{Evaluate a paired FTDI 8-bit producer/consumer path}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Evaluate a paired FTDI 8-bit producer/consumer path\label{Table:CandidateUC05}}\\
+\toprule
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endfirsthead
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+ID & \UseCaseID{UC-05}\\
+Actor & Acquisition developer operating a producer and consumer.\\
+Preconditions & Device mode, host topology, physical path, handshakes, frame/integrity contract, rates, and clock/buffer budgets are approved.\\
+Trigger & The producer accepts a known payload stream.\\
+Main flow & Frame and queue bytes; transmit on the agreed electrical path; receive/reassemble partial transfers; check framing, sequence, epoch, and integrity; account for delivered data.\\
+Alternate/exception flow & Stalls apply backpressure or declared loss policy; errors and reconnects require explicit resynchronization.\\
+Postconditions & Payload, error/loss accounting, rates, queue use, and qualified timing measurements are retained.\\
+Requirements & \RequirementRef{REQ-I-004}, \RequirementRef{REQ-Q-012}, \RequirementRef{REQ-F-015}, \RequirementRef{REQ-F-016}, \RequirementRef{REQ-Q-013}, \RequirementRef{REQ-I-005}, \RequirementRef{REQ-Q-014}, \RequirementRef{REQ-D-003}, \RequirementRef{REQ-F-017}, \RequirementRef{REQ-Q-015}\\
+Tests & \TestCaseRef{TC-040}, \TestCaseRef{TC-041}, \TestCaseRef{TC-042}, \TestCaseRef{TC-043}, \TestCaseRef{TC-044}, \TestCaseRef{TC-045}, \TestCaseRef{TC-046}, \TestCaseRef{TC-047}, \TestCaseRef{TC-048}, \TestCaseRef{TC-049}\\
+\end{tabularx}
+\normalsize
+
 \section[High-Level Use Case Diagram]{\hspace{0.5em}High-Level Use Case Diagram}
 Show the system boundary, primary actors, and major user goals before the
 detailed use-case tables. Replace the generic example with project-specific

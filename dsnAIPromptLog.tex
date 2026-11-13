@@ -68,3 +68,35 @@ use-case, test, verification result, hardware approval, or OMS selection is
 invented. Requirements allocation and stakeholder observations remain pending.
 The existing GitHub Actions workflow is enabled for \texttt{week2} pushes
 to build and inspect the complete book; compilation is not validation.
+
+
+\section{Week 2 Candidate Requirements --- November 12, 2026}
+\label{Section:WeekTwoRequirementsPrompt}
+The owner requested grouped candidate requirements and preservation of
+REQ-SMP-01/02, REQ-TIM-01/02, REQ-IF-01, and REQ-OMS-01 from the lecture.
+The same request added potentiometer/ADC0804/FTDI capture, oscillator-driven
+4-bit or 8-bit 74xx counter observation, and an FTDI producer/consumer path,
+with explicit sampling, scaling, calibration, validity, timing, transition,
+reference, framing, rate, buffering, and integrity concerns. Those messages
+authorize candidate drafting and the six identifier exceptions, not hardware
+limits, scenario baseline approval, or passing evidence.
+
+Selected skills: \hyperref[Skill:AIS-01]{AIS-01},
+\hyperref[Skill:AIS-06]{AIS-06}, \hyperref[Skill:AIS-07]{AIS-07},
+\hyperref[Skill:AIS-08]{AIS-08}, \hyperref[Skill:AIS-09]{AIS-09},
+\hyperref[Skill:AIS-13]{AIS-13}, and \hyperref[Skill:AIS-14]{AIS-14}.
+One agent handled shared registers sequentially; no delegation or independent
+review is claimed. Rough planning estimate: 30--60 minutes for source review,
+drafting and reciprocal mappings; 10--30 minutes for build/render review,
+with uncertainty from hardware choices and layout. These are estimates,
+not measured effort. Existing \texttt{dsn} namespace is retained; no new
+project-owned source filenames are needed.
+
+The lecture and primary FTDI/TI documentation supply source context; their
+example prompts do not extend the task. New bench story wording, priorities,
+parameters, use cases, tests, and architecture decision are proposed.
+No zero-loss guarantee is inferred outside a finite operating envelope;
+USB receipt time is not presumed to be physical event time, a modular counter
+difference cannot prove the absence of full wraps, and an integrity check
+does not provide authentication. Owner/course review and all execution
+evidence remain pending.

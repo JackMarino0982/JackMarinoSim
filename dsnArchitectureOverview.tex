@@ -8,5 +8,20 @@ Explain the major design choices and why they address the design drivers.
 
 \section{How to Use This Chapter}
 Explain the forces that shape the design, the major decisions, alternatives considered, and consequences. Use the 4+1 views only when they help readers answer different architectural questions.
+\section{Proposed Local and OMS Boundary Decision}
+\label{Section:ProposedOMSBoundary}
+\ArchitectureID{ARC-002}: Proposed, not approved. Keep the local sample
+record contract (\RequirementRef{REQ-IF-01}) distinct from the mission-facing
+derived sensor-status contract (\RequirementRef{REQ-OMS-01}). The former
+carries acquisition records; the latter depends on OMS applicability,
+version, CAL profile, UCI mapping, gateway ownership, and service decisions.
+Alternatives are a selected OMS boundary or another explicitly approved
+mission contract; neither has been selected here. Separate contracts permit
+local acquisition evolution but require an explicit mapping and end-to-end
+freshness/failure allocation. \hyperref[Parameter:PAR-07]{PAR-07} in
+\hyperref[Table:RequirementParameters]{the decision register} gates approval
+and conformance testing. No driver, FIFO mode, latch, or counter part is
+selected by this decision proposal.
+
 \section{Decision Template and Example}
 \textbf{ARC-001:} \textit{[Decision]}; \textbf{Drivers:} \textit{[quality attributes and constraints]}; \textbf{Rationale:} \textit{[why selected]}; \textbf{Consequences:} \textit{[benefits, trade-offs, and risks]}. Example: use an asynchronous message queue to protect request processing from transient downstream outages; this improves resilience but introduces eventual consistency.
