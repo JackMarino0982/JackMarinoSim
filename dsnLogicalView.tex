@@ -8,6 +8,80 @@ Define the concepts, classes, interfaces, and responsibilities of the design.
 
 \section{How to Use This Chapter}
 Model the domain concepts, responsibilities, relationships, data ownership, and invariants without committing to code-level structure. Use a class, entity, or conceptual diagram where useful. For every class and interface in a class diagram, list its primary responsibility in a titled and labeled register, as required by \hyperref[Requirement:DOCCLASS001]{DOC-CLASS-001}. Reference that register from the logical view and keep it synchronized with the diagram. Under \hyperref[Requirement:DOCLINK001]{DOC-LINK-001}, give each class or interface row a stable label and link class names in diagrams and prose to that row.
+\section{Main Software Responsibilities}
+\label{Section:SoftwareResponsibilities}
+These are proposed logical components under \ArchitectureRef{ARC-003}, not
+implemented classes or separately deployed services. Each row is the canonical
+responsibility target for the component names in
+Figure~\ref{Figure:SoftwareComponents}. Every TBD in this chapter is owned by
+Jack Marino; decision date TBD. OMS remains Proposed and human review Pending.
+\begin{landscape}
+\small
+\begin{tabularx}{\linewidth}{L{3.4cm}Y Y L{3.8cm}}
+\caption{Proposed Software Responsibility Register\label{Table:SoftwareResponsibilities}}\\
+\toprule
+\textbf{Component} & \textbf{Responsibility / Owned information} & \textbf{Unresolved choices} & \textbf{Main drivers}\\
+\midrule
+\endfirsthead
+\textbf{Component} & \textbf{Responsibility / Owned information} & \textbf{Unresolved choices} & \textbf{Main drivers}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\phantomsection\label{Component:SW-01}Acquisition adapter & Own the device-facing acquisition boundary: report observed conversion completion, captured code, connection state and capture diagnostics; apply only authorized configuration. Do not claim USB arrival time is the ADC event time. & Hardware controls, ready-event capture, FT245R mode/pins, driver/API, electrical limits and event-time capture: TBD. & \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-F-010}, \RequirementRef{REQ-Q-016}\\
+\phantomsection\label{Component:SW-02}Sample service & Qualify observations, assemble the local record and maintain original code, validity, event timestamp and increasing sequence within an acquisition epoch. Preserve source timing quality as associated metadata. Obtain the recovery qualification before releasing valid output. & Clock/event definition, timestamp capture, validity reasons, schema, sequence width and epoch transitions: TBD. & \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-F-010}, \RequirementRef{REQ-I-006}\\
+\phantomsection\label{Component:SW-03}Buffer and local publication & Own finite queue accounting and the observable local publication boundary. Apply the chosen overload policy and expose loss/discontinuity. Supply publication events to status tracking and selected records to recording and receiving software. & Capacity, scheduling, fan-out, backpressure/drop rules, consumer interface and clock observation point: TBD. & \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-F-009}, \RequirementRef{REQ-IF-01}\\
+\phantomsection\label{Component:SW-04}Status and recovery & Track the actual last valid live publication; produce stale/recovery/fault observations independently of new sample arrival. Coordinate identity, configuration, timing and newly completed sample prerequisites before valid output resumes. & State encoding, checks, disconnect/reset handling, stale observer scheduling and queued-data disposition: TBD. & \RequirementRef{REQ-SMP-02}, \RequirementRef{REQ-F-010}, \RequirementRef{REQ-F-009}\\
+\phantomsection\label{Component:SW-05}Recorder & Save selected published records with their original field values, order and acquisition-epoch context; report recording errors according to the approved policy. Keep recording accounting distinct from live acquisition accounting. & File/schema, selection controls, storage budget/retention and recording failure policy: TBD. & \RequirementRef{REQ-F-018}\\
+\phantomsection\label{Component:SW-06}Replay & Read saved datasets and emit original records in selected recorded order with explicit replay identity. Do not regenerate original timestamps or sample sequences. Keep replay state separate from live freshness and recovery. & Reader compatibility, controls, pacing and replay indication: TBD. & \RequirementRef{REQ-F-019}\\
+\phantomsection\label{Component:SW-07}Settings access & Provide the protected acquisition-setting change entry point. Evaluate the user/software identity and requested operation before applying settings through the acquisition/recovery boundary; denied requests leave effective settings unchanged. & Identity mechanism, protected operations, permissions, enforcement interfaces and denial indication: TBD. & \RequirementRef{REQ-S-002}\\
+\phantomsection\label{Component:SW-08}Proposed mission gateway & Logical placeholder for mapping local status to the approved mission-facing product and, when sample-related, its source timestamp and timing quality. It is not a selected OMS service or assigned gateway implementation. & Applicability, OMS version, CAL profile, UCI mapping, service contract, deployment and responsible gateway/owner: TBD under ARC-002. & \RequirementRef{REQ-OMS-01}, \RequirementRef{REQ-I-006}\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+\section{Conceptual Interface Contracts}
+No programming-language API, wire encoding or file format is selected. The following contracts describe meaning and ownership; they are not additional product requirements.
+\begin{landscape}
+\small
+\begin{tabularx}{\linewidth}{L{3.6cm}Y Y}
+\caption{Conceptual Software Connections\label{Table:SoftwareConnections}}\\
+\toprule
+\textbf{Connection} & \textbf{Participants} & \textbf{Semantics / TBD}\\
+\midrule
+\endfirsthead
+\textbf{Connection} & \textbf{Participants} & \textbf{Semantics / TBD}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Device observations & \hyperref[Component:SW-01]{Acquisition adapter} to \hyperref[Component:SW-02]{Sample service} and \hyperref[Component:SW-04]{Status and recovery} & Completed-conversion code, ready observation, connection/configuration diagnostics and timing evidence. Capture method and transport are TBD; host arrival alone is not physical event time.\\
+Qualified local sample & \hyperref[Component:SW-02]{Sample service} to \hyperref[Component:SW-03]{Buffer and local publication} & Use the authoritative \hyperref[Table:LocalSampleFields]{local sample fields}: code, validity, timestamp and sequence. Acquisition epoch and timing quality travel as associated metadata when needed; representation is TBD. Preserve original fields after publication.\\
+Publication observation & \hyperref[Component:SW-03]{Buffer and local publication} to \hyperref[Component:SW-04]{Status and recovery} & Report actual live publication identity/time and loss or discontinuity, so freshness follows publications rather than read requests or file writes. Atomic ordering and notification mechanism: TBD.\\
+Consumer and recording delivery & \hyperref[Component:SW-03]{Buffer and local publication} to receiving software and \hyperref[Component:SW-05]{Recorder} & Publish local samples and status at the defined observable boundary; hand selected records to recording. Consumer access, fan-out, queue budgets and separate recording-loss indication are TBD.\\
+Saved dataset / replay output & \hyperref[Component:SW-05]{Recorder} to \hyperref[Component:SW-06]{Replay} to receiving software & The dataset preserves selected record fields/order and epoch context. Replay outputs retain original metadata and include explicit replay identity. Schema, compatibility, pacing, controls and storage path: TBD.\\
+Protected settings & \hyperref[Component:SW-07]{Settings access} to \hyperref[Component:SW-01]{Acquisition adapter} and \hyperref[Component:SW-04]{Status and recovery} & A request identifies the operation and user/software identity. Only permitted changes reach effective acquisition configuration. Policy and enforcement API: TBD; recovery validates resulting configuration.\\
+Recovery qualification & \hyperref[Component:SW-04]{Status and recovery} with \hyperref[Component:SW-01]{Acquisition adapter} and \hyperref[Component:SW-02]{Sample service} & Observe identity, configuration, timing and a newly completed sample, then permit valid output. Queue epoch/disposition, transitions and synchronization primitive: TBD.\\
+Mission status & \hyperref[Component:SW-04]{Status and recovery} and associated sample context to \hyperref[Component:SW-08]{Proposed mission gateway} & Map live validity/freshness/fault status and sample-related source timestamp/timing quality only under the approved mission contract. All OMS fields/profile/version, ownership and failure rules remain TBD.\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+\paragraph{Live and replay separation.}
+Original sample metadata belongs to the acquisition epoch that produced it.
+Replay has a distinct mode/session indication and its own playback progress;
+it cannot reset the live last-valid-publication timer or satisfy live recovery
+prerequisites. Routing replay into any mission interface is TBD under its
+approved contract and cannot silently present saved readings as live status.
+Neither stale status nor replay creates a newly completed ADC conversion.
+
+\section{Retained Template Example}
+The legacy example below preserves template references only; it is not part of
+the main ADC software design.
 \section{Example}
 \hyperref[Class:Request]{\textit{Request}} has an identifier, submitter, status, and submitted time. A request has one or more \hyperref[Class:RequestItem]{\textit{Request Items}}. Invariants: every identifier is unique; every request has a valid status; an approved request cannot return to Draft without an authorized transition.
 

@@ -104,6 +104,40 @@ Main and supporting scope follow \hyperref[Table:MainBaseline]{the selected requ
 \end{tabularx}
 \normalsize
 \end{landscape}
+\section{Main Requirement to Software Allocation}
+\label{Section:SoftwareAllocation}
+This proposal extends the existing story/requirement/verification/evidence matrix with logical design responsibilities. It does not identify implemented code or passed tests. Physical interfaces and technology choices remain TBD, owned by Jack Marino, decision date TBD; human review remains Pending. The proposed mission gateway is not a responsible-service assignment under \ArchitectureRef{ARC-002}.
+\begin{landscape}
+\small
+\begin{tabularx}{\linewidth}{L{2.6cm}Y L{2.8cm}L{2.2cm}L{3cm}}
+\caption{Main Software Design Allocation\label{Table:SoftwareAllocation}}\\
+\toprule
+\textbf{Requirement} & \textbf{Logical responsibilities} & \textbf{Decision} & \textbf{Planned check} & \textbf{Status}\\
+\midrule
+\endfirsthead
+\textbf{Requirement} & \textbf{Logical responsibilities} & \textbf{Decision} & \textbf{Planned check} & \textbf{Status}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\RequirementRef{REQ-SMP-01} & \hyperref[Component:SW-01]{Acquisition adapter}, \hyperref[Component:SW-02]{Sample service} & \ArchitectureRef{ARC-003} & \TestCaseRef{TC-010} & Proposed design; engineering \StatusPending\\
+\RequirementRef{REQ-IF-01} & \hyperref[Component:SW-02]{Sample service}, \hyperref[Component:SW-03]{Buffer and local publication} & \ArchitectureRef{ARC-003} & \TestCaseRef{TC-016} & Proposed design; engineering \StatusPending\\
+\RequirementRef{REQ-TIM-01} & \hyperref[Component:SW-01]{Acquisition adapter}, \hyperref[Component:SW-02]{Sample service}, \hyperref[Component:SW-03]{Buffer and local publication} & \ArchitectureRef{ARC-003} & \TestCaseRef{TC-019} & Proposed design; engineering \StatusPending\\
+\RequirementRef{REQ-SMP-02} & \hyperref[Component:SW-03]{Buffer and local publication}, \hyperref[Component:SW-04]{Status and recovery} & \ArchitectureRef{ARC-003} & \TestCaseRef{TC-027} & Proposed design; engineering \StatusPending\\
+\RequirementRef{REQ-F-009} & \hyperref[Component:SW-03]{Buffer and local publication}, \hyperref[Component:SW-04]{Status and recovery} & \ArchitectureRef{ARC-003} & \TestCaseRef{TC-026} & Proposed design; engineering \StatusPending\\
+\RequirementRef{REQ-F-018} & \hyperref[Component:SW-05]{Recorder} & \ArchitectureRef{ARC-003} & \TestCaseRef{TC-050} & Proposed design; engineering \StatusPending\\
+\RequirementRef{REQ-F-019} & \hyperref[Component:SW-06]{Replay} & \ArchitectureRef{ARC-003} & \TestCaseRef{TC-051} & Proposed design; engineering \StatusPending\\
+\RequirementRef{REQ-F-010} & \hyperref[Component:SW-01]{Acquisition adapter}, \hyperref[Component:SW-02]{Sample service}, \hyperref[Component:SW-04]{Status and recovery} & \ArchitectureRef{ARC-003} & \TestCaseRef{TC-029} & Proposed design; engineering \StatusPending\\
+\RequirementRef{REQ-Q-016} & \hyperref[Component:SW-01]{Acquisition adapter}, \hyperref[Component:SW-02]{Sample service}, \hyperref[Component:SW-03]{Buffer and local publication}, \hyperref[Component:SW-04]{Status and recovery}, \hyperref[Component:SW-05]{Recorder}, \hyperref[Component:SW-06]{Replay}, \hyperref[Component:SW-07]{Settings access} & \ArchitectureRef{ARC-003} & \TestCaseRef{TC-052} & Proposed design; engineering \StatusPending\\
+\RequirementRef{REQ-S-002} & \hyperref[Component:SW-07]{Settings access}, \hyperref[Component:SW-01]{Acquisition adapter}, \hyperref[Component:SW-04]{Status and recovery} & \ArchitectureRef{ARC-003} & \TestCaseRef{TC-053} & Proposed design; engineering \StatusPending\\
+\RequirementRef{REQ-OMS-01} & \hyperref[Component:SW-08]{Proposed mission gateway} & \ArchitectureRef{ARC-003}; \ArchitectureRef{ARC-002} & \TestCaseRef{TC-032} & Proposed design; engineering \StatusPending\\
+\RequirementRef{REQ-I-006} & \hyperref[Component:SW-02]{Sample service}, \hyperref[Component:SW-04]{Status and recovery}, \hyperref[Component:SW-08]{Proposed mission gateway} & \ArchitectureRef{ARC-003}; \ArchitectureRef{ARC-002} & \TestCaseRef{TC-054} & Proposed design; engineering \StatusPending\\
+\end{tabularx}
+\normalsize
+\end{landscape}
 \section{Retained Template Traceability}
 The service-request mappings below are retained template examples only.
 They do not cover the ADC stories; their story IDs refer to
