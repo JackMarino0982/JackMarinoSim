@@ -13,18 +13,28 @@ Include preconditions, trigger, main flow, alternate or exception flows, and
 postconditions. Maintain the canonical relationships among stories,
 requirements, use cases, and tests in \ChapterRef{Traceability}.
 
-\section{Week 2 Candidate Use Cases}
+\section{Main Project Use-Case Model}
 \label{Section:WeekTwoUseCases}
-These are planned interactions, not implemented behavior or approved scenarios. Counter and paired-path use cases are owner-requested bench candidates.
+Jack Marino confirmed the intended behavior of all 12 main requirements during the step-by-step review on November 19, 2026. The four scenarios below organize that behavior into actor goals. They are planned scenarios, not executed validation evidence. The 10 ms publication and 100 ms stale-state values are testing targets pending results and final approval. OMS remains Proposed.
+
+\section[High-Level Use Case Diagram]{High-Level Use Case Diagram}
+Figure~\ref{Figure:UseCaseDiagram} shows the main potentiometer--ADC0804--FT245R--computer system and its stakeholder roles. Each ellipse links to its authoritative scenario table. Associations show participation, not data flow or execution order. Counter and paired-FTDI experiments are supporting material outside this diagram.
+\begin{figure}[htbp]
+\centering
+\input{TikZ/dsnUseCases/dsnUseCaseDiagram.tex}
+\caption{Main project use cases; mission status exchange is conditional on the proposed OMS decision.}
+\label{Figure:UseCaseDiagram}
+\end{figure}
+\section{Linked Main Scenario Tables}
 \subsection{Acquire and publish qualified ADC samples}
 \small
 \begin{tabularx}{\linewidth}{L{3.2cm}Y}
 \caption{Acquire and publish qualified ADC samples\label{Table:CandidateUC01}}\\
 \toprule
-\textbf{Field} & \textbf{Candidate description}\\
+\textbf{Field} & \textbf{Planned scenario}\\
 \midrule
 \endfirsthead
-\textbf{Field} & \textbf{Candidate description}\\
+\textbf{Field} & \textbf{Planned scenario}\\
 \midrule
 \endhead
 \midrule
@@ -33,25 +43,32 @@ These are planned interactions, not implemented behavior or approved scenarios. 
 \bottomrule
 \endlastfoot
 ID & \UseCaseID{UC-01}\\
-Actor & Mission application; acquisition developer supplies the configured source.\\
-Preconditions & Approved supported platform and acquisition-access policy; Selected ADC/FTDI path, local contract, operating envelope, and time basis are approved.\\
-Trigger & A conversion-ready event occurs.\\
-Main flow & Apply potentiometer voltage; complete conversion; coherently capture the code; qualify and timestamp it; publish its local record while prior samples are processed.\\
-Alternate or exception flow & Unauthorized setting changes are denied without changing effective settings; Unqualified capture is invalid; overflow follows its approved policy; disconnect and stale status follow \UseCaseRef{UC-02}.\\
-Postconditions & A qualified record or explicit invalid/discontinuity status is observable.\\
-Requirements & \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-F-004}, \RequirementRef{REQ-F-005}, \RequirementRef{REQ-F-007}, \RequirementRef{REQ-F-008}, \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-I-002}, \RequirementRef{REQ-D-002}, \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-TIM-02}, \RequirementRef{REQ-Q-002}, \RequirementRef{REQ-Q-003}, \RequirementRef{REQ-Q-004}, \RequirementRef{REQ-Q-005}, \RequirementRef{REQ-Q-006}, \RequirementRef{REQ-Q-016}, \RequirementRef{REQ-S-002}\\
-Tests & \TestCaseRef{TC-010}, \TestCaseRef{TC-011}, \TestCaseRef{TC-012}, \TestCaseRef{TC-014}, \TestCaseRef{TC-015}, \TestCaseRef{TC-016}, \TestCaseRef{TC-017}, \TestCaseRef{TC-018}, \TestCaseRef{TC-019}, \TestCaseRef{TC-020}, \TestCaseRef{TC-021}, \TestCaseRef{TC-022}, \TestCaseRef{TC-023}, \TestCaseRef{TC-024}, \TestCaseRef{TC-025}, \TestCaseRef{TC-052}, \TestCaseRef{TC-053}\\
+Source stories & \UserStoryRef{US-01}, \UserStoryRef{US-02}, \UserStoryRef{US-03}, \UserStoryRef{US-04}\\
+Actor & Acquisition developer configures acquisition; field engineer deploys it; mission operator and mission integrator use the published data through receiving software.\\
+Preconditions & Approved hardware/control and local-record contracts, operating envelope, timing basis, supported platform matrix and access policy are available. Unresolved choices block the affected check.\\
+Trigger & The field engineer starts the configured workflow, or the acquisition developer requests a setting change; an ADC0804 conversion-ready event initiates each sample publication.\\
+Main flow & 1. Install and configure the same acquisition workflow on the selected supported macOS, Windows or Linux computer.\par 2. Accept protected setting changes only from authorized users or software.\par 3. Apply potentiometer voltage and wait for completed ADC0804 conversion.\par 4. Read the 8-bit code through the FT245R path and publish code, validity, timestamp and increasing sequence number.\par 5. Measure publication against the owner-selected 10 ms testing target, from ready assertion to local publication.\\
+Alternate or exception flow & Deny unauthorized changes while retaining effective settings. Identify missing deployment prerequisites. Unqualified samples carry an invalid state; overload, stale data and disconnect follow \UseCaseRef{UC-02}. Supporting hardware/capture details remain separately scoped.\\
+Postconditions & The consumer can inspect a qualified local record or explicit invalid/discontinuity status; publication timing can be assessed. No platform or timing capability is claimed demonstrated.\\
+Main requirements & \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-Q-016}, \RequirementRef{REQ-S-002}\\
+Main checks & \TestCaseRef{TC-010}, \TestCaseRef{TC-016}, \TestCaseRef{TC-019}, \TestCaseRef{TC-052}, \TestCaseRef{TC-053}\\
+Verification & \VerificationRef{VER-010}, \VerificationRef{VER-016}, \VerificationRef{VER-019}, \VerificationRef{VER-052}, \VerificationRef{VER-053}\\
+Validation & \ValidationRef{VAL-01}, \ValidationRef{VAL-02}, \ValidationRef{VAL-03}, \ValidationRef{VAL-04}\\
+Supporting requirements & \RequirementRef{REQ-F-004}, \RequirementRef{REQ-F-005}, \RequirementRef{REQ-F-007}, \RequirementRef{REQ-F-008}, \RequirementRef{REQ-I-002}, \RequirementRef{REQ-D-002}, \RequirementRef{REQ-TIM-02}, \RequirementRef{REQ-Q-002}, \RequirementRef{REQ-Q-003}, \RequirementRef{REQ-Q-004}, \RequirementRef{REQ-Q-005}, \RequirementRef{REQ-Q-006}\\
+Supporting checks & \TestCaseRef{TC-011}, \TestCaseRef{TC-012}, \TestCaseRef{TC-014}, \TestCaseRef{TC-015}, \TestCaseRef{TC-017}, \TestCaseRef{TC-018}, \TestCaseRef{TC-020}, \TestCaseRef{TC-021}, \TestCaseRef{TC-022}, \TestCaseRef{TC-023}, \TestCaseRef{TC-024}, \TestCaseRef{TC-025}\\
+Open decisions & Each unresolved choice above is TBD; owner: Jack Marino; decision date: TBD. Resolve relevant \hyperref[Table:RequirementParameters]{parameter decisions}.\\
+Navigation & \hyperref[Figure:UseCaseDiagram]{Main use-case diagram}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
 \end{tabularx}
 \normalsize
-\subsection{Observe stale, disconnected, and recovering acquisition}
+\subsection{Observe stale data, overload, disconnect and recovery}
 \small
 \begin{tabularx}{\linewidth}{L{3.2cm}Y}
-\caption{Observe stale, disconnected, and recovering acquisition\label{Table:CandidateUC02}}\\
+\caption{Observe stale data, overload, disconnect and recovery\label{Table:CandidateUC02}}\\
 \toprule
-\textbf{Field} & \textbf{Candidate description}\\
+\textbf{Field} & \textbf{Planned scenario}\\
 \midrule
 \endfirsthead
-\textbf{Field} & \textbf{Candidate description}\\
+\textbf{Field} & \textbf{Planned scenario}\\
 \midrule
 \endhead
 \midrule
@@ -60,25 +77,64 @@ Tests & \TestCaseRef{TC-010}, \TestCaseRef{TC-011}, \TestCaseRef{TC-012}, \TestC
 \bottomrule
 \endlastfoot
 ID & \UseCaseID{UC-02}\\
-Actor & Mission operator through the mission application.\\
-Preconditions & A configured acquisition path and observable status interface exist.\\
-Trigger & Input stops, a disconnect/reset occurs, or clock qualification changes.\\
-Main flow & Observe freshness and fault state; withhold valid output during failed qualifications; recover configuration, epoch and timing; resume with a newly completed sample.\\
-Alternate or exception flow & Excess recovery time or failed identity/configuration leaves a visible fault rather than valid output.\\
-Postconditions & The consumer sees the current state and can distinguish fresh, stale, invalid, and recovering output.\\
-Requirements & \RequirementRef{REQ-F-006}, \RequirementRef{REQ-F-009}, \RequirementRef{REQ-SMP-02}, \RequirementRef{REQ-Q-007}, \RequirementRef{REQ-F-010}, \RequirementRef{REQ-Q-008}, \RequirementRef{REQ-F-011}\\
-Tests & \TestCaseRef{TC-013}, \TestCaseRef{TC-026}, \TestCaseRef{TC-027}, \TestCaseRef{TC-028}, \TestCaseRef{TC-029}, \TestCaseRef{TC-030}, \TestCaseRef{TC-031}\\
+Source stories & \UserStoryRef{US-01}, \UserStoryRef{US-02}\\
+Actor & Mission operator observes status through receiving software; acquisition developer inspects loss and recovery indications.\\
+Preconditions & Acquisition has produced a valid sample; a status interface and approved overload/recovery rules are available. Fault-injection conditions and timing reference are agreed before execution.\\
+Trigger & No new qualified reading arrives, the input exceeds the approved processing envelope, or the FT245R path disconnects or resets.\\
+Main flow & 1. Track the last valid publication.\par 2. If qualified input stops, mark the output stale within the owner-selected 100 ms testing target after that publication.\par 3. On overload, follow the approved policy and expose any loss or discontinuity.\par 4. After disconnect/reset, withhold valid status until device identity, configuration, timing qualification and a newly completed sample are re-established.\par 5. Let the operator distinguish the resulting usable and unusable states.\\
+Alternate or exception flow & A failed recovery prerequisite keeps output unqualified. The retained value, if displayed, remains explicitly stale or invalid. The overload policy, detailed status labels and recovery deadlines remain TBD; do not infer automatic retry or zero-loss behavior.\\
+Postconditions & The consumer sees freshness, discontinuity and recovery qualification; an old reading is not reported as a new valid sample.\\
+Main requirements & \RequirementRef{REQ-F-009}, \RequirementRef{REQ-SMP-02}, \RequirementRef{REQ-F-010}\\
+Main checks & \TestCaseRef{TC-026}, \TestCaseRef{TC-027}, \TestCaseRef{TC-029}\\
+Verification & \VerificationRef{VER-026}, \VerificationRef{VER-027}, \VerificationRef{VER-029}\\
+Validation & \ValidationRef{VAL-01}, \ValidationRef{VAL-02}\\
+Supporting requirements & \RequirementRef{REQ-F-006}, \RequirementRef{REQ-Q-007}, \RequirementRef{REQ-Q-008}, \RequirementRef{REQ-F-011}\\
+Supporting checks & \TestCaseRef{TC-013}, \TestCaseRef{TC-028}, \TestCaseRef{TC-030}, \TestCaseRef{TC-031}\\
+Open decisions & Each unresolved choice above is TBD; owner: Jack Marino; decision date: TBD. Resolve relevant \hyperref[Table:RequirementParameters]{parameter decisions}.\\
+Navigation & \hyperref[Figure:UseCaseDiagram]{Main use-case diagram}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
 \end{tabularx}
 \normalsize
-\subsection{Exchange proposed OMS sensor status}
+\subsection{Record and replay sample datasets}
 \small
 \begin{tabularx}{\linewidth}{L{3.2cm}Y}
-\caption{Exchange proposed OMS sensor status\label{Table:CandidateUC03}}\\
+\caption{Record and replay sample datasets\label{Table:CandidateUC06}}\\
 \toprule
-\textbf{Field} & \textbf{Candidate description}\\
+\textbf{Field} & \textbf{Planned scenario}\\
 \midrule
 \endfirsthead
-\textbf{Field} & \textbf{Candidate description}\\
+\textbf{Field} & \textbf{Planned scenario}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+ID & \UseCaseID{UC-06}\\
+Source stories & \UserStoryRef{US-02}\\
+Actor & Acquisition developer records and replays datasets for inspection.\\
+Preconditions & The recording/replay contract specifies selection, file format, storage limits, failure handling, compatibility, playback controls and pacing. These values remain TBD before execution.\\
+Trigger & The developer requests recording of local samples or selects an existing dataset for replay.\\
+Main flow & 1. Select the records to save under the agreed recording controls.\par 2. Save original code, validity, timestamp, sequence and acquisition-session/epoch context in order.\par 3. Close and reopen the dataset.\par 4. Replay selected saved records in original order with original metadata.\par 5. Clearly identify replay output as recorded data so the consumer can distinguish it from live acquisition.\\
+Alternate or exception flow & Storage failure, interrupted recordings and incompatible datasets follow the approved recording/replay policy. Preserve invalid states and gaps in saved/replayed data; do not present replay as live input or assume a playback speed.\\
+Postconditions & A dataset is available for inspection and ordered replay, or an explicit recording/replay error is visible. Dataset contents and replay mode can be compared with source records.\\
+Main requirements & \RequirementRef{REQ-F-018}, \RequirementRef{REQ-F-019}\\
+Main checks & \TestCaseRef{TC-050}, \TestCaseRef{TC-051}\\
+Verification & \VerificationRef{VER-050}, \VerificationRef{VER-051}\\
+Validation & \ValidationRef{VAL-02}\\
+Open decisions & Each unresolved choice above is TBD; owner: Jack Marino; decision date: TBD. Resolve relevant \hyperref[Table:RequirementParameters]{parameter decisions}.\\
+Navigation & \hyperref[Figure:UseCaseDiagram]{Main use-case diagram}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{Exchange proposed mission status}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Exchange proposed mission status\label{Table:CandidateUC03}}\\
+\toprule
+\textbf{Field} & \textbf{Planned scenario}\\
+\midrule
+\endfirsthead
+\textbf{Field} & \textbf{Planned scenario}\\
 \midrule
 \endhead
 \midrule
@@ -87,16 +143,23 @@ Tests & \TestCaseRef{TC-013}, \TestCaseRef{TC-026}, \TestCaseRef{TC-027}, \TestC
 \bottomrule
 \endlastfoot
 ID & \UseCaseID{UC-03}\\
-Actor & Mission integrator and external mission service.\\
-Preconditions & OMS applicability, version, CAL profile, UCI mapping, service contract and gateway ownership are approved.\\
-Trigger & A valid, stale, or faulted acquisition status is reported.\\
-Main flow & Include source timestamp and timing-quality indication for sample-related status; Map local acquisition state to the approved derived status product and publish it at the selected CAL boundary.\\
-Alternate or exception flow & An unresolved profile blocks execution; mapping/delivery faults are exposed according to the approved contract.\\
-Postconditions & The agreed mission-facing status product or explicit contract fault is observable.\\
-Requirements & \RequirementRef{REQ-OMS-01}, \RequirementRef{REQ-I-006}\\
-Tests & \TestCaseRef{TC-032}, \TestCaseRef{TC-054}\\
+Source stories & \UserStoryRef{US-04}\\
+Actor & Mission integrator connects external mission software to the responsible gateway; the mission operator consumes the resulting status.\\
+Preconditions & OMS applicability, standard version, CAL profile, UCI message/status mapping, responsible gateway and mission-interface contract are approved. These decisions remain TBD; this scenario is conditional.\\
+Trigger & The acquisition service reports valid, stale or faulted status, including status referring to a particular sample.\\
+Main flow & 1. Map local status into the approved mission-facing product.\par 2. For sample-related status, include the source timestamp and timing-quality indication.\par 3. Publish through the approved OMS CAL boundary using its agreed UCI mapping.\par 4. Let the mission integrator correlate the product with its source and interpret freshness and timing trust.\\
+Alternate or exception flow & Unresolved OMS decisions block execution and conformance claims. Unknown or unreliable timing is represented explicitly under the approved contract. Mapping or delivery faults follow the agreed failure contract; no message type or transport behavior is assumed.\\
+Postconditions & A correlated status product or explicit contract fault is observable. \RequirementRef{REQ-OMS-01} remains Proposed; source timestamp format, timing-quality states and mapping remain TBD.\\
+Main requirements & \RequirementRef{REQ-OMS-01}, \RequirementRef{REQ-I-006}\\
+Main checks & \TestCaseRef{TC-032}, \TestCaseRef{TC-054}\\
+Verification & \VerificationRef{VER-032}, \VerificationRef{VER-054}\\
+Validation & \ValidationRef{VAL-04}\\
+Open decisions & Each unresolved choice above is TBD; owner: Jack Marino; decision date: TBD. Resolve relevant \hyperref[Table:RequirementParameters]{parameter decisions}.\\
+Navigation & \hyperref[Figure:UseCaseDiagram]{Main use-case diagram}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
 \end{tabularx}
 \normalsize
+\section{Supporting Bench Scenarios}
+These preserve the counter and paired-FTDI scenarios and their stable IDs. They are outside the 12-requirement main baseline and main diagram.
 \subsection{Evaluate oscillator-driven counter capture}
 \small
 \begin{tabularx}{\linewidth}{L{3.2cm}Y}
@@ -151,48 +214,8 @@ Requirements & \RequirementRef{REQ-I-004}, \RequirementRef{REQ-Q-012}, \Requirem
 Tests & \TestCaseRef{TC-040}, \TestCaseRef{TC-041}, \TestCaseRef{TC-042}, \TestCaseRef{TC-043}, \TestCaseRef{TC-044}, \TestCaseRef{TC-045}, \TestCaseRef{TC-046}, \TestCaseRef{TC-047}, \TestCaseRef{TC-048}, \TestCaseRef{TC-049}\\
 \end{tabularx}
 \normalsize
-
-\subsection{Record and replay sample datasets}
-\small
-\begin{tabularx}{\linewidth}{L{3.2cm}Y}
-\caption{Record and Replay Sample Datasets\label{Table:CandidateUC06}}\\
-\toprule
-\textbf{Field} & \textbf{Candidate description}\\
-\midrule
-\endfirsthead
-\textbf{Field} & \textbf{Candidate description}\\
-\midrule
-\endhead
-\midrule
-\multicolumn{2}{r}{\small\itshape Continued on next page}\\
-\endfoot
-\bottomrule
-\endlastfoot
-ID & \UseCaseID{UC-06}\\
-Actor & Acquisition developer (\UserStoryRef{US-02}).\\
-Preconditions & Approved recording/replay contract and available storage; dataset compatibility and access conditions satisfied.\\
-Trigger & Developer starts recording or selects a saved dataset for replay.\\
-Main flow & Save selected local records with original metadata; close and reopen the dataset; replay records in saved order with a consumer-visible replay indication.\\
-Alternate or exception flow & Storage failure, unsupported dataset or interrupted file follows the approved error policy; replay is never presented as live acquisition.\\
-Postconditions & A reviewable saved dataset or explicit recording error exists; replay output preserves selected record metadata and order.\\
-Requirements & \RequirementRef{REQ-F-018}, \RequirementRef{REQ-F-019}\\
-Tests & \TestCaseRef{TC-050}, \TestCaseRef{TC-051}\\
-\end{tabularx}
-\normalsize
-\section[High-Level Use Case Diagram]{\hspace{0.5em}High-Level Use Case Diagram}
-Show the system boundary, primary actors, and major user goals before the
-detailed use-case tables. Replace the generic example with project-specific
-actors and use cases while preserving the stable use-case identifiers.
-Figure~\ref{Figure:UseCaseDiagram} provides the template example.
-
-\begin{figure}[htbp]
-\centering
-\input{TikZ/dsnUseCases/dsnUseCaseDiagram.tex}
-\caption{Generic high-level use case diagram.}
-\label{Figure:UseCaseDiagram}
-\end{figure}
-\index{use case diagram}
-
+\section{Retained Template Scenarios}
+The following generic service-request examples preserve legacy IDs and links only. They are outside the ADC project.
 \section{Submit a Service Request}
 \begin{tabularx}{\linewidth}{L{3.5cm}Y}
 \toprule

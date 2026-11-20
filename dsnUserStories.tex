@@ -20,8 +20,7 @@ Stories US-01--US-04 reproduce the Week 2 lecture wording verbatim
 \cite[slides 19--20]{SPE800Week02}. The lecture identifies one role named
 \emph{acquisition developer}. The additional proposed bench stories use US-05 and US-06; new stories will start at US-07;
 these four lecture IDs are reserved and will not be reassigned.
-Operating contexts and acceptance questions below are proposed elaborations
-for human review, not observed results or approved performance limits.
+The main operating contexts and acceptance questions below elaborate the 12 requirements whose intended behavior Jack Marino confirmed in the step-by-step review. They remain planned validation scenarios, not observed results. Unresolved implementation choices and final performance approval remain open.
 
 The lecture describes a sensor/ADC0804--FTDI245R--host acquisition path and
 a mission application \cite[slides 12--15]{SPE800Week02}. This provides course
@@ -56,7 +55,7 @@ Mission integrator & Interpret a documented interface and replace compatible sen
 
 \section{User Story Register}
 \label{Section:ADCUserStories}
-The four lecture stories are candidates for the course scope; the two added bench stories are owner-requested proposals. Their proposed priority
+The four lecture stories describe the confirmed main scope; the two added bench stories remain supporting proposals. Their proposed priority
 is \gls{must}, subject to owner and course review. Candidate requirements and use cases are linked below; portability platform selection remains open; generic service-request
 requirements do not implement these ADC stories. The
 \hyperref[Table:TraceabilityMatrix]{Traceability Register} exposes the pending
@@ -94,32 +93,37 @@ agreed context; document compilation is not stakeholder validation.
 \item Can the mission operator identify which reading is current and valid and decide whether to use it?
 \item When input stops or the sensor becomes unavailable, can the mission operator distinguish stale or unavailable data from usable data?
 \item Are availability, validity, and age understandable without coaching in the agreed operating context?
+\item Can the operator recognize stale data against the 100 ms testing target and see overload loss and qualified recovery without mistaking old values for new valid readings?
 \end{enumerate}
 \paragraph{Open decisions.} Agree representative field conditions, sample-age meaning, stale-state criteria, and expected use/no-use decisions. Timing allocations remain TBD.
 
 \begingroup\raggedright
-\noindent\textbf{Validation:} \ValidationRef{VAL-01} (planned; \StatusPending). Candidate requirements: \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-F-005}, \RequirementRef{REQ-F-006}, \RequirementRef{REQ-F-007}, \RequirementRef{REQ-F-008}, \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-TIM-02}, \RequirementRef{REQ-Q-004}, \RequirementRef{REQ-F-009}, \RequirementRef{REQ-SMP-02}, \RequirementRef{REQ-Q-007}, \RequirementRef{REQ-F-010}, \RequirementRef{REQ-F-011}. Use cases: \UseCaseRef{UC-01}, \UseCaseRef{UC-02}.
-\par\endgroup
+\noindent\textbf{Main baseline:} \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-F-009}, \RequirementRef{REQ-SMP-02}, \RequirementRef{REQ-F-010}.
+\noindent\textbf{Scenarios:} \UseCaseRef{UC-01}, \UseCaseRef{UC-02}.
+\noindent\textbf{Supporting detail:} \RequirementRef{REQ-F-005}, \RequirementRef{REQ-F-006}, \RequirementRef{REQ-F-007}, \RequirementRef{REQ-F-008}, \RequirementRef{REQ-TIM-02}, \RequirementRef{REQ-Q-004}, \RequirementRef{REQ-Q-007}, \RequirementRef{REQ-F-011}.
+\noindent\textbf{Validation:} \ValidationRef{VAL-01} (planned; \StatusPending). Unresolved scenario values: TBD; owner: Jack Marino; decision date: TBD.\par\endgroup
 
 \subsection{US-02: Acquisition Developer}
 \noindent\textbf{ID:} \UserStoryID{US-02}\quad\textbf{Priority:} \gls{must} (proposed).
 
 \noindent\textbf{Story.} As an acquisition developer, I need sensor acquisition to continue while prior samples are processed and delivered so that mission software receives a continuous stream of readings.
 
-\paragraph{Operating context.} In the lecture scenario, the sensor and ADC0804 supply an 8-bit code through an FTDI245R USB interface. USB reads, processing, and output writes proceed concurrently on the host. Review normal load, a slow consumer, overload, and disconnect/recovery; hardware selection and load bounds remain project decisions.
+\paragraph{Operating context.} In the lecture scenario, the sensor and ADC0804 supply an 8-bit code through an FTDI245R USB interface. USB reads, processing, and output writes proceed concurrently on the host. Review normal load, a slow consumer, overload, disconnect/recovery, saving and replaying a recorded session, and permitted/denied acquisition-setting changes; hardware selection and load bounds remain project decisions.
 
 \paragraph{Acceptance questions.}
 \begin{enumerate}
 \item Can the acquisition developer show that new reads continue while earlier samples are processed and delivered at the agreed operating load?
 \item Can the acquisition developer determine whether samples were delayed, lost, or invalid when processing or output falls behind?
 \item Can mission software interpret the stream and its status through disconnect and recovery without mistaking stale data for new data?
+\item Can the developer save readings with their metadata, replay them in original order with an explicit replay indication, and confirm that unauthorized setting changes leave effective settings unchanged?
 \end{enumerate}
 \paragraph{Open decisions.} Define sample rate, supported processing load, queue capacity, loss policy, timing bounds, clock, and recovery behavior before validation. Continuous streaming does not establish an unconditional zero-loss guarantee.
 
 \begingroup\raggedright
-\paragraph{Main baseline elaboration.} The owner-selected main baseline also includes \RequirementRef{REQ-F-018}, \RequirementRef{REQ-F-019}, \RequirementRef{REQ-S-002} via \UseCaseRef{UC-06}. These elaborate the project scope without changing the lecture story wording.
-\noindent\textbf{Validation:} \ValidationRef{VAL-02} (planned; \StatusPending). Candidate requirements: \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-F-004}, \RequirementRef{REQ-F-005}, \RequirementRef{REQ-F-008}, \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-D-002}, \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-TIM-02}, \RequirementRef{REQ-Q-002}, \RequirementRef{REQ-Q-003}, \RequirementRef{REQ-Q-005}, \RequirementRef{REQ-Q-006}, \RequirementRef{REQ-F-009}, \RequirementRef{REQ-Q-007}, \RequirementRef{REQ-F-010}, \RequirementRef{REQ-Q-008}, \RequirementRef{REQ-F-011}. Use cases: \UseCaseRef{UC-01}, \UseCaseRef{UC-02}.
-\par\endgroup
+\noindent\textbf{Main baseline:} \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-F-009}, \RequirementRef{REQ-F-018}, \RequirementRef{REQ-F-019}, \RequirementRef{REQ-F-010}, \RequirementRef{REQ-S-002}.
+\noindent\textbf{Scenarios:} \UseCaseRef{UC-01}, \UseCaseRef{UC-02}, \UseCaseRef{UC-06}.
+\noindent\textbf{Supporting detail:} \RequirementRef{REQ-F-004}, \RequirementRef{REQ-F-005}, \RequirementRef{REQ-F-008}, \RequirementRef{REQ-D-002}, \RequirementRef{REQ-TIM-02}, \RequirementRef{REQ-Q-002}, \RequirementRef{REQ-Q-003}, \RequirementRef{REQ-Q-005}, \RequirementRef{REQ-Q-006}, \RequirementRef{REQ-Q-007}, \RequirementRef{REQ-Q-008}, \RequirementRef{REQ-F-011}.
+\noindent\textbf{Validation:} \ValidationRef{VAL-02} (planned; \StatusPending). Unresolved scenario values: TBD; owner: Jack Marino; decision date: TBD.\par\endgroup
 
 \subsection{US-03: Field Engineer}
 \noindent\textbf{ID:} \UserStoryID{US-03}\quad\textbf{Priority:} \gls{must} (proposed).
@@ -136,39 +140,44 @@ agreed context; document compilation is not stakeholder validation.
 \end{enumerate}
 \paragraph{Open decisions.} Agree the supported platform matrix, installation prerequisites, deployment procedure, and representative field constraints. No platform support has yet been demonstrated.
 
-\noindent\textbf{Validation:} \ValidationRef{VAL-03} (planned; \StatusPending). \RequirementRef{REQ-Q-016}, \UseCaseRef{UC-01}, \VerificationRef{VER-052}; supported platform matrix remains TBD under \hyperref[Parameter:PAR-12]{PAR-12}.
+\begingroup\raggedright
+\noindent\textbf{Main baseline:} \RequirementRef{REQ-Q-016}.
+\noindent\textbf{Scenarios:} \UseCaseRef{UC-01}.
+\noindent\textbf{Validation:} \ValidationRef{VAL-03} (planned; \StatusPending). Unresolved scenario values: TBD; owner: Jack Marino; decision date: TBD.\par\endgroup
 
 \subsection{US-04: Mission Integrator}
 \noindent\textbf{ID:} \UserStoryID{US-04}\quad\textbf{Priority:} \gls{must} (proposed).
 
 \noindent\textbf{Story.} As a mission integrator, I need a documented sensor data and status interface so that I can replace a sensor or mission consumer without redesigning their connection.
 
-\paragraph{Operating context.} A mission integrator uses a documented contract between the sensor subsystem and mission software. Local sample records and the mission-facing interface are separate boundaries. The lecture specifies OMS for the course mission interface; program applicability, standard version, CAL profile, UCI mapping, and service ownership remain open.
+\paragraph{Operating context.} A mission integrator uses a documented contract between the sensor subsystem and mission software. Local sample records and the mission-facing interface are separate boundaries. Sample-related mission status must retain the source timestamp and indicate timing quality; the actual representation remains TBD. The lecture specifies OMS for the course mission interface; program applicability, standard version, CAL profile, UCI mapping, and service ownership remain open.
 
 \paragraph{Acceptance questions.}
 \begin{enumerate}
 \item Can the mission integrator interpret sensor data and availability, validity, age, and fault status from the documented contract without undocumented assumptions?
 \item Can a contract-compatible replacement sensor or mission consumer be integrated without redesigning the agreed connection?
 \item Are local record semantics and the proposed OMS mission exchange distinguished, with unresolved profile and mapping decisions visible?
+\item For sample-related mission status, can the integrator identify the source timestamp and distinguish qualified, unqualified and unavailable timing?
 \end{enumerate}
 \paragraph{Open decisions.} Agree the interface contract, compatibility boundary, data/status mapping, and replacement scenario. Confirm OMS applicability, version, CAL profile, UCI mapping, and gateway ownership before conformance claims.
 
 \begingroup\raggedright
-\paragraph{Main baseline elaboration.} The owner-selected main baseline also includes \RequirementRef{REQ-I-006} via \UseCaseRef{UC-03}. These elaborate the project scope without changing the lecture story wording.
-\noindent\textbf{Validation:} \ValidationRef{VAL-04} (planned; \StatusPending). Candidate requirements: \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-I-002}, \RequirementRef{REQ-D-002}, \RequirementRef{REQ-OMS-01}. Use cases: \UseCaseRef{UC-01}, \UseCaseRef{UC-03}.
-\par\endgroup
+\noindent\textbf{Main baseline:} \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-OMS-01}, \RequirementRef{REQ-I-006}.
+\noindent\textbf{Scenarios:} \UseCaseRef{UC-01}, \UseCaseRef{UC-03}.
+\noindent\textbf{Supporting detail:} \RequirementRef{REQ-I-002}, \RequirementRef{REQ-D-002}.
+\noindent\textbf{Validation:} \ValidationRef{VAL-04} (planned; \StatusPending). Unresolved scenario values: TBD; owner: Jack Marino; decision date: TBD.\par\endgroup
 
 \section{Proposed Owner-Requested Bench Stories}
 These stories elaborate the owner request of November 12, 2026; they are not lecture wording or approved mission needs. Priority is proposed \gls{must} within each bench scenario only.
 \subsection{US-05: Counter Capture Evaluation}
 \UserStoryID{US-05}\quad\gls{must} (proposed).\par
-As an acquisition developer, I need compare sampled counter values and capture times with an independent edge reference so that I can identify missed transitions and qualify acquisition timing.
+As an acquisition developer, I need to compare sampled counter values and capture times with an independent edge reference so that I can identify missed transitions and qualify acquisition timing.
 \paragraph{Operating context.} Run a selected oscillator-driven 4-bit or 8-bit 74xx counter using coherent capture, known reset/enable events, and an independent reference.
 \paragraph{Acceptance question.} Can the developer distinguish a correctly captured count from missed increments, ambiguous wraps, or invalid timing evidence?
 \noindent Candidate requirements: \RequirementRef{REQ-F-012}, \RequirementRef{REQ-Q-009}, \RequirementRef{REQ-Q-010}, \RequirementRef{REQ-I-003}, \RequirementRef{REQ-F-013}, \RequirementRef{REQ-F-014}, \RequirementRef{REQ-Q-011}. Use case: \UseCaseRef{UC-04}. Validation plan: \ValidationRef{VAL-05}. Scope and test bounds remain open.
 \subsection{US-06: Paired FTDI Stream Evaluation}
 \UserStoryID{US-06}\quad\gls{must} (proposed).\par
-As an acquisition developer, I need send a known 8-bit stream through a defined producer/consumer path and inspect the received data so that I can evaluate framing, loss, timing, buffering, and end-to-end integrity.
+As an acquisition developer, I need to send a known 8-bit stream through a defined producer/consumer path and inspect the received data so that I can evaluate framing, loss, timing, buffering, and end-to-end integrity.
 \paragraph{Operating context.} Use two selected FTDI devices connected through an approved electrical and handshake path, with documented host topology, modes, payload framing, and reference clocks.
 \paragraph{Acceptance question.} Can the developer account for delivered, rejected, lost, or uncertain data and explain throughput and timing using the agreed reference?
 \noindent Candidate requirements: \RequirementRef{REQ-I-004}, \RequirementRef{REQ-Q-012}, \RequirementRef{REQ-F-015}, \RequirementRef{REQ-F-016}, \RequirementRef{REQ-Q-013}, \RequirementRef{REQ-I-005}, \RequirementRef{REQ-Q-014}, \RequirementRef{REQ-D-003}, \RequirementRef{REQ-F-017}, \RequirementRef{REQ-Q-015}. Use case: \UseCaseRef{UC-05}. Validation plan: \ValidationRef{VAL-06}. Scope and test bounds remain open.
