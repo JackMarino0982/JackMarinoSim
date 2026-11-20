@@ -33,6 +33,40 @@ the complete architecture book on the review target.
 
 \paragraph{Step 9 proposed software design.} Added \hyperref[Section:MainSoftwareDesign]{the logical software design}, a clickable \hyperref[Figure:SoftwareComponents]{connection diagram}, component and conceptual-interface responsibilities, runtime/failure flows and \hyperref[Table:SoftwareAllocation]{12-requirement design allocation}. No application code or dependency is installed. Hardware-dependent and implementation choices remain TBD. OMS remains Proposed and the \hyperref[Section:HumanReviewChecklist]{human review} remains \StatusPending. Engineering results remain Pending.
 
+\paragraph{Step 10 owner walkthrough completed.}
+Jack Marino confirmed all eight software responsibilities in
+\hyperref[Table:OwnerSoftwareReview]{the owner review record}. Hardware and
+implementation choices remain TBD; this is distinct from independent human
+review, implementation, verification and validation. OMS remains Proposed and
+human review Pending.
+
+\subsection{Remaining Work After the Owner Walkthrough}
+\label{Section:RemainingSoftwareWork}
+The following is a proposed working sequence, not an additional course mandate
+or approval of a technology or numerical value. Jack Marino coordinates
+unresolved choices; decision dates remain TBD. These tasks have not been performed.
+\begin{enumerate}
+\item Without hardware, choose a software language/tooling and define reviewable
+sample/file contracts, recording/replay controls and software access policy.
+Keep physical capture, sampling capability and device-dependent settings TBD.
+\item Build a simulator that supplies clearly labeled synthetic readings, gaps
+and fault events, then implement the confirmed software responsibilities
+against the agreed software contracts. Do not label synthetic input as actual ADC evidence.
+\item Run software-only tests, retain actual results and fix issues. Preserve the
+scope of that evidence: simulation does not pass physical capture/timing,
+recovery or real OS/driver/hardware checks. Untested requirements stay Pending.
+\item In parallel, have another person complete the existing review of at least
+three distinct requirements, then record actual feedback, responses and open
+follow-up. Current human review remains Pending.
+\item When hardware is available, resolve device/driver/wiring and timing choices,
+connect the real acquisition adapter, and execute the applicable planned tests.
+Update results and evidence only from those actual runs.
+\item Resolve OMS applicability and contract decisions before any OMS-specific
+implementation or conformance check. Complete stakeholder validation, remaining
+review actions and a full document build/layout review before final technical
+acceptance or any separately authorized merge/release.
+\end{enumerate}
+
 \paragraph{Technical review focus.}
 Review requirement necessity, singularity, units, feasibility, scenario
 boundaries, hardware capture and clock assumptions, finite load/buffering

@@ -10,8 +10,8 @@ Explain the major design choices and why they address the design drivers.
 Explain the forces that shape the design, the major decisions, alternatives considered, and consequences. Use the 4+1 views only when they help readers answer different architectural questions.
 \section{Proposed Main Software Design}
 \label{Section:MainSoftwareDesign}
-\ArchitectureID{ARC-003}: \textbf{Proposed logical design; not implemented}.
-Recorded November 19, 2026. Decision owner: Jack Marino; decision date: TBD.
+\ArchitectureID{ARC-003}: \textbf{Owner-confirmed logical responsibilities; detailed implementation choices TBD; not implemented}.
+Recorded November 19, 2026. Decision owner: Jack Marino. Responsibility review confirmed November 19, 2026; unresolved implementation decision dates: TBD.
 This design organizes the 12 confirmed main requirements into responsibilities
 that can be reviewed without hardware. It does not select boards, pinouts,
 driver modes, programming language, application framework, threading model,
@@ -21,6 +21,43 @@ are TBD, owned by Jack Marino, decision date TBD. Human review remains
 all engineering verification and validation remain Pending.
 The counter and paired-FTDI experiments remain supporting material.
 
+\subsection{Step 10 Owner Design Review}
+\label{Section:OwnerSoftwareReview}
+On November 19, 2026, Jack Marino confirmed parts 1--4 individually and parts
+5--8 together in the plain-English design walkthrough. The reviewed design
+was recorded at commit \texttt{7b58400}. The confirmation covers the intended
+responsibilities and behavior of all eight components below. It does not
+select implementation technology, hardware details, queue/file/control policies
+or OMS contracts, demonstrate working software, or complete the separate
+\hyperref[Section:HumanReviewChecklist]{three-requirement human review}.
+That review remains \StatusPending. All technical TBDs retain Jack Marino as
+owner and decision date TBD; \RequirementRef{REQ-OMS-01} and
+\ArchitectureRef{ARC-002} remain Proposed. Engineering results remain Pending.
+\small
+\begin{tabularx}{\linewidth}{L{1cm}L{5cm}Y}
+\caption{Step 10 Owner Confirmation of Software Responsibilities\label{Table:OwnerSoftwareReview}}\\
+\toprule
+\textbf{Part} & \textbf{Component} & \textbf{Owner review outcome}\\
+\midrule
+\endfirsthead
+\textbf{Part} & \textbf{Component} & \textbf{Owner review outcome}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+1 & \hyperref[Component:SW-01]{Acquisition adapter} & Intended responsibility confirmed by Jack Marino; implementation not demonstrated.\\
+2 & \hyperref[Component:SW-02]{Sample service} & Intended responsibility confirmed by Jack Marino; implementation not demonstrated.\\
+3 & \hyperref[Component:SW-03]{Buffer and local publication} & Intended responsibility confirmed by Jack Marino; implementation not demonstrated.\\
+4 & \hyperref[Component:SW-04]{Status and recovery} & Intended responsibility confirmed by Jack Marino; implementation not demonstrated.\\
+5 & \hyperref[Component:SW-05]{Recorder} & Intended responsibility confirmed by Jack Marino; implementation not demonstrated.\\
+6 & \hyperref[Component:SW-06]{Replay} & Intended responsibility confirmed by Jack Marino; implementation not demonstrated.\\
+7 & \hyperref[Component:SW-07]{Settings access} & Intended responsibility confirmed by Jack Marino; implementation not demonstrated.\\
+8 & \hyperref[Component:SW-08]{Proposed mission gateway} & Intended responsibility confirmed by Jack Marino; implementation not demonstrated.\\
+\end{tabularx}
+\normalsize
 \paragraph{Design direction and alternatives.}
 Use logical boundaries around acquisition, sample semantics, bounded delivery,
 live status/recovery, persistence/replay, protected settings and the proposed
