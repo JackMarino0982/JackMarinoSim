@@ -16,8 +16,10 @@ jobs:
       - uses: actions/checkout@v5
       - name: Install document tools
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra texlive-extra-utils latexmk lmodern poppler-utils
+          # Avoid stalled downloads from the runner's regional EC2 mirror.
+          sudo sed -i -E 's|http://[^ /]*ec2.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y --no-install-recommends texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra texlive-extra-utils latexmk lmodern poppler-utils
       - name: Build complete architecture book
         run: |
           make -f makefileMacLinux pdf
