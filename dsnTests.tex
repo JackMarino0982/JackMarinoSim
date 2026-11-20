@@ -19,37 +19,476 @@ For each run retain inputs, raw logic/timing traces or records, calculations,
 observed results, reviewer, and disposition. A missing bound or reference
 blocks a pass/fail judgment; no check below has been executed.
 Main and supporting scope follow \hyperref[Table:MainBaseline]{the selected requirements baseline}. All checks remain Pending; evidence is planned.
+\subsection{Main Test Procedure Readiness}
+\label{Section:MainTestProcedures}
+The 12 procedures below are prepared for future execution. No hardware is
+available yet; no test has been run. Every test result and verification result
+is \StatusPending; evidence remains Not collected. An unresolved setup value
+blocks execution or acceptance, not preparation of the procedure.
+All TBD values, including hardware, input counts, durations, instrumentation,
+software choices and execution dates, are owned by Jack Marino; decision date:
+TBD. Each procedure names its applicable parameter decisions. The 10 ms and
+100 ms values are owner-selected testing targets, with final approval pending
+results; no other numerical bound is invented. OMS remains Proposed.
+
+\paragraph{Common preparation and run record.}
+Before a run, approve the applicable parameter values and setup, identify the
+requirement/check and product/source revision, hardware/firmware/driver/host
+versions, instrument calibration and uncertainty, configuration, operator,
+execution date, selected inputs, counts and duration. All are TBD until supplied.
+Prepare the expected observations before collecting data. Log each procedure
+step, raw observations, calculations, deviations and evidence location.
+The mapped verification entry is the authoritative acceptance bound.
+Only an executed, reviewed run may change a result; incomplete setup or
+ambiguous evidence leaves it Pending with a recorded blocker. Record the
+actual outcome, including any failure, rather than copying an expected result.
+Restore the baseline configuration after each test.
+
+\paragraph{Software-only rehearsal.}
+Saved files or controlled test inputs may help rehearse recording, replay,
+record decoding, access checks or gateway mappings after those interfaces
+exist. Label such evidence with its actual scope. A rehearsal does not establish
+physical ADC capture, hardware timing, disconnect recovery or platform/hardware
+support. No rehearsal has been executed in this update.
 \begin{landscape}
 \small
-\begin{tabularx}{\linewidth}{L{2cm}L{3cm}Y Y}
-\caption{Main Baseline Planned Checks\label{Table:WeekTwoTests}}\\
+\begin{tabularx}{\linewidth}{L{0.8cm}L{2.0cm}Y L{2.3cm}L{2.3cm}L{1.7cm}}
+\caption{Main Baseline Test Procedure Index\label{Table:WeekTwoTests}}\\
 \toprule
-\textbf{Check} & \textbf{Requirement / Use case} & \textbf{Procedure} & \textbf{Acceptance}\\
+\textbf{No.} & \textbf{Procedure} & \textbf{Requirement} & \textbf{Verification} & \textbf{Planned evidence} & \textbf{Result}\\
 \midrule
 \endfirsthead
-\textbf{Check} & \textbf{Requirement / Use case} & \textbf{Procedure} & \textbf{Acceptance}\\
+\textbf{No.} & \textbf{Procedure} & \textbf{Requirement} & \textbf{Verification} & \textbf{Planned evidence} & \textbf{Result}\\
 \midrule
 \endhead
 \midrule
-\multicolumn{4}{r}{\small\itshape Continued on next page}\\
+\multicolumn{6}{r}{\small\itshape Continued on next page}\\
 \endfoot
 \bottomrule
 \endlastfoot
-\TestCaseID{TC-010} & \RequirementRef{REQ-SMP-01}\par \UseCaseRef{UC-01} & Inject known codes and ready events; capture bus activity and local records. & Acceptance bound: \VerificationRef{VER-010}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
-\TestCaseID{TC-016} & \RequirementRef{REQ-IF-01}\par \UseCaseRef{UC-01} & Inspect records from a controlled code stream using the approved schema. & Acceptance bound: \VerificationRef{VER-016}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
-\TestCaseID{TC-019} & \RequirementRef{REQ-TIM-01}\par \UseCaseRef{UC-01} & Inject timestamped ready events at the approved load; independently observe local publication for each event. & Acceptance bound: \VerificationRef{VER-019}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
-\TestCaseID{TC-027} & \RequirementRef{REQ-SMP-02}\par \UseCaseRef{UC-02} & Pause the qualified source immediately after a valid publication and observe output status with an independent timer. & Acceptance bound: \VerificationRef{VER-027}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
-\TestCaseID{TC-026} & \RequirementRef{REQ-F-009}\par \UseCaseRef{UC-02} & Exceed the approved envelope and force queues full; inspect records, counters, and upstream behavior. & Acceptance bound: \VerificationRef{VER-026}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
-\TestCaseID{TC-050} & \RequirementRef{REQ-F-018}\par \UseCaseRef{UC-06} & Record a known finite stream including invalid records and discontinuities; close and independently decode the saved dataset; inject a storage failure. & Apply \VerificationRef{VER-050}; Every record accepted for recording matches its source fields and order; storage failures and any recording loss are visible under the approved recording policy.\\
-\TestCaseID{TC-051} & \RequirementRef{REQ-F-019}\par \UseCaseRef{UC-06} & Replay a known saved dataset including invalid records and gaps; compare output against the file and inspect the consumer-visible replay indication. & Apply \VerificationRef{VER-051}; All selected replay records match saved metadata and order, and every replay output is distinguishable from live output; pacing follows the approved replay contract.\\
-\TestCaseID{TC-029} & \RequirementRef{REQ-F-010}\par \UseCaseRef{UC-02} & Reconnect the correct and wrong devices; vary timing-reference readiness and conversion availability. & Acceptance bound: \VerificationRef{VER-029}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
-\TestCaseID{TC-052} & \RequirementRef{REQ-Q-016}\par \UseCaseRef{UC-01} & Execute the documented workflow on every approved platform configuration; retain application revision and driver/dependency versions. & Apply \VerificationRef{VER-052}; Every approved matrix entry completes the agreed workflow without platform-specific application source changes; unmet prerequisites are identified in deployment instructions.\\
-\TestCaseID{TC-053} & \RequirementRef{REQ-S-002}\par \UseCaseRef{UC-01} & Attempt each protected setting change using authorized, unauthorized and missing identities; compare requested and effective settings. & Apply \VerificationRef{VER-053}; Authorized changes follow the approved policy; every unauthorized or unauthenticated protected change is denied and leaves effective settings unchanged, with the required denial indication.\\
-\TestCaseID{TC-032} & \RequirementRef{REQ-OMS-01}\par \UseCaseRef{UC-03} & After interface approval, inspect the contract and inject valid, stale, and faulted acquisition states at the gateway input. & Acceptance bound: \VerificationRef{VER-032}. Resolve all linked TBD dependencies first; otherwise no pass disposition.\\
-\TestCaseID{TC-054} & \RequirementRef{REQ-I-006}\par \UseCaseRef{UC-03} & Supply samples with qualified, unqualified and unavailable timing; correlate local records with mission-facing status products under the approved mapping. & Apply \VerificationRef{VER-054}; Every sample-related status preserves its source timestamp and correctly represents timing quality or unavailable time; no unqualified timestamp is represented as qualified. Execution is gated on the approved mission contract.\\
+1 & \TestCaseRef{TC-010} & \RequirementRef{REQ-SMP-01} & \VerificationRef{VER-010} & \ArtifactRef{Evidence}{EVD-010} & \StatusPending\\
+2 & \TestCaseRef{TC-016} & \RequirementRef{REQ-IF-01} & \VerificationRef{VER-016} & \ArtifactRef{Evidence}{EVD-016} & \StatusPending\\
+3 & \TestCaseRef{TC-019} & \RequirementRef{REQ-TIM-01} & \VerificationRef{VER-019} & \ArtifactRef{Evidence}{EVD-019} & \StatusPending\\
+4 & \TestCaseRef{TC-027} & \RequirementRef{REQ-SMP-02} & \VerificationRef{VER-027} & \ArtifactRef{Evidence}{EVD-027} & \StatusPending\\
+5 & \TestCaseRef{TC-026} & \RequirementRef{REQ-F-009} & \VerificationRef{VER-026} & \ArtifactRef{Evidence}{EVD-026} & \StatusPending\\
+6 & \TestCaseRef{TC-050} & \RequirementRef{REQ-F-018} & \VerificationRef{VER-050} & \ArtifactRef{Evidence}{EVD-050} & \StatusPending\\
+7 & \TestCaseRef{TC-051} & \RequirementRef{REQ-F-019} & \VerificationRef{VER-051} & \ArtifactRef{Evidence}{EVD-051} & \StatusPending\\
+8 & \TestCaseRef{TC-029} & \RequirementRef{REQ-F-010} & \VerificationRef{VER-029} & \ArtifactRef{Evidence}{EVD-029} & \StatusPending\\
+9 & \TestCaseRef{TC-052} & \RequirementRef{REQ-Q-016} & \VerificationRef{VER-052} & \ArtifactRef{Evidence}{EVD-052} & \StatusPending\\
+10 & \TestCaseRef{TC-053} & \RequirementRef{REQ-S-002} & \VerificationRef{VER-053} & \ArtifactRef{Evidence}{EVD-053} & \StatusPending\\
+11 & \TestCaseRef{TC-032} & \RequirementRef{REQ-OMS-01} & \VerificationRef{VER-032} & \ArtifactRef{Evidence}{EVD-032} & \StatusPending\\
+12 & \TestCaseRef{TC-054} & \RequirementRef{REQ-I-006} & \VerificationRef{VER-054} & \ArtifactRef{Evidence}{EVD-054} & \StatusPending\\
 \end{tabularx}
 \normalsize
 \end{landscape}
+\subsection{1. Completed ADC reading}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Completed ADC reading\label{Table:Procedure010}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-010}\\
+Coverage & \RequirementRef{REQ-SMP-01}; \UseCaseRef{UC-01}; \VerificationRef{VER-010}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-01]{PAR-01}, \hyperref[Parameter:PAR-02]{PAR-02} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & Hardware boards/revisions, voltage/reference range, ADC clock, conversion-ready observation, control wiring, FT245R mode and independent bus-capture instrument: TBD.\\
+Inputs / test cases & Selected potentiometer positions within the approved voltage range; independently observed completed-conversion codes and ready events. Positions, repetition count and run duration: TBD.\\
+Step 1 & Record the approved hardware setup and start independent capture of conversion-ready events, the full ADC output code and host publications.\\
+Step 2 & Set the potentiometer to each selected position and allow the approved settling time (TBD). Initiate conversions using the selected control method (TBD).\\
+Step 3 & For each accepted ready event, independently read its completed 8-bit code and locate the corresponding host publication.\\
+Step 4 & Compare the published code with the independently captured code and inspect the published validity state. Record every missing, duplicate, mismatched or unqualified publication.\\
+Step 5 & Stop acquisition and retain the event-to-record comparison. Do not infer an exact ADC code from knob position alone.\\
+Expected result & Every accepted ready event has a matching published 8-bit code and validity state. Authoritative bound: \VerificationRef{VER-010}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-010} (Not collected). Ready-event/bus trace, published records and per-event code/validity reconciliation.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{2. Local sample record fields}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Local sample record fields\label{Table:Procedure016}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-016}\\
+Coverage & \RequirementRef{REQ-IF-01}; \UseCaseRef{UC-01}; \VerificationRef{VER-016}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-03]{PAR-03} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & Approved local schema, validity states, timestamp event/units/epoch/clock, sequence width, acquisition-epoch rules and independent decoder: TBD. Hardware capture configuration and input rate: TBD.\\
+Inputs / test cases & A controlled sequence of qualified readings with distinct code changes; run length and sequence-boundary cases: TBD.\\
+Step 1 & Record the schema and clock/sequence conventions; start independent capture of the input sequence and emitted local records.\\
+Step 2 & Acquire the selected sequence and decode every emitted record with the agreed independent decoder.\\
+Step 3 & Check that each qualified record contains code, validity, timestamp and sequence number with the approved types and encoding; compare the code and validity with the input evidence.\\
+Step 4 & Check timestamps against the declared event and clock convention; check increasing sequence order within the defined epoch. If a restart or boundary is included, evaluate it under the approved epoch policy.\\
+Step 5 & List missing fields, decoding errors, sequence duplicates/regressions and unexplained gaps. Retain the decoded records and report.\\
+Expected result & Every qualified record contains all four required fields with the specified types and ordering. Authoritative bound: \VerificationRef{VER-016}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-016} (Not collected). Schema revision, raw and decoded records, per-field checks and epoch/sequence-order report. No supporting 1 ms error bound is assumed.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{3. Publication latency: 10 ms testing target}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Publication latency: 10 ms testing target\label{Table:Procedure019}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-019}\\
+Coverage & \RequirementRef{REQ-TIM-01}; \UseCaseRef{UC-01}; \VerificationRef{VER-019}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-01]{PAR-01}, \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-03]{PAR-03}, \hyperref[Parameter:PAR-04]{PAR-04} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & Physical ready-event capture, observable publication boundary, common or correlated clocks, reference calibration, uncertainty treatment, load envelope and acquisition hardware: TBD.\\
+Inputs / test cases & Completed conversions at the approved normal and boundary workloads. Rates, burst patterns, duration and number of events: TBD.\\
+Step 1 & Record the ready-event definition and publication boundary. Establish a common or correlated measurement time basis and its uncertainty before acquisition.\\
+Step 2 & Apply each approved workload while capturing ready-event times and corresponding local-publication times.\\
+Step 3 & Pair every accepted ready event with its publication. Record missing or ambiguous pairs separately; exclude none silently.\\
+Step 4 & For each pair calculate publication time minus ready-event time, applying the approved clock correlation and uncertainty treatment.\\
+Step 5 & Compare every result against the 10 ms testing target and report the maximum, any target exceedance and all unmatched events. Averages alone do not establish compliance.\\
+Expected result & Every paired publication latency is at most 10 ms under the approved conditions, including the agreed uncertainty treatment. Authoritative bound: \VerificationRef{VER-019}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-019} (Not collected). Paired event/publication timestamps, workload configuration, clock-correlation/calibration evidence, per-event latency and uncertainty calculations, maximum and exception list.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{4. Stale data: 100 ms testing target}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Stale data: 100 ms testing target\label{Table:Procedure027}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-027}\\
+Coverage & \RequirementRef{REQ-SMP-02}; \UseCaseRef{UC-02}; \VerificationRef{VER-027}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-01]{PAR-01}, \hyperref[Parameter:PAR-03]{PAR-03}, \hyperref[Parameter:PAR-06]{PAR-06} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & Controlled method to stop new qualified samples, observable stale-status boundary, clock/reference and uncertainty treatment: TBD. Hardware wiring, sample interval, observation resolution and repetition count: TBD.\\
+Inputs / test cases & A valid publication followed by a controlled pause in qualified input; a restoration of input after stale status.\\
+Step 1 & Start acquisition and identify the publication time of the last valid reading using the approved reference.\\
+Step 2 & Stop new qualified input using the approved method; continue observing publication and status without generating replacement samples.\\
+Step 3 & Capture when the current output first becomes stale. Calculate elapsed time from the last valid publication, accounting for the approved uncertainty treatment.\\
+Step 4 & Compare the stale-state transition against the 100 ms testing target; inspect any retained reading to ensure it is not presented as newly valid.\\
+Step 5 & Restore qualified input and record the subsequent state. Repeat with the approved pause positions/counts (TBD); retain late, missing and ambiguous transitions.\\
+Expected result & The current acquisition output becomes stale within 100 ms of the previous valid publication; no new sample is fabricated. Authoritative bound: \VerificationRef{VER-027}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-027} (Not collected). Last-valid-publication time, controlled pause trace, stale-status transition time, elapsed-time/uncertainty calculation and retained-value status observations.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{5. Visible overload and lost readings}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Visible overload and lost readings\label{Table:Procedure026}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-026}\\
+Coverage & \RequirementRef{REQ-F-009}; \UseCaseRef{UC-02}; \VerificationRef{VER-026}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-04]{PAR-04}, \hyperref[Parameter:PAR-06]{PAR-06} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & Input/service envelope, finite buffers, overflow/backpressure/drop policy, loss/discontinuity interface and queue instrumentation: TBD. Hardware source rate and workload controls: TBD.\\
+Inputs / test cases & Identifiable sample streams at an approved normal load and loads that force the selected overload condition; rates, stall lengths, duration and expected accounting rules: TBD.\\
+Step 1 & Record the approved overload policy and initial queue state. Run the normal-load case and retain source, accepted, delivered and queued-record counts.\\
+Step 2 & Increase input load or stall the consumer using the approved mechanism until the configured overload condition is reached.\\
+Step 3 & Observe whether the system follows its selected backpressure or drop policy; capture queue occupancy and any loss/discontinuity indication seen by the receiving software.\\
+Step 4 & Resume the consumer and reconcile input, delivered, retained and declared lost or uncertain records under the approved accounting rules.\\
+Step 5 & Report any silent loss, unexplained gap or presentation of interrupted acquisition as continuous. Do not assume a drop policy or zero loss before the policy is selected.\\
+Expected result & The selected overflow policy is followed; loss or uncertainty is visible and is never represented as uninterrupted valid acquisition. Authoritative bound: \VerificationRef{VER-026}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-026} (Not collected). Source/consumer counts, queue trace, selected policy, overload trigger, backpressure/drop observations and consumer-visible loss/discontinuity accounting.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{6. Save readings}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Save readings\label{Table:Procedure050}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-050}\\
+Coverage & \RequirementRef{REQ-F-018}; \UseCaseRef{UC-06}; \VerificationRef{VER-050}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-13]{PAR-13} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & Recording selection/control, format/schema, metadata, storage/retention limits, independent reader and storage-failure behavior: TBD. Real acquisition hardware and rate: TBD; a software-only rehearsal must be labeled separately.\\
+Inputs / test cases & A finite identifiable stream containing valid and invalid records, gaps and acquisition-epoch metadata. Dataset length and safe isolated storage-failure mechanism: TBD.\\
+Step 1 & Retain the reference stream and its metadata; select the records to save according to the approved recording controls.\\
+Step 2 & Start recording, submit the stream, stop recording and close the dataset using the documented workflow.\\
+Step 3 & Reopen the saved dataset with the independent reader. Compare each accepted record, original order, code, validity, timestamp, sequence and epoch context with the reference.\\
+Step 4 & In an isolated test destination, trigger the approved storage-failure case; record which samples were saved, lost or uncertain and the visible failure indication.\\
+Step 5 & Preserve both normal and failure datasets and the reconciliation report; do not alter the reference data.\\
+Expected result & Every record accepted for recording matches its source fields and order; storage failures and any recording loss are visible under the approved recording policy. Authoritative bound: \VerificationRef{VER-050}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-050} (Not collected). Reference stream, selected-record list, file/schema metadata, normal and failure datasets, field/order reconciliation and storage-failure indication.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{7. Replay saved readings}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Replay saved readings\label{Table:Procedure051}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-051}\\
+Coverage & \RequirementRef{REQ-F-019}; \UseCaseRef{UC-06}; \VerificationRef{VER-051}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-13]{PAR-13} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & Saved-dataset format, reader compatibility, playback controls/pacing, replay-output boundary and live/replay indication: TBD. Hardware is not required for a file-only rehearsal, but that rehearsal is not evidence of physical acquisition.\\
+Inputs / test cases & A known saved dataset with valid/invalid records, explicit gaps and original timestamps, sequences and epoch context; selection and playback settings: TBD.\\
+Step 1 & Independently decode and retain the expected selected dataset contents before starting playback.\\
+Step 2 & Open the dataset and start replay with the approved controls and pacing; capture all consumer-visible output and its replay indication.\\
+Step 3 & Compare the replayed records field by field with the saved originals and verify their selected order. Record omissions, duplicates, metadata changes and invalid-state changes.\\
+Step 4 & Check that each replay output is identifiable as recorded data, including around the start/end and any approved pause/resume operation; original timestamps remain original.\\
+Step 5 & Compare playback timing with the selected pacing contract without inventing a speed requirement; retain the input/output comparison and mode observations.\\
+Expected result & All selected replay records match saved metadata and order, and every replay output is distinguishable from live output; pacing follows the approved replay contract. Authoritative bound: \VerificationRef{VER-051}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-051} (Not collected). Saved input, independent decoded expectation, replay output, playback-control/pacing settings, field/order comparison and replay-mode indication.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{8. Qualified recovery after disconnect or reset}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Qualified recovery after disconnect or reset\label{Table:Procedure029}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-029}\\
+Coverage & \RequirementRef{REQ-F-010}; \UseCaseRef{UC-02}; \VerificationRef{VER-029}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-01]{PAR-01}, \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-03]{PAR-03}, \hyperref[Parameter:PAR-06]{PAR-06} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & Device identity checks, configuration baseline, timing qualification, restart epoch/queue policy and approved disconnect/reset injection: TBD. Hardware/driver behavior and recovery observation points: TBD.\\
+Inputs / test cases & An active valid stream followed by disconnect and reset cases; withheld identity/configuration/timing/new-sample prerequisites and controlled recovery sequence: TBD.\\
+Step 1 & Acquire valid readings and retain the device identity, active configuration, timing state and acquisition epoch.\\
+Step 2 & Apply one approved disconnect or reset. Capture status, queued-data handling and every subsequent publication.\\
+Step 3 & Reconnect or restore the path while deliberately withholding each recovery prerequisite in separate approved cases; verify that valid output remains withheld.\\
+Step 4 & Restore correct identity, configuration and timing qualification, then permit a newly completed sample. Record the ordering of prerequisite completion and the first valid publication.\\
+Step 5 & Check that obsolete queued samples are not presented as new. Repeat the selected reset/disconnect cases and retain failed prerequisites; no recovery deadline is invented.\\
+Expected result & Valid output resumes only after all approved recovery predicates and a new qualified sample; obsolete queued samples are not presented as new. Authoritative bound: \VerificationRef{VER-029}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-029} (Not collected). Fault-injection timeline, device/configuration/timing checks, epoch and queue disposition, withheld-prerequisite cases and first-new-sample/valid-output ordering.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{9. Supported macOS, Windows and Linux workflow}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Supported macOS, Windows and Linux workflow\label{Table:Procedure052}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-052}\\
+Coverage & \RequirementRef{REQ-Q-016}; \UseCaseRef{UC-01}; \VerificationRef{VER-052}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-01]{PAR-01}, \hyperref[Parameter:PAR-12]{PAR-12} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & Supported OS/CPU/driver matrix, host resources/privileges, deployment package and instructions, acquisition settings and hardware: TBD. No OS version is assumed supported before approval.\\
+Inputs / test cases & One agreed installation, configuration, acquisition and status-inspection workflow on every approved matrix entry; input sequence, duration and dependency-failure cases: TBD.\\
+Step 1 & Freeze and record the common application source revision and approved platform/driver matrix.\\
+Step 2 & On each matrix entry, follow the documented installation and configuration instructions; record versions, resources, permissions and any deviations.\\
+Step 3 & Connect the selected hardware and run the agreed acquisition/status workflow with the controlled input; retain decoded readings and visible status.\\
+Step 4 & Compare the source revision across platforms and identify any platform-specific application source edits. Record allowed platform-specific packaging/configuration separately.\\
+Step 5 & Check that missing prerequisites can be identified from deployment instructions. Report success or obstruction for every matrix entry; untested entries remain Pending.\\
+Expected result & Every approved matrix entry completes the agreed workflow without platform-specific application source changes; unmet prerequisites are identified in deployment instructions. Authoritative bound: \VerificationRef{VER-052}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-052} (Not collected). Approved matrix, common source revision, per-platform installation/configuration/acquisition/status records, driver dependencies, deviations and per-entry disposition.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{10. Authorized acquisition-setting changes}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Authorized acquisition-setting changes\label{Table:Procedure053}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-053}\\
+Coverage & \RequirementRef{REQ-S-002}; \UseCaseRef{UC-01}; \VerificationRef{VER-053}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-14]{PAR-14} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & Protected setting/operation list, identity/access policy, enforcement boundary, interfaces and denial reporting: TBD. Hardware-dependent setting limits and acquisition state: TBD.\\
+Inputs / test cases & For every protected operation: approved changes attempted by authorized, unauthorized and missing/unauthenticated identities. Test identities and values: TBD.\\
+Step 1 & Record the policy revision, protected-operation list and baseline effective settings. Build the identity-by-operation test matrix before executing requests.\\
+Step 2 & For each authorized case, request a permitted change through the actual enforcement interface and independently inspect the effective setting.\\
+Step 3 & Restore the baseline; attempt the corresponding change with unauthorized and missing identities through each applicable protected interface.\\
+Step 4 & Compare effective settings before and after each denied request and capture the required denial indication. Do not infer denial from a screen message alone.\\
+Step 5 & Reconcile all cases against the approved permission matrix, retain unexpected grants/denials and restore the baseline configuration.\\
+Expected result & Authorized changes follow the approved policy; every unauthorized or unauthenticated protected change is denied and leaves effective settings unchanged, with the required denial indication. Authoritative bound: \VerificationRef{VER-053}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-053} (Not collected). Policy and identity/operation matrix, request/response observations, independently inspected before/after effective settings, denial indications and restoration record.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{11. Proposed OMS sensor-status exchange}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Proposed OMS sensor-status exchange\label{Table:Procedure032}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-032}\\
+Coverage & \RequirementRef{REQ-OMS-01}; \UseCaseRef{UC-03}; \VerificationRef{VER-032}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-07]{PAR-07} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & OMS applicability, standard version, CAL profile, UCI message, status mapping, responsible gateway, service/failure contract and independent decoder: TBD. Interface test harness, hardware source and timing allocations: TBD. Requirement remains Proposed; execution is gated.\\
+Inputs / test cases & Approved valid, stale and faulted local states, with correlated source records and selected mapping/failure cases. Exact messages, repetitions and test endpoint: TBD.\\
+Step 1 & Check the architecture decision and approval record first. If any required OMS decision is unresolved, record the blocker and leave this test Pending without claiming OMS conformance.\\
+Step 2 & After approval, configure the selected gateway and independent observer at the defined CAL boundary; retain contract/profile/message revisions.\\
+Step 3 & Supply each approved valid, stale and faulted local state and capture the corresponding mission-facing product.\\
+Step 4 & Decode each product independently and compare fields, state mapping and boundary behavior against the approved UCI/service contract; correlate products with their source states.\\
+Step 5 & Exercise the approved mapping/delivery failure cases and retain explicit fault observations. Report mismatches without substituting the local sample format for OMS evidence.\\
+Expected result & Each state produces the approved derived status product at the CAL boundary using the approved mapping; local sample records are not treated as the OMS contract. Authoritative bound: \VerificationRef{VER-032}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-032} (Not collected). OMS applicability/approval decision, version/profile/message/mapping baseline, gateway identity, injected states, decoded CAL captures, correlation and contract-fault observations.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
+\subsection{12. Mission timestamp and timing quality}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Mission timestamp and timing quality\label{Table:Procedure054}}\\
+\toprule
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endfirsthead
+\textbf{Field / Step} & \textbf{Planned procedure}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-054}\\
+Coverage & \RequirementRef{REQ-I-006}; \UseCaseRef{UC-03}; \VerificationRef{VER-054}\\
+Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
+Owner / Decision date & Jack Marino / TBD\\
+Entry conditions & Resolve applicable \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-03]{PAR-03}, \hyperref[Parameter:PAR-07]{PAR-07} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
+Setup / hardware TBDs & Approved mission contract/gateway, timestamp event/units/epoch, timing-quality states, unavailable-time representation and clock correlation: TBD. Hardware capture/reference and source timestamps: TBD; OMS-specific execution depends on its decision.\\
+Inputs / test cases & Sample-related status for qualified, unqualified and unavailable timing, plus repeated or delayed status for identifiable source samples. Exact cases and delays: TBD.\\
+Step 1 & Record the approved source-to-mission timestamp/quality mapping and prepare independently identifiable samples covering every agreed timing-quality state.\\
+Step 2 & Submit the corresponding local sample/status cases to the gateway and capture mission-facing status alongside original source records.\\
+Step 3 & Correlate each sample-related product with its source. Decode its timestamp event, units and epoch; verify semantic preservation under the approved representation, not replacement by gateway send/arrival time.\\
+Step 4 & Verify qualified, unqualified and unavailable timing indications for their respective cases; check that unreliable or unknown time is never labeled qualified.\\
+Step 5 & For delayed or repeated status, confirm that it still refers to the original sample time. Retain every mismatch and mapping dependency; do not assume a timestamp-accuracy bound not in this requirement.\\
+Expected result & Every sample-related status preserves its source timestamp and correctly represents timing quality or unavailable time; no unqualified timestamp is represented as qualified. Execution is gated on the approved mission contract. Authoritative bound: \VerificationRef{VER-054}. This is an expectation, not an observed result.\\
+Planned evidence & \ArtifactRef{Evidence}{EVD-054} (Not collected). Source samples and timing states, approved representation, correlated gateway captures, timestamp conversion comparison, unknown/unreliable timing cases and delayed/repeated-status results.\\
+Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
+Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
+\end{tabularx}
+\normalsize
 \subsection{Supporting Material}
 \begin{landscape}
 \small
