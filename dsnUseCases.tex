@@ -34,13 +34,13 @@ These are planned interactions, not implemented behavior or approved scenarios. 
 \endlastfoot
 ID & \UseCaseID{UC-01}\\
 Actor & Mission application; acquisition developer supplies the configured source.\\
-Preconditions & Selected ADC/FTDI path, local contract, operating envelope, and time basis are approved.\\
+Preconditions & Approved supported platform and acquisition-access policy; Selected ADC/FTDI path, local contract, operating envelope, and time basis are approved.\\
 Trigger & A conversion-ready event occurs.\\
 Main flow & Apply potentiometer voltage; complete conversion; coherently capture the code; qualify and timestamp it; publish its local record while prior samples are processed.\\
-Alternate or exception flow & Unqualified capture is invalid; overflow follows its approved policy; disconnect and stale status follow \UseCaseRef{UC-02}.\\
+Alternate or exception flow & Unauthorized setting changes are denied without changing effective settings; Unqualified capture is invalid; overflow follows its approved policy; disconnect and stale status follow \UseCaseRef{UC-02}.\\
 Postconditions & A qualified record or explicit invalid/discontinuity status is observable.\\
-Requirements & \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-F-004}, \RequirementRef{REQ-F-005}, \RequirementRef{REQ-F-007}, \RequirementRef{REQ-F-008}, \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-I-002}, \RequirementRef{REQ-D-002}, \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-TIM-02}, \RequirementRef{REQ-Q-002}, \RequirementRef{REQ-Q-003}, \RequirementRef{REQ-Q-004}, \RequirementRef{REQ-Q-005}, \RequirementRef{REQ-Q-006}\\
-Tests & \TestCaseRef{TC-010}, \TestCaseRef{TC-011}, \TestCaseRef{TC-012}, \TestCaseRef{TC-014}, \TestCaseRef{TC-015}, \TestCaseRef{TC-016}, \TestCaseRef{TC-017}, \TestCaseRef{TC-018}, \TestCaseRef{TC-019}, \TestCaseRef{TC-020}, \TestCaseRef{TC-021}, \TestCaseRef{TC-022}, \TestCaseRef{TC-023}, \TestCaseRef{TC-024}, \TestCaseRef{TC-025}\\
+Requirements & \RequirementRef{REQ-SMP-01}, \RequirementRef{REQ-F-004}, \RequirementRef{REQ-F-005}, \RequirementRef{REQ-F-007}, \RequirementRef{REQ-F-008}, \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-I-002}, \RequirementRef{REQ-D-002}, \RequirementRef{REQ-TIM-01}, \RequirementRef{REQ-TIM-02}, \RequirementRef{REQ-Q-002}, \RequirementRef{REQ-Q-003}, \RequirementRef{REQ-Q-004}, \RequirementRef{REQ-Q-005}, \RequirementRef{REQ-Q-006}, \RequirementRef{REQ-Q-016}, \RequirementRef{REQ-S-002}\\
+Tests & \TestCaseRef{TC-010}, \TestCaseRef{TC-011}, \TestCaseRef{TC-012}, \TestCaseRef{TC-014}, \TestCaseRef{TC-015}, \TestCaseRef{TC-016}, \TestCaseRef{TC-017}, \TestCaseRef{TC-018}, \TestCaseRef{TC-019}, \TestCaseRef{TC-020}, \TestCaseRef{TC-021}, \TestCaseRef{TC-022}, \TestCaseRef{TC-023}, \TestCaseRef{TC-024}, \TestCaseRef{TC-025}, \TestCaseRef{TC-052}, \TestCaseRef{TC-053}\\
 \end{tabularx}
 \normalsize
 \subsection{Observe stale, disconnected, and recovering acquisition}
@@ -90,11 +90,11 @@ ID & \UseCaseID{UC-03}\\
 Actor & Mission integrator and external mission service.\\
 Preconditions & OMS applicability, version, CAL profile, UCI mapping, service contract and gateway ownership are approved.\\
 Trigger & A valid, stale, or faulted acquisition status is reported.\\
-Main flow & Map local acquisition state to the approved derived status product and publish it at the selected CAL boundary.\\
+Main flow & Include source timestamp and timing-quality indication for sample-related status; Map local acquisition state to the approved derived status product and publish it at the selected CAL boundary.\\
 Alternate or exception flow & An unresolved profile blocks execution; mapping/delivery faults are exposed according to the approved contract.\\
 Postconditions & The agreed mission-facing status product or explicit contract fault is observable.\\
-Requirements & \RequirementRef{REQ-OMS-01}\\
-Tests & \TestCaseRef{TC-032}\\
+Requirements & \RequirementRef{REQ-OMS-01}, \RequirementRef{REQ-I-006}\\
+Tests & \TestCaseRef{TC-032}, \TestCaseRef{TC-054}\\
 \end{tabularx}
 \normalsize
 \subsection{Evaluate oscillator-driven counter capture}
@@ -152,6 +152,33 @@ Tests & \TestCaseRef{TC-040}, \TestCaseRef{TC-041}, \TestCaseRef{TC-042}, \TestC
 \end{tabularx}
 \normalsize
 
+\subsection{Record and replay sample datasets}
+\small
+\begin{tabularx}{\linewidth}{L{3.2cm}Y}
+\caption{Record and Replay Sample Datasets\label{Table:CandidateUC06}}\\
+\toprule
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endfirsthead
+\textbf{Field} & \textbf{Candidate description}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+ID & \UseCaseID{UC-06}\\
+Actor & Acquisition developer (\UserStoryRef{US-02}).\\
+Preconditions & Approved recording/replay contract and available storage; dataset compatibility and access conditions satisfied.\\
+Trigger & Developer starts recording or selects a saved dataset for replay.\\
+Main flow & Save selected local records with original metadata; close and reopen the dataset; replay records in saved order with a consumer-visible replay indication.\\
+Alternate or exception flow & Storage failure, unsupported dataset or interrupted file follows the approved error policy; replay is never presented as live acquisition.\\
+Postconditions & A reviewable saved dataset or explicit recording error exists; replay output preserves selected record metadata and order.\\
+Requirements & \RequirementRef{REQ-F-018}, \RequirementRef{REQ-F-019}\\
+Tests & \TestCaseRef{TC-050}, \TestCaseRef{TC-051}\\
+\end{tabularx}
+\normalsize
 \section[High-Level Use Case Diagram]{\hspace{0.5em}High-Level Use Case Diagram}
 Show the system boundary, primary actors, and major user goals before the
 detailed use-case tables. Replace the generic example with project-specific

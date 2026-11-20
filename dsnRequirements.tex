@@ -274,9 +274,9 @@ it into singular requirements and assign each one a primary category.
 
 \section{Week 2 Candidate Requirements}
 \label{Section:WeekTwoCandidates}
-All entries below are draft candidates requested by the owner. ``Shall''
+Jack Marino selected 12 requirements as the main project baseline on November 19, 2026. The remaining 33 candidates are supporting material. Selection approves scope; technical allocations and acceptance remain subject to review. All entries remain unimplemented requirements candidates. ``Shall''
 expresses the proposed obligation if approved; it does not make these drafts
-an approved baseline. Every candidate is Open, has no implementation version,
+an approved technical acceptance baseline. Every candidate is Open, has no implementation version,
 has a proposed Must priority, and is linked to a planned use case, test,
 verification entry, and source story. None has been implemented or verified.
 Conditional bounds remain TBD until the parameter decisions below are made; Jack Marino owns every current candidate decision, with decision date TBD. Approval status and lifecycle status are separate: \RequirementRef{REQ-OMS-01} is Proposed for approval and Open for lifecycle progress.
@@ -366,7 +366,9 @@ rates or a nominal oscillator setting. A blocked test is Pending, never Pass.
 \phantomsection\label{Parameter:PAR-09}\texttt{PAR-09} & Counter timing reference & \textbf{TBD:} Maximum oscillator frequency, capture gap/jitter, event timestamp-error bound, independent edge reference, phase/reset alignment, frequency/drift tolerance, detection deadline, and uncertainty. & Jack Marino & TBD\\
 \phantomsection\label{Parameter:PAR-10}\texttt{PAR-10} & Paired physical path & \textbf{TBD:} Device identities, host topology, output-to-input wiring and logic levels, ground, bit direction, ready/strobe/latch controls, FTDI mode, driver semantics, partial transfer handling, and connection recovery. & Jack Marino & TBD\\
 \phantomsection\label{Parameter:PAR-11}\texttt{PAR-11} & Paired stream contract & \textbf{TBD:} Frame format, payload sizes, effective byte rate and duration, optional UART baud only if selected, sequence/epoch rules, integrity algorithm and residual risk, bilateral queue budgets, stalls, clock correlation, and frame latency. & Jack Marino & TBD\\
-\phantomsection\label{Parameter:PAR-12}\texttt{PAR-12} & Portability coverage & \textbf{TBD:} Supported OS/CPU/driver matrix, deployment conditions, and portability requirement/use-case/test/verification allocation for \UserStoryRef{US-03}. & Jack Marino & TBD\\
+\phantomsection\label{Parameter:PAR-12}\texttt{PAR-12} & Portability coverage & \textbf{TBD:} Supported OS/CPU/driver matrix, deployment conditions, and deployment workflow for \UserStoryRef{US-03}. & Jack Marino & TBD\\
+\phantomsection\label{Parameter:PAR-13}\texttt{PAR-13} & Recording and replay & \textbf{TBD:} Recording format/schema, selection, retention/storage limits, failure/loss indication, dataset compatibility, playback control/pacing and live/replay indication. & Jack Marino & TBD\\
+\phantomsection\label{Parameter:PAR-14}\texttt{PAR-14} & Acquisition authorization & \textbf{TBD:} Protected settings/operations, identity and access policy, enforcement boundary, permissions and denied-request reporting. & Jack Marino & TBD\\
 \end{tabularx}
 \normalsize
 \end{landscape}
@@ -378,39 +380,18 @@ rates or a nominal oscillator setting. A blocked test is Pending, never Pass.
 semantic dictionary, not a selected binary layout. Separate scaling output,
 calibration revision, epoch identifier, or diagnostics may be carried in the
 record or associated metadata once PAR-02 is resolved.
+\subsection{Main Project Baseline: 12 Selected Requirements}
+\label{Section:MainBaseline}
+Scope selection is approved by the owner. Engineering verification remains Pending. The seven carried requirements retain their exact IDs and statements; the five additions elaborate recording, replay, portability, authorization and mission timing quality.
 \begin{landscape}
 \small
-\begin{tabularx}{\linewidth}{L{3cm}Y Y}
-\caption{Local Sample Record Semantics\label{Table:LocalSampleFields}}\\
-\toprule
-\textbf{Field} & \textbf{Meaning} & \textbf{Decision/check}\\
-\midrule
-\endfirsthead
-\textbf{Field} & \textbf{Meaning} & \textbf{Decision/check}\\
-\midrule
-\endhead
-\midrule
-\multicolumn{3}{r}{\small\itshape Continued on next page}\\
-\endfoot
-\bottomrule
-\endlastfoot
-Code & Unsigned 8-bit raw ADC code, 0 through 255. & Select byte encoding and bit mapping; preserve raw value independently of scaled voltage.\\
-Validity state & Qualification outcome associated with the code, including invalid/stale interpretation. & Define state/reason encoding and missing-data behavior; stale current output is not a new conversion.\\
-Timestamp & Time of the selected acquisition event. & Define event, clock, units, epoch, uncertainty and synchronization quality; distinguish host arrival time.\\
-Sequence number & Strictly increasing identity of newly published samples within a declared acquisition epoch. & Select width and identify epoch changes before wrap and on restart; duplicates do not count as new samples.\\
-\end{tabularx}
-\normalsize
-\end{landscape}
-\begin{landscape}
-\small
-\subsection{Functional behavior}
 \begin{tabularx}{\linewidth}{L{2.7cm}Y Y L{3.7cm}}
-\caption{Functional behavior Candidates\label{Table:CandidateFunctionalbehavior}}\\
+\caption{Main Project Requirements Baseline\label{Table:MainBaseline}}\\
 \toprule
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endfirsthead
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endhead
 \midrule
@@ -419,22 +400,55 @@ Sequence number & Strictly increasing identity of newly published samples within
 \bottomrule
 \endlastfoot
 \RequirementID{REQ-SMP-01} & When conversion-ready is asserted, the acquisition service shall read the 8-bit sample code and publish the code with its validity state. & \textbf{TBD:} Define the ready event and observable local publication boundary; \hyperref[Parameter:PAR-01]{PAR-01}, \hyperref[Parameter:PAR-02]{PAR-02}.\par Source: \cite[slides 27]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}, \UserStoryRef{US-02}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-010}\par \VerificationRef{VER-010}\\
+\RequirementID{REQ-IF-01} & For each qualified sample sent to a downstream consumer, the acquisition service shall include the 8-bit code, validity state, timestamp, and monotonically increasing sequence number in the defined sample record. & \textbf{TBD:} Approve schema, timestamp basis, and sequence rollover policy; \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-03]{PAR-03}.\par Source: \cite[slides 30]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}, \UserStoryRef{US-04}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-016}\par \VerificationRef{VER-016}\\
+\RequirementID{REQ-TIM-01} & For each conversion-ready assertion, the acquisition service shall publish the corresponding sample code and validity state within 10 ms of the assertion. & \textbf{TBD:} The 10 ms lecture allocation is unapproved; approve workload, observable boundary, and measurement uncertainty; \hyperref[Parameter:PAR-03]{PAR-03}, \hyperref[Parameter:PAR-04]{PAR-04}.\par Source: \cite[slides 27]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}, \UserStoryRef{US-02}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-019}\par \VerificationRef{VER-019}\\
+\RequirementID{REQ-SMP-02} & When no new qualified sample is available, the acquisition service shall mark its current output stale no later than 100 ms after publication of the previous valid sample. & \textbf{TBD:} The 100 ms lecture allocation is unapproved; approve clock, status interface, and end-to-end freshness allocation; \hyperref[Parameter:PAR-03]{PAR-03}.\par Source: \cite[slides 32]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}\par \UseCaseRef{UC-02}\par \TestCaseRef{TC-027}\par \VerificationRef{VER-027}\\
+\RequirementID{REQ-F-009} & When the approved acquisition envelope is exceeded, the acquisition service shall apply the approved overflow policy and expose a loss or discontinuity indication to the consumer. & \textbf{TBD:} Choose backpressure or explicit drop policy, observability, and counters; \hyperref[Parameter:PAR-04]{PAR-04}.\par Source: Owner request, November 12, 2026.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}, \UserStoryRef{US-02}\par \UseCaseRef{UC-02}\par \TestCaseRef{TC-026}\par \VerificationRef{VER-026}\\
+\RequirementID{REQ-F-018} & The host shall save selected local sample records with their original code, validity, timestamp, sequence and acquisition-epoch context for later inspection and replay. & \textbf{TBD:} Recording format, selection, storage limit, retention, schema metadata, and storage-failure policy: TBD under PAR-13.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}, \UseCaseRef{UC-06}, \TestCaseRef{TC-050}, \VerificationRef{VER-050}\\
+\RequirementID{REQ-F-019} & The host shall replay a saved dataset in its recorded order while preserving original sample metadata and clearly identifying replay output as recorded rather than live acquisition. & \textbf{TBD:} Playback control, pacing, dataset compatibility and replay indication: TBD under PAR-13.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}, \UseCaseRef{UC-06}, \TestCaseRef{TC-051}, \VerificationRef{VER-051}\\
+\RequirementID{REQ-F-010} & After a disconnect or reset, the acquisition service shall withhold a valid output state until device identity, acquisition configuration, timing qualification, and a new completed sample have been re-established. & \textbf{TBD:} Define recovery state machine, new epoch, retry limits, and qualification predicates; \hyperref[Parameter:PAR-06]{PAR-06}.\par Source: Owner request, November 12, 2026.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}, \UserStoryRef{US-02}\par \UseCaseRef{UC-02}\par \TestCaseRef{TC-029}\par \VerificationRef{VER-029}\\
+\RequirementID{REQ-Q-016} & The subsystem shall support the same agreed installation, configuration, acquisition and status-inspection workflow on the approved macOS, Windows and Linux platform matrix without platform-specific application source changes. & \textbf{TBD:} Supported OS/CPU/driver versions, resources, privileges, workflow and deployment instructions: TBD under PAR-12.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-03}, \UseCaseRef{UC-01}, \TestCaseRef{TC-052}, \VerificationRef{VER-052}\\
+\RequirementID{REQ-S-002} & The subsystem shall permit acquisition-setting changes only from users or software identities authorized for the requested operation by the approved access policy. & \textbf{TBD:} Protected settings/operations, identities, permissions, enforcement boundary and denied-request reporting: TBD under PAR-14.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}, \UseCaseRef{UC-01}, \TestCaseRef{TC-053}, \VerificationRef{VER-053}\\
+\RequirementID{REQ-OMS-01} & When the acquisition service reports sensor status as valid, stale, or faulted, the mission gateway shall publish the corresponding derived status data product through the program-approved OMS CAL interface, using the approved UCI message mapping and service contract. & \textbf{TBD:} Proposed only: select applicability, standard version, CAL profile, UCI mapping, gateway owner, and timing allocation; \hyperref[Parameter:PAR-07]{PAR-07}.\par Source: \cite[slides 36]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD.\par Controlled by \ArchitectureRef{ARC-002}; project approval remains TBD. & \textbf{Approval: Proposed}.\par \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-04}\par \UseCaseRef{UC-03}\par \TestCaseRef{TC-032}\par \VerificationRef{VER-032}\\
+\RequirementID{REQ-I-006} & When mission status refers to a sample, the responsible gateway shall include the source sample timestamp and its timing-quality indication according to the approved mission-interface contract. & \textbf{TBD:} Timestamp event/units/epoch, timing-quality states, unavailable-time representation and OMS mapping: TBD under PAR-03 and PAR-07. This is a project-derived proposal, not an asserted OMS mandate.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-04}, \UseCaseRef{UC-03}, \TestCaseRef{TC-054}, \VerificationRef{VER-054}\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+\subsection{Supporting Candidate Requirements}
+These 33 candidates retain their IDs and evidence plans for later refinement. They are outside the selected 12-item main assignment baseline. Supporting detail may inform implementation, but is not silently promoted into the main baseline.
+\subsubsection{Functional behavior}
+\begin{landscape}
+\small
+\begin{tabularx}{\linewidth}{L{2.7cm}Y Y L{3.7cm}}
+\caption{Functional behavior Supporting Candidates\label{Table:CandidateFunctionalbehavior}}\\
+\toprule
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
+\midrule
+\endfirsthead
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
 \RequirementID{REQ-F-004} & At the approved operating load, the acquisition service shall continue accepting new samples while earlier samples are processed and delivered. & \textbf{TBD:} Approve the concurrent workload and overload envelope; \hyperref[Parameter:PAR-04]{PAR-04}.\par Source: \cite[slides 19]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-011}\par \VerificationRef{VER-011}\\
 \RequirementID{REQ-F-005} & The ADC capture path shall accept a code as a completed conversion only after the selected ADC0804 completion indication and data-valid interval have been satisfied. & \textbf{TBD:} Approve ADC control wiring, clock, read access, and ready capture; \hyperref[Parameter:PAR-01]{PAR-01}.\par Source: Owner request, November 12, 2026; \cite{TIADC0804}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}, \UserStoryRef{US-02}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-012}\par \VerificationRef{VER-012}\\
 \RequirementID{REQ-F-006} & The acquisition service shall mark a sample invalid when its required completion, capture, or timing-reference qualification is not satisfied. & \textbf{TBD:} Define validity reason codes and qualification predicates; \hyperref[Parameter:PAR-01]{PAR-01}, \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-03]{PAR-03}.\par Source: Owner request, November 12, 2026; \cite[slides 31, 33]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}\par \UseCaseRef{UC-02}\par \TestCaseRef{TC-013}\par \VerificationRef{VER-013}\\
 \end{tabularx}
 \normalsize
 \end{landscape}
+\subsubsection{Local sample interface}
 \begin{landscape}
 \small
-\subsection{Local sample interface}
 \begin{tabularx}{\linewidth}{L{2.7cm}Y Y L{3.7cm}}
-\caption{Local sample interface Candidates\label{Table:CandidateLocalsampleinterface}}\\
+\caption{Local sample interface Supporting Candidates\label{Table:CandidateLocalsampleinterface}}\\
 \toprule
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endfirsthead
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endhead
 \midrule
@@ -442,22 +456,21 @@ Sequence number & Strictly increasing identity of newly published samples within
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-IF-01} & For each qualified sample sent to a downstream consumer, the acquisition service shall include the 8-bit code, validity state, timestamp, and monotonically increasing sequence number in the defined sample record. & \textbf{TBD:} Approve schema, timestamp basis, and sequence rollover policy; \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-03]{PAR-03}.\par Source: \cite[slides 30]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}, \UserStoryRef{US-04}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-016}\par \VerificationRef{VER-016}\\
 \RequirementID{REQ-I-002} & The local sample interface specification shall define field encoding, units, validity semantics, timestamp event and clock, and sequence epoch, reset, and rollover behavior. & \textbf{TBD:} Approve the versioned local contract; \hyperref[Parameter:PAR-02]{PAR-02}.\par Source: Owner request, November 12, 2026; \cite[slides 30, 35]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-04}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-017}\par \VerificationRef{VER-017}\\
 \RequirementID{REQ-D-002} & Within one acquisition epoch, the acquisition service shall assign each newly published sample a sequence number greater than that of the preceding newly published sample. & \textbf{TBD:} Select width and epoch marker; end the epoch before wrap or exhaustion and identify a new epoch on restart; \hyperref[Parameter:PAR-02]{PAR-02}.\par Source: Owner request, November 12, 2026.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}, \UserStoryRef{US-04}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-018}\par \VerificationRef{VER-018}\\
 \end{tabularx}
 \normalsize
 \end{landscape}
+\subsubsection{Timing}
 \begin{landscape}
 \small
-\subsection{Timing}
 \begin{tabularx}{\linewidth}{L{2.7cm}Y Y L{3.7cm}}
-\caption{Timing Candidates\label{Table:CandidateTiming}}\\
+\caption{Timing Supporting Candidates\label{Table:CandidateTiming}}\\
 \toprule
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endfirsthead
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endhead
 \midrule
@@ -465,24 +478,22 @@ Sequence number & Strictly increasing identity of newly published samples within
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-TIM-01} & For each conversion-ready assertion, the acquisition service shall publish the corresponding sample code and validity state within 10 ms of the assertion. & \textbf{TBD:} The 10 ms lecture allocation is unapproved; approve workload, observable boundary, and measurement uncertainty; \hyperref[Parameter:PAR-03]{PAR-03}, \hyperref[Parameter:PAR-04]{PAR-04}.\par Source: \cite[slides 27]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}, \UserStoryRef{US-02}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-019}\par \VerificationRef{VER-019}\\
 \RequirementID{REQ-TIM-02} & For each conversion-ready event, the acquisition service shall record a timestamp for the corresponding sample with an error of no more than 1 ms relative to the event time measured by a calibrated reference clock. & \textbf{TBD:} The 1 ms lecture allocation is unapproved; select event capture, clocks, synchronization, and uncertainty budget; \hyperref[Parameter:PAR-03]{PAR-03}.\par Source: \cite[slides 34]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}, \UserStoryRef{US-02}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-020}\par \VerificationRef{VER-020}\\
 \RequirementID{REQ-Q-002} & The ADC acquisition path shall maintain the approved maximum interval between accepted conversion samples over the approved acquisition duration. & \textbf{TBD:} Select target sample rate, maximum gap, settling allowance, and test duration; \hyperref[Parameter:PAR-01]{PAR-01}, \hyperref[Parameter:PAR-03]{PAR-03}.\par Source: Owner request, November 12, 2026.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-021}\par \VerificationRef{VER-021}\\
 \RequirementID{REQ-Q-003} & The ADC conversion path shall assert conversion-ready within the approved conversion-latency bound after each valid conversion-start event. & \textbf{TBD:} Select ADC clock, electrical conditions, start/completion edges, and bound from the chosen part specification; \hyperref[Parameter:PAR-01]{PAR-01}, \hyperref[Parameter:PAR-03]{PAR-03}.\par Source: Owner request, November 12, 2026; \cite{TIADC0804}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-022}\par \VerificationRef{VER-022}\\
 \end{tabularx}
 \normalsize
 \end{landscape}
+\subsubsection{Signal Scaling and Calibration}
 \begin{landscape}
 \small
-\subsection{Signal Scaling and Calibration}
-Functional calibration/transfer behavior and its quality allocation are kept distinct below.
 \begin{tabularx}{\linewidth}{L{2.7cm}Y Y L{3.7cm}}
-\caption{Signal Scaling and Calibration Candidates\label{Table:CandidateScalingCalibration}}\\
+\caption{Signal Scaling and Calibration Supporting Candidates\label{Table:CandidateScalingCalibration}}\\
 \toprule
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endfirsthead
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endhead
 \midrule
@@ -496,17 +507,16 @@ Functional calibration/transfer behavior and its quality allocation are kept dis
 \end{tabularx}
 \normalsize
 \end{landscape}
-
+\subsubsection{Capacity}
 \begin{landscape}
 \small
-\subsection{Capacity}
 \begin{tabularx}{\linewidth}{L{2.7cm}Y Y L{3.7cm}}
-\caption{Capacity Candidates\label{Table:CandidateCapacity}}\\
+\caption{Capacity Supporting Candidates\label{Table:CandidateCapacity}}\\
 \toprule
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endfirsthead
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endhead
 \midrule
@@ -516,20 +526,19 @@ Functional calibration/transfer behavior and its quality allocation are kept dis
 \endlastfoot
 \RequirementID{REQ-Q-005} & The acquisition pipeline shall retain every qualified input sample during the approved burst envelope without exceeding its allocated storage budget. & \textbf{TBD:} Approve burst rate, duration, record size, initial backlog, consumer service, and memory limit; \hyperref[Parameter:PAR-04]{PAR-04}.\par Source: \cite[slides 29, 35]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-024}\par \VerificationRef{VER-024}\\
 \RequirementID{REQ-Q-006} & The acquisition pipeline shall provide usable queue capacity no smaller than the maximum cumulative input-minus-service backlog over the approved operating envelope. & \textbf{TBD:} Calculate the backlog bound including metadata, USB/driver batching, and margin; \hyperref[Parameter:PAR-04]{PAR-04}.\par Source: Owner request, November 12, 2026; \cite[slides 35]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}\par \UseCaseRef{UC-01}\par \TestCaseRef{TC-025}\par \VerificationRef{VER-025}\\
-\RequirementID{REQ-F-009} & When the approved acquisition envelope is exceeded, the acquisition service shall apply the approved overflow policy and expose a loss or discontinuity indication to the consumer. & \textbf{TBD:} Choose backpressure or explicit drop policy, observability, and counters; \hyperref[Parameter:PAR-04]{PAR-04}.\par Source: Owner request, November 12, 2026.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}, \UserStoryRef{US-02}\par \UseCaseRef{UC-02}\par \TestCaseRef{TC-026}\par \VerificationRef{VER-026}\\
 \end{tabularx}
 \normalsize
 \end{landscape}
+\subsubsection{Reliability}
 \begin{landscape}
 \small
-\subsection{Reliability}
 \begin{tabularx}{\linewidth}{L{2.7cm}Y Y L{3.7cm}}
-\caption{Reliability Candidates\label{Table:CandidateReliability}}\\
+\caption{Reliability Supporting Candidates\label{Table:CandidateReliability}}\\
 \toprule
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endfirsthead
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endhead
 \midrule
@@ -537,45 +546,22 @@ Functional calibration/transfer behavior and its quality allocation are kept dis
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-SMP-02} & When no new qualified sample is available, the acquisition service shall mark its current output stale no later than 100 ms after publication of the previous valid sample. & \textbf{TBD:} The 100 ms lecture allocation is unapproved; approve clock, status interface, and end-to-end freshness allocation; \hyperref[Parameter:PAR-03]{PAR-03}.\par Source: \cite[slides 32]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}\par \UseCaseRef{UC-02}\par \TestCaseRef{TC-027}\par \VerificationRef{VER-027}\\
 \RequirementID{REQ-Q-007} & The acquisition service shall expose sensor-path disconnection within the approved disconnect-detection interval after the defined disconnect event. & \textbf{TBD:} Define physical versus driver disconnect, detection interval, and observable fault state; \hyperref[Parameter:PAR-06]{PAR-06}.\par Source: Owner request, November 12, 2026; \cite[slides 13]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}, \UserStoryRef{US-02}\par \UseCaseRef{UC-02}\par \TestCaseRef{TC-028}\par \VerificationRef{VER-028}\\
-\RequirementID{REQ-F-010} & After a disconnect or reset, the acquisition service shall withhold a valid output state until device identity, acquisition configuration, timing qualification, and a new completed sample have been re-established. & \textbf{TBD:} Define recovery state machine, new epoch, retry limits, and qualification predicates; \hyperref[Parameter:PAR-06]{PAR-06}.\par Source: Owner request, November 12, 2026.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}, \UserStoryRef{US-02}\par \UseCaseRef{UC-02}\par \TestCaseRef{TC-029}\par \VerificationRef{VER-029}\\
 \RequirementID{REQ-Q-008} & Once the approved recovery prerequisites are available, the acquisition service shall resume qualified publication within the approved recovery-time bound. & \textbf{TBD:} Select recovery prerequisites, retry/backoff policy, maximum bound, and applicable fault classes; \hyperref[Parameter:PAR-06]{PAR-06}.\par Source: Owner request, November 12, 2026.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-02}\par \UseCaseRef{UC-02}\par \TestCaseRef{TC-030}\par \VerificationRef{VER-030}\\
 \RequirementID{REQ-F-011} & When its selected timing reference fails the approved integrity checks, the acquisition service shall invalidate affected timing claims and expose the time-reference fault. & \textbf{TBD:} Define detection tests, detection interval, independent comparison, and holdover policy; \hyperref[Parameter:PAR-03]{PAR-03}, \hyperref[Parameter:PAR-06]{PAR-06}.\par Source: Owner request, November 12, 2026; \cite[slides 33]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD. & \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-01}, \UserStoryRef{US-02}\par \UseCaseRef{UC-02}\par \TestCaseRef{TC-031}\par \VerificationRef{VER-031}\\
 \end{tabularx}
 \normalsize
 \end{landscape}
+\subsubsection{Counter experiment}
 \begin{landscape}
 \small
-\subsection{Proposed OMS interface}
 \begin{tabularx}{\linewidth}{L{2.7cm}Y Y L{3.7cm}}
-\caption{Proposed OMS interface Candidates\label{Table:CandidateProposedOMSinterface}}\\
+\caption{Counter experiment Supporting Candidates\label{Table:CandidateCounterexperiment}}\\
 \toprule
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endfirsthead
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
-\midrule
-\endhead
-\midrule
-\multicolumn{4}{r}{\small\itshape Continued on next page}\\
-\endfoot
-\bottomrule
-\endlastfoot
-\RequirementID{REQ-OMS-01} & When the acquisition service reports sensor status as valid, stale, or faulted, the mission gateway shall publish the corresponding derived status data product through the program-approved OMS CAL interface, using the approved UCI message mapping and service contract. & \textbf{TBD:} Proposed only: select applicability, standard version, CAL profile, UCI mapping, gateway owner, and timing allocation; \hyperref[Parameter:PAR-07]{PAR-07}.\par Source: \cite[slides 36]{SPE800Week02}.\par Owner: Jack Marino; decision date: TBD.\par Controlled by \ArchitectureRef{ARC-002}; project approval remains TBD. & \textbf{Approval: Proposed}.\par \gls{must} (proposed); \ReqStatusOpen; \NoVersion.\par \UserStoryRef{US-04}\par \UseCaseRef{UC-03}\par \TestCaseRef{TC-032}\par \VerificationRef{VER-032}\\
-\end{tabularx}
-\normalsize
-\end{landscape}
-\begin{landscape}
-\small
-\subsection{Counter experiment}
-\begin{tabularx}{\linewidth}{L{2.7cm}Y Y L{3.7cm}}
-\caption{Counter experiment Candidates\label{Table:CandidateCounterexperiment}}\\
-\toprule
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
-\midrule
-\endfirsthead
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endhead
 \midrule
@@ -593,16 +579,16 @@ Functional calibration/transfer behavior and its quality allocation are kept dis
 \end{tabularx}
 \normalsize
 \end{landscape}
+\subsubsection{Paired FTDI experiment}
 \begin{landscape}
 \small
-\subsection{Paired FTDI experiment}
 \begin{tabularx}{\linewidth}{L{2.7cm}Y Y L{3.7cm}}
-\caption{Paired FTDI experiment Candidates\label{Table:CandidatePairedFTDIexperiment}}\\
+\caption{Paired FTDI experiment Supporting Candidates\label{Table:CandidatePairedFTDIexperiment}}\\
 \toprule
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endfirsthead
-\textbf{ID} & \textbf{Candidate obligation} & \textbf{Approval dependencies and source} & \textbf{Priority; status; version; links}\\
+\textbf{Requirement} & \textbf{Candidate obligation} & \textbf{Unresolved values / source} & \textbf{Priority / Status / Links}\\
 \midrule
 \endhead
 \midrule
@@ -623,7 +609,6 @@ Functional calibration/transfer behavior and its quality allocation are kept dis
 \end{tabularx}
 \normalsize
 \end{landscape}
-
 \section{Review Rules}
 Reject a requirement row if its priority, status, use-case mapping, or test-case
 mapping is empty. The \textbf{Status} field shall contain Open, In Progress,

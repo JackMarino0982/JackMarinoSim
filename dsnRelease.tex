@@ -10,25 +10,22 @@ Identify the exact deliverable and establish its readiness for authorized releas
 Identify the release and define contents, approvals, evidence, known limitations, deployment instructions, rollback or recovery approach, and support ownership.
 \section{Week 2 Requirements Baseline for Technical Review}
 \label{Section:WeekTwoReviewPackage}
-\textbf{Package:} Embedded ADC System, document draft 0.4 (Week 2).
+\textbf{Package:} Embedded ADC System, document draft 0.5 (Week 2).
 \textbf{Working branch:} \texttt{week2}; \textbf{review target:}
-\texttt{main}. \textbf{Prepared:} November 12, 2026.
+\texttt{main}. \textbf{Prepared:} November 19, 2026.
 \textbf{Owner:} Jack Marino. The exact review revision is the pull request's
 head commit. This package is a proposed requirements baseline presented for
-technical review; neither requirements approval nor release authorization
-has been granted.
+technical review; owner approval selects the 12-item main scope. Technical acceptance, unresolved allocations, reviewer approval and release authorization remain pending.
 
 \paragraph{Review contents.}
 The package contains the authored LaTeX, editable TikZ sources, bibliography,
-and complete-document CI workflow. It includes six current stories in
-\ChapterRef{UserStories}, 40 candidate requirements in
-\hyperref[Section:WeekTwoCandidates]{the requirements chapter}, their candidate
-use cases and planned checks, 40
-\hyperref[Table:WeekTwoVerification]{verification entries}, six
-\hyperref[Table:ValidationRegister]{validation entries}, and 46
-\hyperref[Section:PlannedEvidence]{evidence collection plans}. The
-\hyperref[Table:TraceabilityMatrix]{trace matrix} links those artifacts and
-retains the explicit portability coverage gap for \UserStoryRef{US-03}.
+and complete-document CI workflow. It includes four main lecture stories and two supporting bench stories in
+\ChapterRef{UserStories}, 12 owner-selected main requirements and 33 supporting candidates in
+\hyperref[Section:WeekTwoCandidates]{the requirements chapter}, 45 planned checks and verification entries,
+four main and two supporting validation plans, and 51
+\hyperref[Section:PlannedEvidence]{evidence collection plans}. Separate main and supporting
+\hyperref[Table:TraceabilityMatrix]{trace matrices} link story, requirement, check, verification and evidence,
+and story to validation. Portability now maps to \RequirementRef{REQ-Q-016}; supported configurations remain TBD.
 The package also carries the ADC scope/context and build support needed for
 the complete architecture book on the review target.
 
