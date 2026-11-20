@@ -15,7 +15,11 @@ confirmed intent from decisions still to be made.
 \section{Purpose}
 \ProjectName\ is Jack Marino's embedded systems course project. Its confirmed
 purpose is to accept an analog input and produce sampled numeric readings
-using an \gls{adc}. Hardware has not yet been selected.
+using an \gls{adc}. On November 19, 2026, Jack Marino confirmed the main
+project path: potentiometer voltage to ADC0804 8-bit conversion to FT245R
+capture/USB transfer to computer-side acquisition and observation. Specific
+boards, wiring, electrical limits, FTDI mode, driver, and host configuration
+remain TBD.
 The architecture book records the project intent, system context, development
 plan, and the decisions needed before detailed requirements and implementation.
 
@@ -25,10 +29,16 @@ No previous implementation or measurement evidence was supplied for this
 submission. The draft does not claim that hardware or firmware already exists.
 
 \section{Scope}
+The main project is the potentiometer--ADC0804--FT245R--computer path,
+confirmed by Jack Marino on November 19, 2026. The oscillator-driven 74xx
+counter and paired-FTDI producer/consumer experiments are supporting material,
+not alternative main projects or mandatory main-baseline capabilities.
+
 The proposed initial demonstration covers the path from an analog input at
 the system boundary through acquisition and conversion to an observable digital
-reading at the output boundary. The particular input source, electrical limits,
-channel count, conversion performance, and output method remain open in
+reading at the output boundary. The main input source is a potentiometer; the conversion and transfer path
+is ADC0804 to FT245R to computer. Electrical limits, sample scheduling,
+conversion performance, display details, and host configuration remain open in
 \hyperref[Table:WeekOneTBDs]{the Week 1 decision register}.
 The hardware--software boundary is described in \ChapterRef{SystemContext}.
 

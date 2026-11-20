@@ -13,6 +13,12 @@ unresolved operating assumptions.
 requirements and interface decisions can be developed.
 
 \section{Problem and Intended Outcome}
+\noindent\textbf{Confirmed main demonstration path (November 19, 2026):}
+potentiometer voltage $\rightarrow$ ADC0804 8-bit conversion $\rightarrow$
+FT245R capture/USB transfer $\rightarrow$ computer-side acquisition and
+observation. Jack Marino confirmed this selection. The oscillator-driven
+74xx counter and paired-FTDI stream experiments are supporting material.
+
 The project owner needs an embedded system that accepts an analog input and
 converts it to sampled numeric ADC readings. The intended demonstration makes
 those readings observable for comparison with a known input. The demonstration
@@ -20,10 +26,10 @@ method and pass criteria are proposals until the course reviewer confirms the
 decisions in \hyperref[Table:WeekOneTBDs]{the Week 1 decision register}.
 
 \section{System Boundary}
-The proposed system comprises the selected embedded target, ADC capability,
-firmware needed to initiate acquisition and obtain readings, and an output
-mechanism for observing those readings. Whether the ADC is integrated into
-the processor or connected externally is TBD. Any necessary input protection,
+The main acquisition path uses an external ADC0804, an FT245R capture/USB
+interface, and computer-side acquisition and observation software. The
+potentiometer supplies the analog input. Conversion-control logic and the
+allocation of ready-event capture, data capture, and timestamps remain TBD. Any necessary input protection,
 conditioning, reference, or filtering must be allocated during hardware review;
 none is assumed to be present on an unselected board.
 
@@ -123,7 +129,10 @@ FT245R capture, plus separate oscillator-driven 74xx counter and paired-FTDI
 records these as candidate scenarios with explicit hardware, timing,
 electrical, and protocol decisions in
 \hyperref[Table:RequirementParameters]{the parameter register}.
-This supersedes the absence of named candidate parts in the Week 1 draft;
+On November 19, 2026, Jack Marino selected the potentiometer--ADC0804--
+FT245R--computer path as the main project and retained the counter and
+paired-FTDI experiments as supporting material. This supersedes the absence
+of named candidate parts in the Week 1 draft;
 it does not establish reviewed wiring, hardware availability, electrical
 limits, or implementation. The counter and paired-path experiments are not
 approved replacements for the lecture's single sensor acquisition scenario.
