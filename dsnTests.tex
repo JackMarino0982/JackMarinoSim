@@ -44,6 +44,9 @@ ambiguous evidence leaves it Pending with a recorded blocker. Record the
 actual outcome, including any failure, rather than copying an expected result.
 Restore the baseline configuration after each test.
 
+\paragraph{Coverage and timing boundaries.}\label{Section:TestReviewClarifications}
+For acquisition and latency tests, the independent conversion-ready trace defines the event population; software acceptance logs cannot remove missed events from the denominator. The workload/schedule and treatment of assertions outside it remain TBD under \hyperref[Parameter:PAR-01]{PAR-01}, \hyperref[Parameter:PAR-03]{PAR-03}, and \hyperref[Parameter:PAR-04]{PAR-04}. The unchanged lecture timing statement is not interpreted as a demonstrated guarantee under unlimited overload. Overload behavior is separately checked by \TestCaseRef{TC-026}. No choice of timestamp error, sample rate, buffer size or uncertainty guard band is made by this review. A missing event, measurement or unresolved acceptance dependency cannot produce a Pass. Expected results below summarize the mapped verification entry; that entry remains the acceptance authority.
+
 \paragraph{Software-only rehearsal.}
 Saved files or controlled test inputs may help rehearse recording, replay,
 record decoding, access checks or gateway mappings after those interfaces
@@ -106,10 +109,10 @@ Setup / hardware TBDs & Hardware boards/revisions, voltage/reference range, ADC 
 Inputs / test cases & Selected potentiometer positions within the approved voltage range; independently observed completed-conversion codes and ready events. Positions, repetition count and run duration: TBD.\\
 Step 1 & Record the approved hardware setup and start independent capture of conversion-ready events, the full ADC output code and host publications.\\
 Step 2 & Set the potentiometer to each selected position and allow the approved settling time (TBD). Initiate conversions using the selected control method (TBD).\\
-Step 3 & For each accepted ready event, independently read its completed 8-bit code and locate the corresponding host publication.\\
+Step 3 & Enumerate every conversion-ready assertion in the approved acquisition schedule from the independent trace, not from the host acceptance log. Read its completed 8-bit code and locate its corresponding host publication.\\
 Step 4 & Compare the published code with the independently captured code and inspect the published validity state. Record every missing, duplicate, mismatched or unqualified publication.\\
 Step 5 & Stop acquisition and retain the event-to-record comparison. Do not infer an exact ADC code from knob position alone.\\
-Expected result & Every accepted ready event has a matching published 8-bit code and validity state. Authoritative bound: \VerificationRef{VER-010}. This is an expectation, not an observed result.\\
+Expected result & Every conversion-ready assertion in the approved acquisition schedule has a matching publication with the independently observed 8-bit code and its validity state. Missing or ambiguous matches prevent a pass disposition. Authoritative bound: \VerificationRef{VER-010}. This is an expectation, not an observed result.\\
 Planned evidence & \ArtifactRef{Evidence}{EVD-010} (Not collected). Ready-event/bus trace, published records and per-event code/validity reconciliation.\\
 Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
 Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
@@ -143,7 +146,7 @@ Step 2 & Acquire the selected sequence and decode every emitted record with the 
 Step 3 & Check that each qualified record contains code, validity, timestamp and sequence number with the approved types and encoding; compare the code and validity with the input evidence.\\
 Step 4 & Check timestamps against the declared event and clock convention; check increasing sequence order within the defined epoch. If a restart or boundary is included, evaluate it under the approved epoch policy.\\
 Step 5 & List missing fields, decoding errors, sequence duplicates/regressions and unexplained gaps. Retain the decoded records and report.\\
-Expected result & Every qualified record contains all four required fields with the specified types and ordering. Authoritative bound: \VerificationRef{VER-016}. This is an expectation, not an observed result.\\
+Expected result & Every qualified record contains all four required fields with the approved types and encoding; the code is an unsigned 8-bit value and sequence numbers strictly increase within the declared acquisition epoch. Restart and wrap follow the approved epoch policy. Authoritative bound: \VerificationRef{VER-016}. This is an expectation, not an observed result.\\
 Planned evidence & \ArtifactRef{Evidence}{EVD-016} (Not collected). Schema revision, raw and decoded records, per-field checks and epoch/sequence-order report. No supporting 1 ms error bound is assumed.\\
 Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
 Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
@@ -174,10 +177,10 @@ Setup / hardware TBDs & Physical ready-event capture, observable publication bou
 Inputs / test cases & Completed conversions at the approved normal and boundary workloads. Rates, burst patterns, duration and number of events: TBD.\\
 Step 1 & Record the ready-event definition and publication boundary. Establish a common or correlated measurement time basis and its uncertainty before acquisition.\\
 Step 2 & Apply each approved workload while capturing ready-event times and corresponding local-publication times.\\
-Step 3 & Pair every accepted ready event with its publication. Record missing or ambiguous pairs separately; exclude none silently.\\
+Step 3 & Enumerate every ready assertion from the independent trace within each approved workload case and pair it with exactly one corresponding publication. Record missing, duplicate or ambiguous matches; none may be omitted or counted as a successful timing case.\\
 Step 4 & For each pair calculate publication time minus ready-event time, applying the approved clock correlation and uncertainty treatment.\\
 Step 5 & Compare every result against the 10 ms testing target and report the maximum, any target exceedance and all unmatched events. Averages alone do not establish compliance.\\
-Expected result & Every paired publication latency is at most 10 ms under the approved conditions, including the agreed uncertainty treatment. Authoritative bound: \VerificationRef{VER-019}. This is an expectation, not an observed result.\\
+Expected result & Every ready assertion in the approved workload case has exactly one corresponding publication, and every latency is at most 10 ms under the agreed uncertainty treatment. Missing, duplicate or ambiguous matches prevent a pass disposition. Authoritative bound: \VerificationRef{VER-019}. This is an expectation, not an observed result.\\
 Planned evidence & \ArtifactRef{Evidence}{EVD-019} (Not collected). Paired event/publication timestamps, workload configuration, clock-correlation/calibration evidence, per-event latency and uncertainty calculations, maximum and exception list.\\
 Record / restore & Record per-step observations and any deviation against the expected result, retain raw data and calculations, restore the baseline, and leave the result Pending until an executed review supplies a disposition.\\
 Navigation & \hyperref[Table:WeekTwoTests]{Main procedure index}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
@@ -206,9 +209,9 @@ Owner / Decision date & Jack Marino / TBD\\
 Entry conditions & Resolve applicable \hyperref[Parameter:PAR-01]{PAR-01}, \hyperref[Parameter:PAR-03]{PAR-03}, \hyperref[Parameter:PAR-06]{PAR-06} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
 Setup / hardware TBDs & Controlled method to stop new qualified samples, observable stale-status boundary, clock/reference and uncertainty treatment: TBD. Hardware wiring, sample interval, observation resolution and repetition count: TBD.\\
 Inputs / test cases & A valid publication followed by a controlled pause in qualified input; a restoration of input after stale status.\\
-Step 1 & Start acquisition and identify the publication time of the last valid reading using the approved reference.\\
-Step 2 & Stop new qualified input using the approved method; continue observing publication and status without generating replacement samples.\\
-Step 3 & Capture when the current output first becomes stale. Calculate elapsed time from the last valid publication, accounting for the approved uncertainty treatment.\\
+Step 1 & Start acquisition and capture all valid publications and status transitions using the approved reference; retain their sample identities.\\
+Step 2 & Stop new qualified input using the approved method while keeping the status observer active. Capture any in-flight or buffered samples that still publish; identify the actual last valid publication after these publications, using its identity and time as the stale-time reference.\\
+Step 3 & Capture the stale-state transition attributable to the absence of new qualified input after that actual last valid publication. Calculate their elapsed time with the approved uncertainty treatment; do not start the stale timer at the pause command or USB disconnect time.\\
 Step 4 & Compare the stale-state transition against the 100 ms testing target; inspect any retained reading to ensure it is not presented as newly valid.\\
 Step 5 & Restore qualified input and record the subsequent state. Repeat with the approved pause positions/counts (TBD); retain late, missing and ambiguous transitions.\\
 Expected result & The current acquisition output becomes stale within 100 ms of the previous valid publication; no new sample is fabricated. Authoritative bound: \VerificationRef{VER-027}. This is an expectation, not an observed result.\\
