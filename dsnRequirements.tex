@@ -380,6 +380,30 @@ rates or a nominal oscillator setting. A blocked test is Pending, never Pass.
 semantic dictionary, not a selected binary layout. Separate scaling output,
 calibration revision, epoch identifier, or diagnostics may be carried in the
 record or associated metadata once PAR-02 is resolved.
+\begin{landscape}
+\small
+\begin{tabularx}{\linewidth}{L{3cm}Y Y}
+\caption{Local Sample Record Semantics\label{Table:LocalSampleFields}}\\
+\toprule
+\textbf{Field} & \textbf{Meaning} & \textbf{Decision/check}\\
+\midrule
+\endfirsthead
+\textbf{Field} & \textbf{Meaning} & \textbf{Decision/check}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Code & Unsigned 8-bit raw ADC code, 0 through 255. & Select byte encoding and bit mapping; preserve raw value independently of scaled voltage.\\
+Validity state & Qualification outcome associated with the code, including invalid/stale interpretation. & Define state/reason encoding and missing-data behavior; stale current output is not a new conversion.\\
+Timestamp & Time of the selected acquisition event. & Define event, clock, units, epoch, uncertainty and synchronization quality; distinguish host arrival time.\\
+Sequence number & Strictly increasing identity of newly published samples within a declared acquisition epoch. & Select width and identify epoch changes before wrap and on restart; duplicates do not count as new samples.\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+
 \subsection{Main Project Baseline: 12 Selected Requirements}
 \label{Section:MainBaseline}
 Scope selection is approved by the owner. Engineering verification remains Pending. The seven carried requirements retain their exact IDs and statements; the five additions elaborate recording, replay, portability, authorization and mission timing quality.
