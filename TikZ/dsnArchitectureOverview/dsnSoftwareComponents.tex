@@ -1,0 +1,30 @@
+% Owned by dsnArchitectureOverview.tex; all connectors are orthogonal.
+\begin{tikzpicture}[>=Stealth,
+ box/.style={draw=dsnBlue,rounded corners,align=center,text width=3.1cm,minimum height=1.05cm,font=\small},
+ ext/.style={draw=dsnGray,align=center,text width=3.1cm,minimum height=0.85cm,font=\small},
+ data/.style={->,draw=dsnBlue}, control/.style={->,dashed,draw=dsnGray}]
+\node[ext] (device) at (0,2.2) {ADC0804 / FT245R boundary\\Hardware details TBD};
+\node[box] (adapter) at (0,0) {\hyperref[Component:SW-01]{Acquisition adapter}};
+\node[box] (sample) at (4.8,0) {\hyperref[Component:SW-02]{Sample service}};
+\node[box] (publish) at (9.6,0) {\hyperref[Component:SW-03]{Buffer and local publication}};
+\node[box] (settings) at (0,-2.8) {\hyperref[Component:SW-07]{Settings access}};
+\node[box] (status) at (4.8,-2.8) {\hyperref[Component:SW-04]{Status and recovery}};
+\node[box] (record) at (9.6,-2.8) {\hyperref[Component:SW-05]{Recorder}};
+\node[box] (replay) at (0,-5.5) {\hyperref[Component:SW-06]{Replay}};
+\node[box,dashed] (gateway) at (4.8,-5.5) {\hyperref[Component:SW-08]{Proposed mission gateway}};
+\node[ext] (local) at (9.6,-5.5) {Receiving software\\Live / replay identified};
+\node[ext] (mission) at (4.8,-8.2) {Mission software\\OMS Proposed};
+\draw[data] (device.south) -- (adapter.north);
+\draw[data] (adapter.east) -- (sample.west);
+\draw[data] (sample.east) -- (publish.west);
+\draw[data] (publish.south) -- (record.north);
+\draw[data] (publish.east) -- (11.9,0) -- (11.9,-5.5) -- (local.east);
+\draw[control] (settings.north) -- (adapter.south);
+\draw[control] (settings.east) -- (status.west);
+\draw[control,<->] (sample.south) -- (status.north);
+\draw[control] (publish.south west) -- ++(-0.65,0) |- (status.east);
+\draw[control] (status.south) -- (gateway.north);
+\draw[control] (gateway.south) -- (mission.north);
+\draw[data] (record.south) -- (9.6,-4.15) -- (0,-4.15) -- (replay.north);
+\draw[data] (replay.south) -- (0,-6.4) -- (9.6,-6.4) -- (local.south);
+\end{tikzpicture}

@@ -8,5 +8,24 @@ Map the design to source organization and build artifacts.
 
 \section{How to Use This Chapter}
 Show how source code, modules, services, libraries, and build artifacts are organized. State dependency rules so that implementers do not create forbidden coupling.
+\section{Proposed Software Organization}
+\label{Section:SoftwareOrganization}
+Organize implementation responsibilities around
+\hyperref[Table:SoftwareResponsibilities]{the logical components}; the actual
+language, filenames, package manager, framework and build commands remain TBD.
+No application source files or dependencies are created by this design update.
+Share record/status meanings across platform adapters and recording/replay;
+keep device/OS driver calls behind the acquisition boundary. Settings mutation
+must pass through the approved access enforcement boundary. The proposed
+mission contract remains separate from the local record and file schema.
+
+Start future software-only work with controlled input fixtures, record-field
+comparisons, save/replay comparisons and access-policy cases after their
+contracts are decided. Such work does not establish hardware capture, physical
+timing, recovery or OS/driver compatibility. Existing
+\hyperref[Table:WeekTwoTests]{planned procedures} retain the acceptance and
+evidence boundaries. Supported OS/CPU/driver matrix, packaging and integration
+strategy remain TBD; owner: Jack Marino; decision date TBD.
+\section{Retained Template Organization Example}
 \section{Example}
 Organize a service into presentation/API, application workflow, domain model, and infrastructure adapters. The API calls application services; application services depend on domain abstractions; infrastructure implements those abstractions. Domain logic must not depend on the web framework or database driver.
