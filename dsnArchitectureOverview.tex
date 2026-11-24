@@ -10,7 +10,7 @@ Explain the major design choices and why they address the design drivers.
 Explain the forces that shape the design, the major decisions, alternatives considered, and consequences. Use the 4+1 views only when they help readers answer different architectural questions.
 \section{Proposed Main Software Design}
 \label{Section:MainSoftwareDesign}
-\ArchitectureID{ARC-003}: \textbf{Owner-confirmed logical responsibilities; detailed implementation choices TBD; not implemented}.
+\ArchitectureID{ARC-003}: \textbf{Owner-confirmed logical responsibilities; software-only prototype; hardware and remaining implementation choices TBD}.
 Recorded November 19, 2026. Decision owner: Jack Marino. Responsibility review confirmed November 19, 2026; unresolved implementation decision dates: TBD.
 This design organizes the 12 confirmed main requirements into responsibilities
 that can be reviewed without hardware. It does not select boards, pinouts,
@@ -140,6 +140,8 @@ separate simulated, live and replay contexts. Hardware choices remain TBD,
 \RequirementRef{REQ-OMS-01} and \ArchitectureRef{ARC-002} remain Proposed,
 and the separate human review remains \StatusPending. No dependency or
 application source is installed or implemented by this decision record.
+
+\paragraph{Step 12 implementation scope.} \hyperref[Section:SimulatorPrototype]{The simulator prototype} implements synthetic sampling, bounded delivery/status, recording, replay and blocked protected-setting/hardware access. \ArtifactRef{Evidence}{EVD-SIM-001} covers 14 passing core regressions; the GUI launch is blocked by the existing Tcl/Tk runtime. Physical acquisition, full access policy, OMS and complete requirement verification are not implemented or passed. Human review remains \StatusPending.
 
 \section{OMS Architecture Decision Record}
 \label{Section:ProposedOMSBoundary}

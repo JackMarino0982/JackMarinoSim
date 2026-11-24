@@ -1,0 +1,37 @@
+Software-only regression evidence — EVD-SIM-001
+Date: 2026-11-23T18:03:37.062941-07:00
+Python: 3.12.14
+OS: Windows 11
+Command: python -m unittest dsnSimulatorTests -v
+Scope: synthetic inputs, fake-clock status, queue behavior, JSON Lines, replay, guardrails.
+No physical ADC, FT245R, OMS, GUI usability or cross-platform support is verified.
+
+test_boolean_code_and_oversized_record_rejected (dsnSimulatorTests.SimulatorTests.test_boolean_code_and_oversized_record_rejected) ... ok
+test_bounded_queue_reports_loss_and_gap (dsnSimulatorTests.SimulatorTests.test_bounded_queue_reports_loss_and_gap) ... ok
+test_duplicate_sequence_rejected (dsnSimulatorTests.SimulatorTests.test_duplicate_sequence_rejected) ... ok
+test_hardware_and_settings_denied_at_core_boundary (dsnSimulatorTests.SimulatorTests.test_hardware_and_settings_denied_at_core_boundary) ... ok
+test_invalid_header_rejected (dsnSimulatorTests.SimulatorTests.test_invalid_header_rejected) ... ok
+test_mode_switch_requires_stop (dsnSimulatorTests.SimulatorTests.test_mode_switch_requires_stop) ... ok
+test_new_start_has_new_epoch_and_sequence (dsnSimulatorTests.SimulatorTests.test_new_start_has_new_epoch_and_sequence) ... ok
+test_null_and_duplicate_json_fields_are_not_silent_eof (dsnSimulatorTests.SimulatorTests.test_null_and_duplicate_json_fields_are_not_silent_eof) ... ok
+test_partial_and_corrupt_records_stop_replay_visibly (dsnSimulatorTests.SimulatorTests.test_partial_and_corrupt_records_stop_replay_visibly) ... ok
+test_record_and_replay_exact_metadata (dsnSimulatorTests.SimulatorTests.test_record_and_replay_exact_metadata) ... ok
+test_recording_does_not_overwrite (dsnSimulatorTests.SimulatorTests.test_recording_does_not_overwrite) ... ok
+test_recording_write_failure_visible_and_acquisition_continues (dsnSimulatorTests.SimulatorTests.test_recording_write_failure_visible_and_acquisition_continues) ... ok
+test_replay_pause_and_restart (dsnSimulatorTests.SimulatorTests.test_replay_pause_and_restart) ... ok
+test_stale_uses_last_publication_not_generation (dsnSimulatorTests.SimulatorTests.test_stale_uses_last_publication_not_generation) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.299s
+
+OK
+
+GUI launch attempt: FAILED BEFORE WINDOW CREATION.
+Existing bundled Python raised TclError: cannot find usable init.tcl.
+No dependency was downloaded or installed. Full GUI validation remains Pending.
+Hardware details TBD; OMS Proposed; separate human review Pending.
+
+Source SHA256 hashes (identify this run baseline):
+dsnSimulatorCore.py fa893cb1a73a5a3dcfaa7c14a0914fd342ed353db6348807650b1caf4b83f40d
+dsnSimulator.py 6c49c2293554c0d2357706a0317ac3fcc9889092e9029bb8d73a7b69f44e8228
+dsnSimulatorTests.py 0ead67da085fb0887275bb2ee8f3a98b778fab2edc94f9591734152bfd8e4be8

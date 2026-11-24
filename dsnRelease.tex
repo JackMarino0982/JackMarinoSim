@@ -68,6 +68,8 @@ acceptance or any separately authorized merge/release.
 
 \paragraph{Step 11 choices approved.} On November 23, 2026, Jack Marino approved \ArchitectureRef{ARC-004}: Python 3, Tkinter, JSON Lines and the \hyperref[Table:ApprovedControls]{basic controls}. Exact versions/schema and implementation commands remain TBD; no application code or installation is claimed. Hardware TBDs, Proposed OMS and Pending human/engineering review are preserved. Step 12 is planned simulator and core-software implementation using controlled synthetic readings.
 
+\paragraph{Step 12 partial implementation and launch blocker.} Added \hyperref[Section:SimulatorPrototype]{the Python/Tkinter simulator}, core and regression tests, JSON Lines recording/replay, a Windows launcher and plain-English guide. Fourteen headless checks passed with \ArtifactRef{Evidence}{EVD-SIM-001}; desktop startup failed before window creation due to existing Tcl/Tk startup-script loading. The user cannot yet try the window on this runtime. No installer/download was started. Hardware details remain TBD; Live Hardware unavailable, OMS Proposed and human review Pending. All planned engineering results remain Pending.
+
 \paragraph{Technical review focus.}
 Review requirement necessity, singularity, units, feasibility, scenario
 boundaries, hardware capture and clock assumptions, finite load/buffering

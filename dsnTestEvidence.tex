@@ -11,7 +11,7 @@ Store or reference detailed test and verification evidence here when it would ma
 \section{Planned Evidence Catalog}
 \label{Section:PlannedEvidence}
 An evidence ID is a collection specification, not an existing artifact. The 12 main bundles now specify evidence for the detailed \hyperref[Section:MainTestProcedures]{test procedures}. Hardware-dependent details remain TBD; nothing has been collected or executed.
-The catalog contains 45 verification plans (12 main, 33 supporting) and six validation plans (four main, two supporting): 51 bundles total. Scope follows the trace matrices. All bundles below are Not collected. Jack Marino owns collection and storage;
+The catalog contains 45 verification plans (12 main, 33 supporting) and six validation plans (four main, two supporting): 51 bundles total. Scope follows the trace matrices. All 51 planned engineering bundles in the following verification/validation tables are Not collected. The separately scoped simulator result below does not close any of them. Jack Marino owns collection and storage;
 decision date is TBD. Actual artifact location, execution date, product and
 hardware revisions, operator/reviewer identity, observed measurements, and
 disposition are TBD until an executed run supplies them. These unresolved
@@ -116,6 +116,25 @@ observed decisions. Revision and result are recorded only from evidence.
 \end{tabularx}
 \normalsize
 \end{landscape}
+
+\section{Step 12 Scoped Simulator Regression Evidence}
+\label{Section:SimulatorEvidence}
+\ArtifactID{Evidence}{EVD-SIM-001}: software-only regression run, November 23,
+2026. Source: \texttt{dsnSimulatorCore.py} and
+\texttt{dsnSimulatorTests.py} in the same commit as the retained
+\texttt{dsnSimulatorTestResults.txt}. That file records the actual command,
+Python version, OS, test names, 14 passing checks and runtime launch failure.
+The tests cover fake-clock freshness, finite-queue loss, exact saved/replayed
+metadata, replay pause/restart, epochs, guarded settings/hardware access,
+exclusive file creation, write failure, invalid headers/records, oversized
+lines and sequence errors. No physical ADC/FT245R, OMS, full security policy,
+cross-platform deployment or GUI usability has passed. GUI startup failed
+before window creation due to the existing Tcl/Tk startup-script error;
+GUI validation remains Pending. No dependency installation was performed.
+The prototype and reproduction commands are described in
+\hyperref[Section:SimulatorPrototype]{Implementation}. This evidence is
+separate from the 51 planned engineering bundles above. No planned check is
+silently marked executed or passed by these regression checks.
 
 \section{Retained Template Evidence Example}
 This service-request record is a template example, not collected project evidence.

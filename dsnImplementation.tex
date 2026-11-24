@@ -56,6 +56,74 @@ with controlled synthetic input. Record software-test evidence with that scope;
 real ADC timing, capture, disconnect recovery and platform/driver behavior
 remain Pending until demonstrated under their actual test conditions.
 
+\section{Step 12 Simulator Prototype and Launch Instructions}
+\label{Section:SimulatorPrototype}
+Implemented November 23, 2026: \texttt{dsnSimulatorCore.py} contains the
+hardware-free model, bounded queue, JSON Lines recording/replay and blocked
+hardware/settings entry points. \texttt{dsnSimulator.py} supplies the Tkinter
+window. \texttt{dsnSimulatorTests.py} contains software-only regression tests;
+\texttt{dsnLaunchSimulator.cmd} launches with an existing Python installation.
+\texttt{dsnSimulatorGuide.txt} contains the plain-English workflow and known
+launch limitation. No hardware adapter, OMS service or identity/access policy
+is implemented. Hardware details remain TBD (Jack Marino; decision date TBD),
+OMS Proposed, and separate human review Pending.
+
+\paragraph{Prototype contract and demonstration defaults.}
+The prototype uses JSON Lines schema \texttt{dsn-simulator-v1}, with a session
+header, sample objects and optional gap objects. Header source is
+\texttt{simulator}; timestamp basis is the Python monotonic nanosecond clock
+at synthetic sample generation, not physical ADC completion or calendar time.
+Each sample stores code, validity, original timestamp, sequence, session
+identity, timing quality and source. Exact field names/types are enforced by
+the decoder in \texttt{dsnSimulatorCore.py}; real-hardware schema compatibility
+and capture semantics remain TBD. Sequence starts at one in a new UUID session.
+Replay preserves original metadata, presents explicit Replay mode and does not
+refresh live freshness. The reader streams bounded-size lines and rejects
+unsupported headers, corruption, truncated lines and duplicate/out-of-order
+sequences. Recording never overwrites an existing file and stops visibly on
+write errors; the partial file is not assumed complete.
+
+Demonstration defaults are 20 synthetic samples/second, a 128-record bounded
+queue and drop-oldest accounting with visible loss and a recorded gap when
+recording is active. Replay emits 20 records/second rather than reproducing
+original acquisition timing. These are prototype choices for this authorized
+simulator, not approved hardware rates, product capacity, loss policy or
+playback timing commitments. The stale check compares actual software
+publication time against the 100 ms testing target. GUI event-loop scheduling
+has no hard-real-time guarantee, and no physical 10 ms claim is made.
+Protected acquisition-setting changes are rejected by the core regardless of
+identity until an access policy exists; the Settings dialog is informational.
+
+\paragraph{How to launch when Python/Tkinter is working.}
+On Windows, double-click \texttt{dsnLaunchSimulator.cmd}; it tries an existing
+\texttt{py -3}, \texttt{python}, or an executable supplied through
+\texttt{DSN\_PYTHON}. It does not install software. Other platforms may use
+\texttt{python3 dsnSimulator.py} with a working Tkinter environment; they
+have not been tested. Choose Simulator and Start, move the code slider, and
+pause input to observe stale status. Record to a new \texttt{.jsonl} file,
+stop, open that recording, then Play/Pause/Stop Replay. Stop before changing
+modes. Live Hardware stays disabled. See \texttt{dsnSimulatorGuide.txt} for
+the complete workflow.
+
+\paragraph{Actual checks and remaining launch blocker.}
+The existing Python runtime ran 14 headless regression tests successfully;
+\ArtifactRef{Evidence}{EVD-SIM-001} records the scope and actual output.
+Both command-runner and desktop launch attempts failed before window creation
+because the existing bundled Tcl/Tk runtime cannot load its startup scripts
+(\texttt{init.tcl}). No runtime was downloaded, installed or repaired.
+GUI layout, interactive behavior and the graphical smoke test remain Pending;
+a working Python 3/Tkinter runtime is required before the user can try the
+window. This blocker is distinct from the passing core tests. The full
+architecture PDF build/layout remains unverified.
+
+\begin{verbatim}
+python -m unittest dsnSimulatorTests -v
+python dsnSimulator.py --smoke-test
+\end{verbatim}
+Software tests are not executions of the complete physical verification plans.
+All 45 engineering verification entries, six validation entries and separate
+human review remain Pending; planned engineering evidence remains Not collected.
+
 \section{Retained Template Implementation Example}
 \section{Example}
 The implementation uses [language], [framework], and [database]. Build with \texttt{[command]}; run with \texttt{[command]}. Configuration comes from [approved source]; credentials are never stored in source control. Completion requires passing tests, reviewed traceability, and approved evidence.

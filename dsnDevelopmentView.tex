@@ -13,7 +13,7 @@ Show how source code, modules, services, libraries, and build artifacts are orga
 Organize implementation responsibilities around
 \hyperref[Table:SoftwareResponsibilities]{the logical components}. The
 Python 3 language, Tkinter GUI and JSON Lines recording choices are approved in \hyperref[Section:ApprovedSoftwareChoices]{Implementation}. Actual filenames, package/dependency management, exact versions and build/run commands remain TBD.
-No application source files or dependencies are created by this design update.
+Step 12 adds \texttt{dsnSimulatorCore.py}, \texttt{dsnSimulator.py}, \texttt{dsnSimulatorTests.py}, launcher and guide as described in \hyperref[Section:SimulatorPrototype]{Implementation}. No dependencies are installed; runtime GUI startup remains blocked.
 Share record/status meanings across platform adapters and recording/replay;
 keep device/OS driver calls behind the acquisition boundary. Settings mutation
 must pass through the approved access enforcement boundary. The proposed

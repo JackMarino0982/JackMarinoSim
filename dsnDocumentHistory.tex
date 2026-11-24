@@ -7,6 +7,9 @@ Preserve the approved evolution of the architecture document.
 
 \noindent\textbf{Expected result:} A durable record of what changed, why, and where.
 
+\section{Step 12 Simulator Prototype --- GUI Launch Blocked}
+November 23, 2026: Implemented the software-only simulator core, Tkinter controls, bounded queue/stale status, exclusive JSON Lines recording and metadata-preserving replay, Windows launcher, guide and 14 passing regression tests. \ArtifactRef{Evidence}{EVD-SIM-001} retains actual software results. Command and desktop GUI launches failed before window creation due to the existing Tcl/Tk startup scripts; GUI/runtime verification remains Pending. No hardware, OMS or completed human review is claimed. No dependency was installed/downloaded; all engineering verification and validation remain Pending.
+
 \section{Step 11 Software Choices Approved}
 November 23, 2026: Jack Marino approved \ArchitectureRef{ARC-004}: Python 3, Tkinter, JSON Lines and the basic Simulator/Live/Replay, Start/Stop, simulator slider/input pause, recording, file-open, replay and Settings controls. Updated implementation/UI design, linked logical/runtime/development decisions and recording/replay TBD descriptions. Detailed versions, schema, policies and hardware values remain TBD; OMS stays Proposed and human/engineering review Pending. No application implementation, installation or test pass is implied.
 
