@@ -8,5 +8,58 @@ Define how people interact with the system and understand its state.
 
 \section{How to Use This Chapter}
 Describe personas, primary screens or workflows, interaction rules, feedback, accessibility, and essential states. Include wireframes or prototypes where they resolve meaningful ambiguity.
+\section{Approved Main Desktop Controls}
+\label{Section:ApprovedDesktopControls}
+Jack Marino approved a Python 3/Tkinter desktop window and the controls below
+on November 23, 2026, as recorded in
+\hyperref[Section:ApprovedSoftwareChoices]{the implementation baseline}.
+These are approved interaction intentions, not an implemented or usability-tested
+interface. Every unresolved value is TBD, owned by Jack Marino, decision date
+TBD. Hardware details remain TBD; OMS remains Proposed; human review Pending.
+\begin{landscape}
+\small
+\begin{tabularx}{\linewidth}{L{3.8cm}Y Y}
+\caption{Approved Basic Desktop Controls\label{Table:ApprovedControls}}\\
+\toprule
+\textbf{Control} & \textbf{Intended user action} & \textbf{State / Scope boundary}\\
+\midrule
+\endfirsthead
+\textbf{Control} & \textbf{Intended user action} & \textbf{State / Scope boundary}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Mode selector & Select Simulator, Live Hardware or Replay. Live Hardware remains unavailable until the real adapter is implemented. & Change modes while stopped. Keep source/mode identity visible; no hardware/OMS capability is implied.\\
+Start / Stop & Start or stop the selected acquisition/simulation activity. & Stop before changing modes. Stopping acquisition is distinct from pausing simulated input; exact lifecycle details remain TBD.\\
+Simulator value slider & Choose a synthetic ADC code from 0 through 255. & Label it as simulated code, not measured potentiometer voltage; physical scaling remains TBD.\\
+Pause simulated input & Suspend new synthetic samples while status monitoring continues. & Permit stale-data software testing without stopping the status observer. Generation rate and pause/resume details remain TBD.\\
+Start / Stop Recording & Choose a destination and save selected records to a JSON Lines file. & Show recording state and visible errors. File schema, retention/storage budget and failure policy remain TBD.\\
+Open Recording & Choose a saved dataset for replay. & Identify the original source as recorded and current output as Replay. Detailed compatibility/error handling remains TBD.\\
+Play / Pause / Stop Replay & Control delivery of saved records in original selected order. & Preserve original metadata; do not update live freshness or recovery. Pacing and detailed restart behavior remain TBD.\\
+Settings & Request permitted acquisition-setting changes. & Enforce authorization in the software, not merely through disabled controls. Protected operations and identity/permission mechanism remain TBD.\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+\paragraph{Visible information.}
+Display mode, current code, validity, sample age, sequence number, connection
+state, recording state and loss/error indications. Preserve timing-quality
+information so age/time are not presented as trustworthy when unknown or
+unqualified; exact representation is TBD. Distinguish unavailable hardware
+from a simulated connection. An explicit Live, Simulator or Replay mode must
+remain understandable throughout the workflow; replay must not make the live
+sensor appear healthy. Exact screen layout and refresh interval remain TBD.
+
+\paragraph{Pending interface decisions.}
+Control layout, file dialogs, keyboard behavior, error wording, concurrency,
+protected settings and authorization implementation remain TBD. The controls
+do not select hardware sample rates, buffer/drop policy, voltage scaling,
+playback speed, an OMS message or supported operating-system versions.
+Review the eventual interface with stakeholders under
+\ChapterRef{Validation}; this owner approval does not complete those activities.
+
+\section{Retained Template UI Example}
 \section{Example}
 Persona: a busy operations coordinator needs to submit and track requests quickly. The request screen groups required fields, identifies inline validation errors, confirms successful submission, supports keyboard operation, and exposes empty, loading, error, and completed states.

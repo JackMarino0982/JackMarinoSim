@@ -64,11 +64,9 @@ is not silently adopted by this design.
 \section{Recording, Replay and Mission Status}
 \TestCaseRef{TC-050} compares saved records with original source records;
 \TestCaseRef{TC-051} compares replay with the saved dataset and checks the
-replay indication. Recording and replay can be separate activities, but the
-controls, pacing, selection and file compatibility remain TBD. Replay does not
+replay indication. Recording and replay can be separate activities, but the basic controls and JSON Lines format are approved under \ArchitectureRef{ARC-004}. Pacing, detailed selection and file-schema compatibility remain TBD. Replay does not
 refresh live sensor status, change original timestamps or fulfill a live
-recovery predicate. How live and replay output are presented concurrently is
-TBD; an explicit mode distinction is required by the confirmed behavior.
+recovery predicate. The approved controls change modes while stopped; concurrent live/replay presentation is not selected. An explicit mode distinction remains required.
 
 The proposed mission gateway consumes local status and correlated source
 metadata. Sample-related products preserve source time and represent timing

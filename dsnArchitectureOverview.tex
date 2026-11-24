@@ -14,8 +14,7 @@ Explain the forces that shape the design, the major decisions, alternatives cons
 Recorded November 19, 2026. Decision owner: Jack Marino. Responsibility review confirmed November 19, 2026; unresolved implementation decision dates: TBD.
 This design organizes the 12 confirmed main requirements into responsibilities
 that can be reviewed without hardware. It does not select boards, pinouts,
-driver modes, programming language, application framework, threading model,
-file format or deployment versions. All unresolved design and hardware values
+driver modes, threading model or deployment versions. The subsequently approved Python 3, Tkinter, JSON Lines and basic controls are recorded in \ArchitectureRef{ARC-004}. All unresolved design and hardware values
 are TBD, owned by Jack Marino, decision date TBD. Human review remains
 \StatusPending\ under \hyperref[Section:HumanReviewChecklist]{the review checklist};
 all engineering verification and validation remain Pending.
@@ -109,6 +108,38 @@ is a placeholder for the responsibility, not closure of the responsible-gateway
 decision. \ArchitectureRef{ARC-002} continues to govern applicability, version,
 CAL/UCI contract and ownership. \RequirementRef{REQ-OMS-01} remains Proposed.
 No protocol, message, transport or accountable gateway service is selected here.
+
+\section{Approved Software Stack and Interaction Direction}
+\label{Section:SoftwareStackDecision}
+\ArchitectureID{ARC-004}: \textbf{Owner-approved choices; not implemented}.
+Decision owner: Jack Marino. Approval date: November 23, 2026.
+Choose Python 3, Tkinter, UTF-8 JSON Lines recordings with session/sample
+records, and the basic controls in
+\hyperref[Section:ApprovedSoftwareChoices]{Implementation} and
+\hyperref[Table:ApprovedControls]{the UI register}. This narrows the
+implementation options left open in \ArchitectureRef{ARC-003}; the Step 10
+record preserves what was confirmed at that earlier review.
+
+\paragraph{Rationale and trade-offs.}
+The owner approved a simulator/core-software approach using Python and a small
+desktop window with direct controls. JSON Lines permits incremental recording
+in a readable format while preserving structured metadata. CSV alone would
+need additional conventions for session headers, quality and gap/error
+records; another GUI toolkit or language remains an option only through a
+later recorded change. These are design trade-offs, not measured performance
+comparisons. Exact versions, schema types and names, launch/package tooling,
+GUI scheduling, queue policy and device adapters remain TBD (Jack Marino;
+decision date TBD). Tkinter availability and the supported platform matrix
+must be checked; no platform pass or physical timing guarantee is implied.
+
+\paragraph{Drivers and preserved gates.}
+The choice supports \RequirementRef{REQ-IF-01}, \RequirementRef{REQ-F-018},
+\RequirementRef{REQ-F-019} and \RequirementRef{REQ-Q-016}; settings controls
+remain subject to \RequirementRef{REQ-S-002}. Protect original metadata and
+separate simulated, live and replay contexts. Hardware choices remain TBD,
+\RequirementRef{REQ-OMS-01} and \ArchitectureRef{ARC-002} remain Proposed,
+and the separate human review remains \StatusPending. No dependency or
+application source is installed or implemented by this decision record.
 
 \section{OMS Architecture Decision Record}
 \label{Section:ProposedOMSBoundary}

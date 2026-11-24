@@ -275,7 +275,7 @@ Coverage & \RequirementRef{REQ-F-018}; \UseCaseRef{UC-06}; \VerificationRef{VER-
 Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
 Owner / Decision date & Jack Marino / TBD\\
 Entry conditions & Resolve applicable \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-13]{PAR-13} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
-Setup / hardware TBDs & Recording selection/control, format/schema, metadata, storage/retention limits, independent reader and storage-failure behavior: TBD. Real acquisition hardware and rate: TBD; a software-only rehearsal must be labeled separately.\\
+Setup / hardware TBDs & JSON Lines and basic recording controls approved. Detailed selection semantics/schema, metadata encoding, storage/retention limits, independent reader and storage-failure behavior: TBD. Real acquisition hardware and rate: TBD; a software-only rehearsal must be labeled separately.\\
 Inputs / test cases & A finite identifiable stream containing valid and invalid records, gaps and acquisition-epoch metadata. Dataset length and safe isolated storage-failure mechanism: TBD.\\
 Step 1 & Retain the reference stream and its metadata; select the records to save according to the approved recording controls.\\
 Step 2 & Start recording, submit the stream, stop recording and close the dataset using the documented workflow.\\
@@ -309,7 +309,7 @@ Coverage & \RequirementRef{REQ-F-019}; \UseCaseRef{UC-06}; \VerificationRef{VER-
 Result & \StatusPending. Not executed; actual observations, execution date and evidence location: TBD.\\
 Owner / Decision date & Jack Marino / TBD\\
 Entry conditions & Resolve applicable \hyperref[Parameter:PAR-02]{PAR-02}, \hyperref[Parameter:PAR-13]{PAR-13} decisions and the \hyperref[Section:MainTestProcedures]{common preparation}.\\
-Setup / hardware TBDs & Saved-dataset format, reader compatibility, playback controls/pacing, replay-output boundary and live/replay indication: TBD. Hardware is not required for a file-only rehearsal, but that rehearsal is not evidence of physical acquisition.\\
+Setup / hardware TBDs & JSON Lines, basic playback controls and explicit Replay mode approved. Detailed dataset schema, reader compatibility, pacing, replay-output boundary and indicator representation: TBD. Hardware is not required for a file-only rehearsal, but that rehearsal is not evidence of physical acquisition.\\
 Inputs / test cases & A known saved dataset with valid/invalid records, explicit gaps and original timestamps, sequences and epoch context; selection and playback settings: TBD.\\
 Step 1 & Independently decode and retain the expected selected dataset contents before starting playback.\\
 Step 2 & Open the dataset and start replay with the approved controls and pacing; capture all consumer-visible output and its replay indication.\\

@@ -44,10 +44,9 @@ human review Pending.
 \label{Section:RemainingSoftwareWork}
 The following is a proposed working sequence, not an additional course mandate
 or approval of a technology or numerical value. Jack Marino coordinates
-unresolved choices; decision dates remain TBD. These tasks have not been performed.
+unresolved choices; decision dates remain TBD. Step 11 has now approved the software language, GUI, recording format and basic controls under \ArchitectureRef{ARC-004}. The remaining implementation/test tasks have not been performed.
 \begin{enumerate}
-\item Without hardware, choose a software language/tooling and define reviewable
-sample/file contracts, recording/replay controls and software access policy.
+\item Step 11 choices are approved: Python 3, Tkinter, JSON Lines and the basic controls. Finalize detailed sample/file contracts, versions/tooling and software access policy as needed for implementation.
 Keep physical capture, sampling capability and device-dependent settings TBD.
 \item Build a simulator that supplies clearly labeled synthetic readings, gaps
 and fault events, then implement the confirmed software responsibilities
@@ -66,6 +65,8 @@ implementation or conformance check. Complete stakeholder validation, remaining
 review actions and a full document build/layout review before final technical
 acceptance or any separately authorized merge/release.
 \end{enumerate}
+
+\paragraph{Step 11 choices approved.} On November 23, 2026, Jack Marino approved \ArchitectureRef{ARC-004}: Python 3, Tkinter, JSON Lines and the \hyperref[Table:ApprovedControls]{basic controls}. Exact versions/schema and implementation commands remain TBD; no application code or installation is claimed. Hardware TBDs, Proposed OMS and Pending human/engineering review are preserved. Step 12 is planned simulator and core-software implementation using controlled synthetic readings.
 
 \paragraph{Technical review focus.}
 Review requirement necessity, singularity, units, feasibility, scenario

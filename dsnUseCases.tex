@@ -113,7 +113,7 @@ Navigation & \hyperref[Figure:UseCaseDiagram]{Main use-case diagram}; \hyperref[
 ID & \UseCaseID{UC-06}\\
 Source stories & \UserStoryRef{US-02}\\
 Actor & Acquisition developer records and replays datasets for inspection.\\
-Preconditions & The recording/replay contract specifies selection, file format, storage limits, failure handling, compatibility, playback controls and pacing. These values remain TBD before execution.\\
+Preconditions & JSON Lines and basic recording/replay controls are approved under \ArchitectureRef{ARC-004}. The detailed contract for selection, schema, storage limits, failure handling, compatibility and pacing remains TBD before execution.\\
 Trigger & The developer requests recording of local samples or selects an existing dataset for replay.\\
 Main flow & 1. Select the records to save under the agreed recording controls.\par 2. Save original code, validity, timestamp, sequence and acquisition-session/epoch context in order.\par 3. Close and reopen the dataset.\par 4. Replay selected saved records in original order with original metadata.\par 5. Clearly identify replay output as recorded data so the consumer can distinguish it from live acquisition.\\
 Alternate or exception flow & Storage failure, interrupted recordings and incompatible datasets follow the approved recording/replay policy. Preserve invalid states and gaps in saved/replayed data; do not present replay as live input or assume a playback speed.\\
