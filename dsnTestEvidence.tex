@@ -119,22 +119,26 @@ observed decisions. Revision and result are recorded only from evidence.
 
 \section{Step 12 Scoped Simulator Regression Evidence}
 \label{Section:SimulatorEvidence}
-\ArtifactID{Evidence}{EVD-SIM-001}: software-only regression run, November 23,
-2026. Source: \texttt{dsnSimulatorCore.py} and
-\texttt{dsnSimulatorTests.py} in the same commit as the retained
-\texttt{dsnSimulatorTestResults.txt}. That file records the actual command,
-Python version, OS, test names, 14 passing checks and runtime launch failure.
-The tests cover fake-clock freshness, finite-queue loss, exact saved/replayed
-metadata, replay pause/restart, epochs, guarded settings/hardware access,
-exclusive file creation, write failure, invalid headers/records, oversized
-lines and sequence errors. No physical ADC/FT245R, OMS, full security policy,
-cross-platform deployment or GUI usability has passed. GUI startup failed
-before window creation due to the existing Tcl/Tk startup-script error;
-GUI validation remains Pending. No dependency installation was performed.
-The prototype and reproduction commands are described in
-\hyperref[Section:SimulatorPrototype]{Implementation}. This evidence is
-separate from the 51 planned engineering bundles above. No planned check is
-silently marked executed or passed by these regression checks.
+\ArtifactID{Evidence}{EVD-SIM-001}: software-only checks, November 23, 2026.
+\texttt{dsnSimulatorTestResults.txt} retains the initial core run and Tcl/Tk
+startup failure, then the successful runtime follow-up: 18 passing tests
+(14 core, four Tkinter integration checks), graphical smoke exit zero,
+Python 3.14.10 / Tcl/Tk 9.0.4 and source SHA256 hashes. Core cases cover
+fake-clock freshness, bounded loss, metadata-preserving recordings/replay,
+pause/restart/epochs, guardrails, exclusive files and malformed/failure input.
+GUI cases cover actual Tk controls, file-based recording/replay, stale state,
+mode/slider behavior, disabled Live Hardware and Settings visibility/dialog.
+File-selection dialog values are fixtures; no real hardware is used.
+
+With the approved separate workspace runtime, the desktop window opens and
+the graphical smoke test observes stale simulated input. Visual inspection at
+1280x720 confirmed the adjusted layout includes Settings. This closes the
+local startup blocker, not physical ADC/FT245R timing, OMS, full access-policy
+security, cross-platform support, stakeholder validation or the separate human
+review. All planned engineering results remain Pending, and their 51 planned
+evidence bundles remain Not collected. Runtime deployment and reproduction
+commands are in \hyperref[Section:SimulatorPrototype]{Implementation}; this
+evidence belongs to the source baseline identified by the hashes in the log.
 
 \section{Retained Template Evidence Example}
 This service-request record is a template example, not collected project evidence.

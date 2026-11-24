@@ -1,7 +1,10 @@
 @echo off
 setlocal
 cd /d "%~dp0"
+if not defined DSN_PYTHON if exist "%~dp0..\dsnPython314\python.exe" set "DSN_PYTHON=%~dp0..\dsnPython314\python.exe"
 if defined DSN_PYTHON (
+  for %%I in ("%DSN_PYTHON%") do set "DSN_PYTHON_HOME=%%~dpI"
+  call :tkpaths
   "%DSN_PYTHON%" "%~dp0dsnSimulator.py"
   goto finished
 )
@@ -21,3 +24,8 @@ pause
 exit /b 1
 :finished
 if errorlevel 1 pause
+exit /b
+:tkpaths
+if exist "%DSN_PYTHON_HOME%tcl\tcl_library\init.tcl" set "TCL_LIBRARY=%DSN_PYTHON_HOME%tcl\tcl_library"
+if exist "%DSN_PYTHON_HOME%tcl\tk_library\tk.tcl" set "TK_LIBRARY=%DSN_PYTHON_HOME%tcl\tk_library"
+exit /b

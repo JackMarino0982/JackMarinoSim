@@ -10,12 +10,19 @@ Other systems with an existing Python 3/Tkinter environment:
 Windows launchers use py -3 or python, or an existing executable specified
 in DSN_PYTHON. They do not install or download anything.
 
-LOCAL LAUNCH BLOCKER OBSERVED NOVEMBER 23, 2026
-The existing Codex-bundled Python cannot initialize its Tcl/Tk scripts.
-The desktop launch was attempted and failed before the window opened.
-A working Python 3 installation with Tkinter is required to use the window.
-No runtime installation or repair has been performed. GUI appearance and
-interactive behavior remain unverified on this computer.
+LOCAL RUNTIME READY — NOVEMBER 23, 2026
+The initial Codex-bundled Tcl/Tk error is resolved for this app by a separate
+workspace deployment of official Python 3.14.10 / Tcl 9.0.4 / Tk 9.0.4.
+The installer and component packages have valid Python Software Foundation
+signatures; the installer checksum matches the official release page.
+Windows Installer could not write its normal profile/cache, so the signed
+component payloads were unpacked into work/dsnPython314 instead. This private
+deployment changes no PATH/file associations and leaves Codex's runtime alone.
+The local launcher detects the sibling runtime and sets Tcl/Tk paths for its
+own process. An app launcher is also supplied in this chat's outputs folder.
+Both desktop startup and the graphical smoke check now succeed. The layout
+was inspected at 1280x720 and adjusted to keep Settings visible.
+This verifies one Windows configuration, not macOS/Linux or hardware support.
 
 TRY THE WINDOW ONCE THE RUNTIME IS WORKING
 1. Keep Simulator selected and click Start.
@@ -41,7 +48,7 @@ visible loss count and recorded gap when recording is active. Replay delivers
 wall-clock timing. These are prototype defaults, not hardware allocations.
 The Tk event loop has no hard-real-time guarantee. No 10 ms hardware timing
 claim is made. The 100 ms check uses an independent fake clock in core tests;
-actual GUI scheduling/timing remains unverified until launch succeeds.
+the real Tk event loop is checked by a graphical stale-status smoke test, but it is not a hard-real-time or physical ADC guarantee.
 
 RECORDINGS
 UTF-8 JSON Lines, schema dsn-simulator-v1. First line is a session header.
@@ -55,9 +62,8 @@ Write errors stop recording visibly and leave acquisition running. A failed
 recording may be incomplete; inspect its error before using it as evidence.
 
 CHECKS
-  python -m unittest dsnSimulatorTests -v
+  python -m unittest dsnSimulatorTests dsnSimulatorGuiTests -v
   python dsnSimulator.py --smoke-test
-The first runs headless software regression tests. The second needs working
-Tkinter and attempts an automated start/pause/stale/close window smoke test.
+The first runs 14 core checks and four real-Tk integration checks (file dialog selections are test fixtures). The second runs an automated start/pause/stale/close window smoke test. The approved workspace runtime and local launcher provide the necessary Tcl/Tk environment.
 Results are recorded separately in dsnSimulatorTestResults.txt. They do not
 complete the planned physical tests or the separate human/stakeholder review.

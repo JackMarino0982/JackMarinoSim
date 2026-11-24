@@ -13,19 +13,20 @@ class SimulatorWindow:
     def __init__(self, root):
         self.root = root
         self.model = Simulator()
+        self.tick_job = None
         self.next_sample = 0
         self.root.title("Jack Marino — ADC Simulator")
-        self.root.geometry("940x740")
-        self.root.minsize(820, 670)
+        self.root.geometry(f"940x{min(680, self.root.winfo_screenheight()-60)}")
+        self.root.minsize(820, 620)
         self.root.protocol("WM_DELETE_WINDOW", self.close)
         self.mode = tk.StringVar(value="Simulator")
         self.value = tk.DoubleVar(value=150)
         self.pause = tk.BooleanVar(value=False)
         self.info = tk.StringVar(value="Ready. Choose Start to generate simulated readings.")
-        outer = ttk.Frame(root, padding=18)
+        outer = ttk.Frame(root, padding=12)
         outer.pack(fill="both", expand=True)
-        ttk.Label(outer, text="ADC Acquisition Simulator", font=("Segoe UI", 20, "bold")).pack(anchor="w")
-        ttk.Label(outer, text="SIMULATED DATA ONLY  •  Hardware: TBD  •  OMS: Proposed  •  Human review: Pending").pack(anchor="w", pady=(3, 14))
+        ttk.Label(outer, text="ADC Acquisition Simulator", font=("Segoe UI", 18, "bold")).pack(anchor="w")
+        ttk.Label(outer, text="SIMULATED DATA ONLY  •  Hardware: TBD  •  OMS: Proposed  •  Human review: Pending").pack(anchor="w", pady=(3, 10))
         modes = ttk.LabelFrame(outer, text="1. Choose a mode (stop before switching)", padding=10)
         modes.pack(fill="x")
         self.mode_buttons = []
@@ -38,7 +39,7 @@ class SimulatorWindow:
             else:
                 self.mode_buttons.append(b)
         simulation = ttk.LabelFrame(outer, text="2. Simulator controls", padding=10)
-        simulation.pack(fill="x", pady=10)
+        simulation.pack(fill="x", pady=6)
         row = ttk.Frame(simulation)
         row.pack(fill="x")
         self.start_button = ttk.Button(row, text="Start", command=self.start)
@@ -65,13 +66,13 @@ class SimulatorWindow:
         self.file_label = ttk.Label(files, text="No recording loaded. Replay uses 20 records/s demo pacing; original times remain unchanged.", wraplength=850)
         self.file_label.grid(row=1, column=0, columnspan=6, sticky="w", pady=(7, 0))
         status = ttk.LabelFrame(outer, text="Current output", padding=10)
-        status.pack(fill="both", expand=True, pady=10)
+        status.pack(fill="both", expand=True, pady=6)
         self.fields = {}
         for i, name in enumerate(("Mode / source", "Status / validity", "ADC code / sequence", "Timestamp / timing quality",
                                   "Sample age", "Session", "Connection / recording", "Loss / error")):
-            ttk.Label(status, text=name + ":", width=27).grid(row=i, column=0, sticky="nw", pady=3)
+            ttk.Label(status, text=name + ":", width=27).grid(row=i, column=0, sticky="nw", pady=1)
             variable = tk.StringVar(value="—")
-            ttk.Label(status, textvariable=variable, wraplength=610).grid(row=i, column=1, sticky="nw", pady=3)
+            ttk.Label(status, textvariable=variable, wraplength=610).grid(row=i, column=1, sticky="nw", pady=1)
             self.fields[name] = variable
         status.columnconfigure(1, weight=1)
         bottom = ttk.Frame(outer)
@@ -193,10 +194,13 @@ class SimulatorWindow:
                 self.model.replay_next()
             self.next_sample = now + DEMO_INTERVAL_MS * 1_000_000
         self.refresh()
-        self.root.after(20, self.tick)
+        self.tick_job = self.root.after(20, self.tick)
 
     def close(self):
         self.model.stop()
+        if self.tick_job is not None:
+            self.root.after_cancel(self.tick_job)
+            self.tick_job = None
         self.root.destroy()
 
 
@@ -206,12 +210,22 @@ def main():
     args = parser.parse_args()
     root = tk.Tk()
     window = SimulatorWindow(root)
+    # A launcher may hide its console via STARTUPINFO. Explicitly show the
+    # application window after initialization without exposing a console.
+    root.withdraw()
+    root.after(50, root.deiconify)
+    smoke_checks = []
     if args.smoke_test:
         window.start()
         root.after(180, lambda: (window.pause.set(True), window.pause_input()))
-        root.after(400, lambda: print("GUI smoke:", window.model.status, flush=True))
+        def check_stale():
+            print("GUI smoke:", window.model.status, flush=True)
+            smoke_checks.append(window.model.status == "STALE (SIMULATOR)")
+        root.after(400, check_stale)
         root.after(450, window.close)
     root.mainloop()
+    if args.smoke_test and smoke_checks != [True]:
+        raise SystemExit("GUI smoke failed to observe stale simulated input.")
 
 
 if __name__ == "__main__":
