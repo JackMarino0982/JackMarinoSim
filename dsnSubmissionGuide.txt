@@ -1,0 +1,34 @@
+Embedded ADC System - Section 2.9 technical review package
+Prepared November 24, 2026. Owner: Jack Marino. Second member: TBD_Partner2.
+
+Read dsnManual.pdf as the complete submission book. Start with Release /
+Section 2.9 Submission Inventory and Readiness, then follow its PDF links.
+The PDF has three MAIN use cases: UC-01 acquire/monitor, UC-02 recovery,
+UC-06 record/replay. UC-03 conditional OMS integration retains its IDs and
+links as supporting material; UC-04 and UC-05 are supporting experiments.
+The 12 owner-selected main requirements and 33 supporting candidates remain.
+
+Reproducibility:
+dsnBuildRevision.txt identifies the exact commit compiled by GitHub Actions.
+dsnSubmissionSources.zip is git archive of that commit (all tracked sources).
+dsnSourceInventory.txt and dsnSourceSHA256.txt inventory/hash those sources.
+The generated delivery manifest gives artifact hashes, CI URL/result, static
+trace checks and rendered-page inspection results for that exact revision.
+Build from the extracted source root with make -f makefileMacLinux pdf on a
+configured Linux/macOS TeX installation. The workflow lists its dependencies.
+Retained build logs and PDF text provide the build/reference evidence.
+
+Status:
+OMS remains Proposed. Research recommends deferring conformance until a real
+mission consumer/program contract and compatible standard/profile/message
+are approved. All selections/mappings and responsible gateway remain TBD;
+owner Jack Marino; decision date TBD. DoWI 8430.01 URL returned 403; its
+contents/policy applicability have not been independently verified.
+Hardware-dependent decisions remain TBD. Engineering tests, verification and
+validation remain Pending; planned evidence is Not collected. EVD-SIM-001
+is separately scoped existing software-only evidence (18 checks + GUI smoke).
+Teammate review is Pending. No placeholder name is credited with review.
+The worksheet requires actual teammate feedback on at least three requirements
+and trace coverage, followed by recorded corrections/dispositions. Course
+acceptance/final human disposition remain Pending. This is a review package,
+not a claim that all human obligations of Section 2.9 are complete.

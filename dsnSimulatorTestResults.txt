@@ -1,0 +1,75 @@
+Software-only regression evidence — EVD-SIM-001
+Date: 2026-11-23T18:03:37.062941-07:00
+Python: 3.12.14
+OS: Windows 11
+Command: python -m unittest dsnSimulatorTests -v
+Scope: synthetic inputs, fake-clock status, queue behavior, JSON Lines, replay, guardrails.
+No physical ADC, FT245R, OMS, GUI usability or cross-platform support is verified.
+
+test_boolean_code_and_oversized_record_rejected (dsnSimulatorTests.SimulatorTests.test_boolean_code_and_oversized_record_rejected) ... ok
+test_bounded_queue_reports_loss_and_gap (dsnSimulatorTests.SimulatorTests.test_bounded_queue_reports_loss_and_gap) ... ok
+test_duplicate_sequence_rejected (dsnSimulatorTests.SimulatorTests.test_duplicate_sequence_rejected) ... ok
+test_hardware_and_settings_denied_at_core_boundary (dsnSimulatorTests.SimulatorTests.test_hardware_and_settings_denied_at_core_boundary) ... ok
+test_invalid_header_rejected (dsnSimulatorTests.SimulatorTests.test_invalid_header_rejected) ... ok
+test_mode_switch_requires_stop (dsnSimulatorTests.SimulatorTests.test_mode_switch_requires_stop) ... ok
+test_new_start_has_new_epoch_and_sequence (dsnSimulatorTests.SimulatorTests.test_new_start_has_new_epoch_and_sequence) ... ok
+test_null_and_duplicate_json_fields_are_not_silent_eof (dsnSimulatorTests.SimulatorTests.test_null_and_duplicate_json_fields_are_not_silent_eof) ... ok
+test_partial_and_corrupt_records_stop_replay_visibly (dsnSimulatorTests.SimulatorTests.test_partial_and_corrupt_records_stop_replay_visibly) ... ok
+test_record_and_replay_exact_metadata (dsnSimulatorTests.SimulatorTests.test_record_and_replay_exact_metadata) ... ok
+test_recording_does_not_overwrite (dsnSimulatorTests.SimulatorTests.test_recording_does_not_overwrite) ... ok
+test_recording_write_failure_visible_and_acquisition_continues (dsnSimulatorTests.SimulatorTests.test_recording_write_failure_visible_and_acquisition_continues) ... ok
+test_replay_pause_and_restart (dsnSimulatorTests.SimulatorTests.test_replay_pause_and_restart) ... ok
+test_stale_uses_last_publication_not_generation (dsnSimulatorTests.SimulatorTests.test_stale_uses_last_publication_not_generation) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.299s
+
+OK
+
+GUI launch attempt: FAILED BEFORE WINDOW CREATION.
+Existing bundled Python raised TclError: cannot find usable init.tcl.
+No dependency was downloaded or installed. Full GUI validation remains Pending.
+Hardware details TBD; OMS Proposed; separate human review Pending.
+
+Source SHA256 hashes (identify this run baseline):
+dsnSimulatorCore.py fa893cb1a73a5a3dcfaa7c14a0914fd342ed353db6348807650b1caf4b83f40d
+dsnSimulator.py 6c49c2293554c0d2357706a0317ac3fcc9889092e9029bb8d73a7b69f44e8228
+dsnSimulatorTests.py 0ead67da085fb0887275bb2ee8f3a98b778fab2edc94f9591734152bfd8e4be8
+
+FOLLOW-UP RUNTIME AND GUI CHECKS — 2026-11-23T18:21:15.320323-07:00
+Approved separate workspace runtime: Python 3.14.10; Tcl 9.0.4; Tk 9.0.4; Windows 11
+Official signed Python packages deployed in private workspace; no PATH/file association/Codex runtime changes.
+Command: python -m unittest dsnSimulatorTests dsnSimulatorGuiTests -v
+test_boolean_code_and_oversized_record_rejected (dsnSimulatorTests.SimulatorTests.test_boolean_code_and_oversized_record_rejected) ... ok
+test_bounded_queue_reports_loss_and_gap (dsnSimulatorTests.SimulatorTests.test_bounded_queue_reports_loss_and_gap) ... ok
+test_duplicate_sequence_rejected (dsnSimulatorTests.SimulatorTests.test_duplicate_sequence_rejected) ... ok
+test_hardware_and_settings_denied_at_core_boundary (dsnSimulatorTests.SimulatorTests.test_hardware_and_settings_denied_at_core_boundary) ... ok
+test_invalid_header_rejected (dsnSimulatorTests.SimulatorTests.test_invalid_header_rejected) ... ok
+test_mode_switch_requires_stop (dsnSimulatorTests.SimulatorTests.test_mode_switch_requires_stop) ... ok
+test_new_start_has_new_epoch_and_sequence (dsnSimulatorTests.SimulatorTests.test_new_start_has_new_epoch_and_sequence) ... ok
+test_null_and_duplicate_json_fields_are_not_silent_eof (dsnSimulatorTests.SimulatorTests.test_null_and_duplicate_json_fields_are_not_silent_eof) ... ok
+test_partial_and_corrupt_records_stop_replay_visibly (dsnSimulatorTests.SimulatorTests.test_partial_and_corrupt_records_stop_replay_visibly) ... ok
+test_record_and_replay_exact_metadata (dsnSimulatorTests.SimulatorTests.test_record_and_replay_exact_metadata) ... ok
+test_recording_does_not_overwrite (dsnSimulatorTests.SimulatorTests.test_recording_does_not_overwrite) ... ok
+test_recording_write_failure_visible_and_acquisition_continues (dsnSimulatorTests.SimulatorTests.test_recording_write_failure_visible_and_acquisition_continues) ... ok
+test_replay_pause_and_restart (dsnSimulatorTests.SimulatorTests.test_replay_pause_and_restart) ... ok
+test_stale_uses_last_publication_not_generation (dsnSimulatorTests.SimulatorTests.test_stale_uses_last_publication_not_generation) ... ok
+test_mode_slider_and_unavailable_hardware (dsnSimulatorGuiTests.GuiTests.test_mode_slider_and_unavailable_hardware) ... ok
+test_record_open_play_pause_stop_controls (dsnSimulatorGuiTests.GuiTests.test_record_open_play_pause_stop_controls) ... ok
+test_settings_control_fits_window_and_dialog_opens (dsnSimulatorGuiTests.GuiTests.test_settings_control_fits_window_and_dialog_opens) ... ok
+test_start_pause_stale_resume_stop (dsnSimulatorGuiTests.GuiTests.test_start_pause_stale_resume_stop) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 1.321s
+
+OK
+Graphical smoke exit: 0
+GUI smoke: STALE (SIMULATOR)
+Desktop launch observed: simulator window opens; adjusted layout shows Settings control at 1280x720.
+GUI integration uses actual Tk widgets and temporary files; file-selection dialog results are supplied by test fixtures.
+Independent human review and physical/OMS verification remain Pending. Full architecture PDF build/layout remain unverified.
+Source SHA256 for this follow-up:
+dsnSimulator.py 8099b89dae79d0c559b18e2c5e58f97b3896a4ca0baf2cfbd24cf090cb164cd0
+dsnSimulatorCore.py fa893cb1a73a5a3dcfaa7c14a0914fd342ed353db6348807650b1caf4b83f40d
+dsnSimulatorTests.py 0ead67da085fb0887275bb2ee8f3a98b778fab2edc94f9591734152bfd8e4be8
+dsnSimulatorGuiTests.py 45abe2b66e5982be061fc067208c73d8b03afba59af17533ce2434c6fe1bad12

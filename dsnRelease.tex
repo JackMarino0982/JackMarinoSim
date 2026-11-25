@@ -8,5 +8,208 @@ Identify the exact deliverable and establish its readiness for authorized releas
 
 \section{How to Use This Chapter}
 Identify the release and define contents, approvals, evidence, known limitations, deployment instructions, rollback or recovery approach, and support ownership.
-\section{Example Checklist}
+\section{Week 2 Requirements Baseline for Technical Review}
+\label{Section:WeekTwoReviewPackage}
+\textbf{Package:} Embedded ADC System, document draft 0.6 (Week 2).
+\textbf{Working branch:} \texttt{week2}; \textbf{review target:}
+\texttt{main}. \textbf{Prepared:} November 24, 2026.
+\textbf{Owner:} Jack Marino. The exact compiled revision is recorded in \texttt{dsnBuildRevision.txt};
+the external delivery manifest records the build and inspection result. This package is a proposed requirements baseline presented for
+technical review; owner approval selects the 12-item main scope. Technical acceptance, unresolved allocations, reviewer approval and release authorization remain pending.
+
+\paragraph{Review contents.}
+The package contains the authored LaTeX, editable TikZ sources, bibliography,
+and complete-document CI workflow. It includes four main lecture stories and two supporting bench stories in
+\ChapterRef{UserStories}, 12 owner-selected main requirements and 33 supporting candidates in
+\hyperref[Section:WeekTwoCandidates]{the requirements chapter}, 45 planned checks and verification entries,
+four main and two supporting validation plans, and 51
+\hyperref[Section:PlannedEvidence]{evidence collection plans}. Separate main and supporting
+\hyperref[Table:TraceabilityMatrix]{trace matrices} link story, requirement, check, verification and evidence,
+and story to validation. Portability now maps to \RequirementRef{REQ-Q-016}; supported configurations remain TBD.
+The package also carries the ADC scope/context and build support needed for
+the complete architecture book on the review target.
+
+\paragraph{Step 7 test preparation.} The 12 selected requirements each have a detailed \hyperref[Table:WeekTwoTests]{test procedure}, with entry conditions, setup and hardware TBDs, inputs, numbered steps, expected results, planned evidence and explicit Pending result. Hardware is not yet available. No planned engineering test, verification or validation is recorded as passed; engineering evidence remains Not collected. Supporting checks retain their prior scope and IDs.
+
+\paragraph{Step 9 proposed software design.} Added \hyperref[Section:MainSoftwareDesign]{the logical software design}, a clickable \hyperref[Figure:SoftwareComponents]{connection diagram}, component and conceptual-interface responsibilities, runtime/failure flows and \hyperref[Table:SoftwareAllocation]{12-requirement design allocation}. At that step no application code or dependency had been installed; Step 12 subsequently added the scoped simulator. Hardware-dependent and implementation choices remain TBD. OMS remains Proposed and the \hyperref[Section:HumanReviewChecklist]{human review} remains \StatusPending. Engineering results remain Pending.
+
+\paragraph{Step 10 owner walkthrough completed.}
+Jack Marino confirmed all eight software responsibilities in
+\hyperref[Table:OwnerSoftwareReview]{the owner review record}. Hardware and
+implementation choices remain TBD; this is distinct from independent human
+review, implementation, verification and validation. OMS remains Proposed and
+human review Pending.
+
+\subsection{Remaining Work After the Owner Walkthrough}
+\label{Section:RemainingSoftwareWork}
+The following is a proposed working sequence, not an additional course mandate
+or approval of a technology or numerical value. Jack Marino coordinates
+unresolved choices; decision dates remain TBD. Step 11 has now approved the software language, GUI, recording format and basic controls under \ArchitectureRef{ARC-004}. Step 12 software-only implementation/checks are complete within their documented scope; physical integration and engineering acceptance remain unperformed.
+\begin{enumerate}
+\item Step 11 choices are approved: Python 3, Tkinter, JSON Lines and the basic controls. Finalize detailed sample/file contracts, versions/tooling and software access policy as needed for implementation.
+Keep physical capture, sampling capability and device-dependent settings TBD.
+\item Build a simulator that supplies clearly labeled synthetic readings, gaps
+and fault events, then implement the confirmed software responsibilities
+against the agreed software contracts. Do not label synthetic input as actual ADC evidence.
+\item Run software-only tests, retain actual results and fix issues. Preserve the
+scope of that evidence: simulation does not pass physical capture/timing,
+recovery or real OS/driver/hardware checks. Untested requirements stay Pending.
+\item In parallel, have the teammate complete the existing review of at least
+three distinct requirements, then record actual feedback, responses and open
+follow-up. Current human review remains Pending.
+\item When hardware is available, resolve device/driver/wiring and timing choices,
+connect the real acquisition adapter, and execute the applicable planned tests.
+Update results and evidence only from those actual runs.
+\item Resolve OMS applicability and contract decisions before any OMS-specific
+implementation or conformance check. Complete stakeholder validation, remaining
+review actions and a full document build/layout review before final technical
+acceptance or any separately authorized merge/release.
+\end{enumerate}
+
+\paragraph{Step 11 choices approved.} On November 23, 2026, Jack Marino approved \ArchitectureRef{ARC-004}: Python 3, Tkinter, JSON Lines and the \hyperref[Table:ApprovedControls]{basic controls}. Exact versions/schema and implementation commands remain TBD; no application code or installation is claimed. Hardware TBDs, Proposed OMS and Pending human/engineering review are preserved. Step 12 is planned simulator and core-software implementation using controlled synthetic readings.
+
+\paragraph{Step 12 simulator ready for local use.} \hyperref[Section:SimulatorPrototype]{The Python/Tkinter simulator} now launches with the owner-approved separate workspace Python 3.14.10 / Tcl/Tk 9.0.4 runtime. The normal installer was blocked by profile/cache permissions; signed component payloads were deployed privately without PATH/file association or Codex-runtime changes. \ArtifactRef{Evidence}{EVD-SIM-001} records 18 passing core/GUI checks, a passing graphical smoke check and desktop layout inspection. The launcher and guide are updated. This closes the local GUI startup blocker; hardware remains TBD, Live Hardware unavailable, OMS Proposed and human review Pending. All planned engineering results remain Pending. Full-book build/layout evidence is recorded for the exact revision in the external delivery manifest.
+
+\paragraph{Technical review focus.}
+Review requirement necessity, singularity, units, feasibility, scenario
+boundaries, hardware capture and clock assumptions, finite load/buffering
+envelopes, and the adequacy of planned acceptance observations. Review the
+candidate local record contract separately from
+\hyperref[Section:ProposedOMSBoundary]{the OMS decision record}.
+\RequirementRef{REQ-OMS-01} remains Proposed; applicability, standard version,
+CAL profile, UCI message, status mapping, responsible gateway, and end-to-end
+contract are TBD. Jack Marino owns unresolved decisions; decision dates remain
+TBD as agreed. The owner confirmed intended behavior of all 12 main requirements and selected 10 ms publication and 100 ms stale-state timing as testing targets. Final performance approval awaits results; the supporting 1 ms allocation remains unapproved. OMS remains Proposed. The main stories and linked scenario tables now match this review; the project-specific diagram replaces the generic example.
+
+\paragraph{Build and evidence boundary.}
+Build the complete book using the platform script in
+\ChapterRef{DocumentGuide}, including bibliography, glossary, index, and final
+reference-resolution passes. The CI workflow also runs Latexmk, checks for
+unresolved references/citations, and retains the compiled PDF, logs, text,
+layout warnings, and review-page renders. The latest successful run for the
+review head is document-build evidence only. Engineering verification and
+validation remain Pending; planned evidence remains Not collected.
+\textbf{Technical review approval: TBD; owner: Jack Marino; decision date: TBD.}
+Record reviewer decisions and resulting changes before approving a baseline
+or authorizing release.
+
+\section{Step 8 Source Review and Human Review Preparation}
+\label{Section:StepEightReview}
+On November 19, 2026, the AI assistant reviewed all 12 main requirements and
+their detailed procedures for clarity, observable acceptance, source-event
+coverage, timing boundaries, reciprocal links, TBD ownership and status.
+This is a document review by the editing assistant, not a separate human
+review, hardware test, stakeholder validation or release approval. No main
+requirement statement or ID is changed. Jack Marino owns unresolved engineering
+decisions; decision dates remain TBD. The 10 ms and 100 ms targets, Proposed
+OMS status and all Pending results are preserved.
+\begin{landscape}
+\small
+\begin{tabularx}{\linewidth}{L{3.4cm}Y L{3.6cm}}
+\caption{Main Requirement and Procedure Source Review\label{Table:StepEightFindings}}\\
+\toprule
+\textbf{Requirement / Procedure} & \textbf{Finding and disposition / Remaining decision} & \textbf{Review scope / Test status}\\
+\midrule
+\endfirsthead
+\textbf{Requirement / Procedure} & \textbf{Finding and disposition / Remaining decision} & \textbf{Review scope / Test status}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\RequirementRef{REQ-SMP-01}\par \TestCaseRef{TC-010} & Fixed: enumerate ready assertions independently; do not hide host-rejected events. Hardware capture remains TBD. & Source reviewed; engineering result \StatusPending\\
+\RequirementRef{REQ-IF-01}\par \TestCaseRef{TC-016} & Fixed: acceptance explicitly checks code range and strictly increasing per-epoch sequence. Schema/event/epoch decisions remain TBD. & Source reviewed; engineering result \StatusPending\\
+\RequirementRef{REQ-TIM-01}\par \TestCaseRef{TC-019} & Fixed: missing, duplicate and ambiguous publication matches cannot establish timing success. Workload and uncertainty remain TBD; 10 ms is a testing target. & Source reviewed; engineering result \StatusPending\\
+\RequirementRef{REQ-SMP-02}\par \TestCaseRef{TC-027} & Fixed: stale timing starts from the actual last valid publication, including buffered/in-flight output. 100 ms remains a testing target. & Source reviewed; engineering result \StatusPending\\
+\RequirementRef{REQ-F-009}\par \TestCaseRef{TC-026} & Policy choice is explicitly gated, with loss accounting and consumer-visible discontinuity. Rate, buffer and policy choices remain TBD. & Source reviewed; engineering result \StatusPending\\
+\RequirementRef{REQ-F-018}\par \TestCaseRef{TC-050} & Procedure compares source fields, order and epoch context and records storage failures under a policy still TBD. JSON Lines is approved; detailed schema and retention limits remain TBD. & Source reviewed; engineering result \StatusPending\\
+\RequirementRef{REQ-F-019}\par \TestCaseRef{TC-051} & Procedure preserves saved metadata/order and checks replay identity. Playback and compatibility choices remain TBD. & Source reviewed; engineering result \StatusPending\\
+\RequirementRef{REQ-F-010}\par \TestCaseRef{TC-029} & Procedure withholds each recovery prerequisite and checks first-new-sample ordering. Fault injection, identity and recovery rules remain TBD. & Source reviewed; engineering result \StatusPending\\
+\RequirementRef{REQ-Q-016}\par \TestCaseRef{TC-052} & Procedure covers every approved platform matrix entry and common source revision. Platform/driver versions and physical demonstrations remain TBD. & Source reviewed; engineering result \StatusPending\\
+\RequirementRef{REQ-S-002}\par \TestCaseRef{TC-053} & Procedure checks effective settings after authorized, unauthorized and missing-identity requests. Protected operations and identity mechanism remain TBD. & Source reviewed; engineering result \StatusPending\\
+\RequirementRef{REQ-OMS-01}\par \TestCaseRef{TC-032} & Execution remains gated on applicability/version/profile/message/mapping/gateway decisions. Requirement remains Proposed; no conformance claimed. & Source reviewed; engineering result \StatusPending\\
+\RequirementRef{REQ-I-006}\par \TestCaseRef{TC-054} & Procedure correlates original sample time and timing quality through delayed/repeated status. Encoding and mapping remain TBD; no extra accuracy bound is imposed. & Source reviewed; engineering result \StatusPending\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+\subsection{Checklist for Another Human Reviewer}
+\label{Section:HumanReviewChecklist}
+\textbf{Human review status: \StatusPending.}
+Reviewer name and role: TBD. Review date: TBD. Coordinator and follow-up owner:
+Jack Marino; decision date: TBD. No reviewer has been contacted or assigned by
+this update, and no reviewer comments or approvals are inferred.
+Ask a person other than Jack Marino to review at least three distinct main
+requirements and their linked procedures. Section 2.9 requires a teammate other than the directing author. The second
+member is still \texttt{TBD\_Partner2}; an alternative reviewer requires a
+recorded course-approved exception (approval TBD; owner Jack Marino; date TBD). The recommended
+starting set below spans the sample interface, timing and recovery. The reviewer
+may substitute other main requirements, but record at least three distinct IDs.
+
+\begin{enumerate}
+\item Record the exact commit reviewed, reviewer name/role and review date.
+Review baseline commit: TBD until the actual review is performed.
+\item Open each selected requirement, its source story, scenario, test procedure,
+verification bound and planned evidence through the linked records.
+\item Check story-to-validation and requirement-to-verification coverage in
+\ChapterRef{Traceability}, including evidence IDs and acceptance bounds.
+\item Explain the obligation in your own words. Is the trigger, system boundary,
+observable result and intended benefit clear? Identify compound or ambiguous wording.
+\item Could the procedure distinguish success from failure? Check normal and
+exception cases, event accounting, independent observations and required evidence.
+\item Check units, timing start/stop events, sequence/epoch rules and uncertainty
+where applicable. Confirm missing data cannot be silently excluded from acceptance.
+\item Identify assumptions needing real hardware or a design decision. Keep these
+TBD with a named owner and decision date; do not select values merely to complete the form.
+\item Confirm that the test checks its requirement without adding an unapproved
+performance limit. The 10 ms and 100 ms values are testing targets; OMS remains Proposed.
+\item For each requirement, write a comment or explicit ``no issue found'' statement,
+and a recommendation: acceptable as written, revise, or clarify before testing.
+An empty field or a checklist prepared by the AI is not a completed review.
+\item Jack Marino records a response and any fix or deferral against every actual
+comment, with a reason and source revision. Record unresolved concerns and follow-up
+owner/date; retain the original comments. Reviewer confirmation of fixes is Pending
+until received.
+\end{enumerate}
+The human review can be completed as a document review without hardware even
+when technical TBDs remain. That completion does not pass an engineering test.
+Record review receipt only after actual named feedback covers at least three
+distinct requirements, every recommendation and response is recorded, and the
+reviewed baseline and evidence location are known. Record open actions separately;
+technical acceptance and release approval require their own decisions.
+\begin{landscape}
+\small
+\begin{tabularx}{\linewidth}{L{3.5cm}Y Y L{2.1cm}}
+\caption{Suggested Three-Requirement Human Review Worksheet\label{Table:HumanReviewWorksheet}}\\
+\toprule
+\textbf{Requirement / Procedure} & \textbf{Focused review question} & \textbf{Actual feedback and response fields} & \textbf{Human review}\\
+\midrule
+\endfirsthead
+\textbf{Requirement / Procedure} & \textbf{Focused review question} & \textbf{Actual feedback and response fields} & \textbf{Human review}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\small\itshape Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\RequirementRef{REQ-IF-01}\par \TestCaseRef{TC-016} & Can the record be decoded independently and can duplicate/regressing sequences or epoch confusion be detected? & Reviewer comment/recommendation: TBD. Jack Marino response/action and disposition: TBD. Reviewer confirmation: TBD. & \StatusPending\\
+\RequirementRef{REQ-TIM-01}\par \TestCaseRef{TC-019} & Are the ready event, publication boundary, complete event population and uncertainty treatment clear enough to evaluate the 10 ms target? & Reviewer comment/recommendation: TBD. Jack Marino response/action and disposition: TBD. Reviewer confirmation: TBD. & \StatusPending\\
+\RequirementRef{REQ-F-010}\par \TestCaseRef{TC-029} & Does the procedure demonstrate that every recovery prerequisite and a new completed sample precede valid output? & Reviewer comment/recommendation: TBD. Jack Marino response/action and disposition: TBD. Reviewer confirmation: TBD. & \StatusPending\\
+\end{tabularx}
+\normalsize
+\end{landscape}
+\paragraph{Review evidence record.}
+Actual reviewer comments/evidence location: TBD. Reviewed commit: TBD.
+Reviewer identity and review date: TBD. Actual distinct requirements reviewed:
+TBD (minimum three required). Actual recommendation/response log and fix
+revisions: TBD. Open-action owners/dates and reviewer follow-up: TBD.
+All unresolved review-record values are coordinated by Jack Marino, decision
+date TBD. Store these values only from the performed human review. Engineering
+verification remains Pending and planned test evidence remains Not collected.
+
+\input{dsnSubmissionPackage.tex}
+
+\section{Retained Template Checklist}
 Confirm the version and artifact IDs are current; all required traceability is complete; required tests, verification, and validation pass or have approved waivers; release notes and known limitations are published; and the release authority approves the exact package.

@@ -1,0 +1,13 @@
+\begin{tikzpicture}[>=Stealth,box/.style={draw=dsnBlue,fill=dsnLightBlue,rounded corners,text width=8cm,align=center,minimum height=0.85cm,font=\small}]
+\node[box] (n0) at (0,0) {Human: define outcome, constraints, and authorization};
+\node[box] (n1) at (0,-1.5) {aiaCoordinator: plan; choose one agent or authorized delegation};
+\node[box] (n2) at (0,-3) {aiaDeveloper: produce bounded changes and local evidence};
+\node[box] (n3) at (0,-4.5) {aiaCoordinator: integrate and verify; correct failed checks};
+\node[box] (n4) at (0,-6) {aiaReviewer or human: review integrated candidate};
+\node[box] (n5) at (0,-7.5) {Stakeholders: validate when required; human decides acceptance};
+\draw[->] (n0.south) -- (n1.north);
+\draw[->] (n1.south) -- (n2.north);
+\draw[->] (n2.south) -- (n3.north);
+\draw[->] (n3.south) -- (n4.north);
+\draw[->] (n4.south) -- (n5.north);
+\end{tikzpicture}

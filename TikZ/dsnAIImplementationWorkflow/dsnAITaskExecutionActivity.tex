@@ -1,0 +1,11 @@
+\begin{tikzpicture}[>=Stealth,box/.style={draw=dsnBlue,fill=dsnLightBlue,rounded corners,text width=8cm,align=center,minimum height=0.85cm,font=\small}]
+\node[box] (n0) at (0,0) {Select AIS and read Context, Steps, Acceptance};
+\node[box] (n1) at (0,-1.5) {Plan bounded task; identify unresolved decisions};
+\node[box] (n2) at (0,-3) {Choose agent count within human authorization};
+\node[box] (n3) at (0,-4.5) {Develop, integrate, and verify};
+\node[box] (n4) at (0,-6) {Review; validate when applicable; report evidence and gaps};
+\draw[->] (n0.south) -- (n1.north);
+\draw[->] (n1.south) -- (n2.north);
+\draw[->] (n2.south) -- (n3.north);
+\draw[->] (n3.south) -- (n4.north);
+\end{tikzpicture}

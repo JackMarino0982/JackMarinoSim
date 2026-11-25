@@ -7,6 +7,94 @@ Preserve the approved evolution of the architecture document.
 
 \noindent\textbf{Expected result:} A durable record of what changed, why, and where.
 
+\section{Step 12 Runtime Deployment and GUI Launch Verified}
+November 23, 2026: With explicit owner approval, deployed the signed official Python 3.14.10 / Tcl/Tk 9.0.4 component payloads into a private workspace runtime after Windows Installer profile/cache failures. Updated launcher paths, made initial window display explicit, corrected small-screen layout and added four Tkinter integration tests. Eighteen tests and the graphical smoke check pass; desktop launch/layout were observed. \ArtifactRef{Evidence}{EVD-SIM-001} preserves the earlier blocker and successful follow-up. Codex runtime, PATH and file associations are unchanged. Hardware/OMS/human-review gates and all planned engineering Pending results are preserved.
+
+\section{Step 12 Initial Simulator and Launch Blocker}
+November 23, 2026: Implemented the software simulator core, Tkinter controls and bounded queue/stale status, exclusive JSON Lines recording and metadata-preserving replay, Windows launcher, guide and 14 passing regression tests. \ArtifactRef{Evidence}{EVD-SIM-001} retains actual software results. Command and desktop GUI launches failed before window creation due to the existing Tcl/Tk startup scripts; GUI/runtime verification remains Pending. No hardware, OMS or completed human review is claimed. No dependency was installed/downloaded; all engineering verification and validation remain Pending.
+
+\section{Step 11 Software Choices Approved}
+November 23, 2026: Jack Marino approved \ArchitectureRef{ARC-004}: Python 3, Tkinter, JSON Lines and the basic Simulator/Live/Replay, Start/Stop, simulator slider/input pause, recording, file-open, replay and Settings controls. Updated implementation/UI design, linked logical/runtime/development decisions and recording/replay TBD descriptions. Detailed versions, schema, policies and hardware values remain TBD; OMS stays Proposed and human/engineering review Pending. No application implementation, installation or test pass is implied.
+
+\section{Step 10 Owner Software Walkthrough Completed}
+November 19, 2026: Jack Marino confirmed the intended behavior of all eight software components, individually for parts 1--4 and together for parts 5--8. Recorded \hyperref[Table:OwnerSoftwareReview]{the owner confirmation}, distinguished it from the still-Pending separate human review, and added \hyperref[Section:RemainingSoftwareWork]{the proposed remaining work sequence}. No application code, hardware selection, passed engineering result or OMS approval is implied. Technical TBDs and OMS Proposed status are preserved.
+
+\section{Step 9 Proposed Software Design}
+November 19, 2026: Added \ArchitectureRef{ARC-003}, eight linked logical component responsibilities, conceptual interfaces, acquisition/status/recovery/recording/replay flows, platform organization and a chapter-owned TikZ \hyperref[Figure:SoftwareComponents]{connection diagram}. Added all 12 main requirements to \hyperref[Table:SoftwareAllocation]{software allocation}. Hardware and runtime choices remain TBD; \ArchitectureRef{ARC-002} and OMS remain Proposed. Human review and all engineering results remain Pending; no application code or hardware behavior is claimed implemented.
+
+\section{Step 8 Source Review --- Human Review Pending}
+November 19, 2026: Reviewed all 12 main requirements and procedures. Tightened ready-event accounting and publication pairing, aligned sequence acceptance, and corrected the stale-time reference for in-flight/buffered publications. Preserved approved requirement statements and all IDs. Added \hyperref[Table:StepEightFindings]{source-review dispositions}, a \hyperref[Section:HumanReviewChecklist]{human checklist}, and a three-requirement feedback worksheet. Human review remains Pending with reviewer, date, comments and evidence TBD; all engineering results remain Pending.
+
+\section{Step 7 Main Test Procedures --- Pending Execution}
+November 19, 2026: Added 12 detailed \hyperref[Section:MainTestProcedures]{main test procedures}, preserving existing check, requirement, use-case, verification and evidence IDs. Added preparation, hardware TBDs, controlled inputs, numbered steps, expected observations, evidence collection and run-record instructions. Updated planned evidence and review-package records. All results remain Pending, evidence Not collected, and OMS Proposed. No hardware or numerical allocations were invented.
+
+\section{Step 6 Main Stories and Use-Case Model}
+November 19, 2026: Recorded the step-by-step owner confirmation of all 12 intended behaviors, including 10 ms and 100 ms testing targets with final approval pending results. Updated \ChapterRef{UserStories}, the clickable \hyperref[Figure:UseCaseDiagram]{main diagram}, and four \hyperref[Section:WeekTwoUseCases]{linked main scenarios}. Retained supporting bench and template IDs separately. OMS stays Proposed; engineering verification and validation remain Pending.
+
+\section{Main Baseline Selection --- Review Pending}
+November 19, 2026 / draft 0.5: Jack Marino approved selection of 12 main requirements for the potentiometer--ADC0804--FT245R--computer project. Retained 33 supporting candidates with stable IDs. Added five linked recording, replay, portability, authorization and mission-timing-quality requirements, checks, verification and evidence plans; updated story validation, use cases and trace matrices. Engineering results remain Pending and evidence Not collected. OMS remains Proposed.
+
+\section{Week 2 Requirements Baseline Review Package --- Review Pending}
+November 12, 2026 / document draft 0.4: Prepared
+\hyperref[Section:WeekTwoReviewPackage]{the Week 2 technical review package}
+for a focused baseline-identification commit on \texttt{week2} and a pull
+request against \texttt{main}. The review record identifies contents,
+build/evidence boundaries, technical review questions, and unresolved
+approval gates. No requirement, OMS decision, verification result, validation
+result, or release approval is changed by this handoff.
+
+\section{Week 2 Evidence and OMS Record --- Review Pending}
+November 12, 2026 / project draft 0.4: Expanded
+\hyperref[Table:WeekTwoVerification]{verification} to one row per candidate
+with method, required evidence, acceptance bound, owner, decision date and
+Pending status. Unified \hyperref[Table:ValidationRegister]{validation} to
+one row per current story with scenario, criterion, stakeholder and planned
+evidence. Added \hyperref[Table:TraceabilityMatrix]{evidence traceability}
+and \hyperref[Section:PlannedEvidence]{planned evidence specifications}.
+Recorded explicit \hyperref[Table:OMSDecisionFields]{OMS decision fields}
+and \hyperref[Table:OMSStatusMapping]{unresolved status mapping}.
+The owner accepted Jack Marino as decision owner and TBD decision dates;
+no deadline or requirements/OMS approval is inferred. Teaching limits remain
+unapproved. AI provenance:
+\hyperref[Section:WeekTwoRegisterPrompt]{register prompt record}.
+
+\section{Week 2 Candidates --- Review Pending}
+November 12, 2026 / project draft 0.3: Owner-requested candidate requirements
+grouped by behavior, local interface, timing, capacity, reliability, proposed
+OMS, and two separate bench experiments in \ChapterRef{Requirements}.
+Preserved six lecture IDs and their exact wording
+\cite[slides 27, 30, 32, 34, 36]{SPE800Week02}; documented the requested
+identifier exception in \hyperref[Section:LectureRequirementIDs]{the convention}.
+Added proposed \UserStoryRef{US-05}/\UserStoryRef{US-06}, parameter decisions,
+candidate use cases, planned tests and verification, reciprocal traceability,
+and \hyperref[Section:ProposedOMSBoundary]{a proposed OMS boundary decision}.
+No hardware result, timing allocation approval, interface selection, or
+requirements baseline is claimed. AI provenance:
+\hyperref[Section:WeekTwoRequirementsPrompt]{requirements prompt record}.
+
+\section{Week 2 Story Candidate --- Review Pending}
+November 12, 2026 / project draft 0.2: Added lecture-grounded stakeholder
+roles, US-01--US-04, operating contexts, and proposed acceptance questions in
+\ChapterRef{UserStories}. Added planned story validation in
+\hyperref[Table:ValidationRegister]{the Validation Register} and visible
+allocation gaps in \hyperref[Table:TraceabilityMatrix]{traceability}.
+Retained distinct template IDs for provenance. Source:
+\cite[slides 19--20]{SPE800Week02}; AI assistance:
+\hyperref[Section:WeekTwoStoryPromptRecord]{prompt record}.
+Enabled the existing document build for pushes to \texttt{week2}.
+This is an owner-requested draft change, not requirements approval or
+stakeholder validation evidence.
+
+\section{Week 1 Candidate --- Review Pending}
+November 10, 2026 / project draft 0.1: AI-assisted candidate prepared from
+Jack Marino's confirmed embedded ADC scope. Changed
+\ChapterRef{Introduction}, \ChapterRef{SystemContext}, and
+\ChapterRef{DevelopmentPlan}; updated metadata and
+\hyperref[Section:WeekOnePromptRecord]{AI provenance}; supplied missing
+instructional figure sources and reproducible build checks. This candidate
+is not an approved baseline. The template history below is retained as
+template provenance, not project acceptance evidence.
+
 \section{How to Use This Appendix}
 Add the newest approved change at the top of the table. Retain every approved
 entry so that the document's evolution and review history remain auditable.
@@ -16,7 +104,7 @@ controlled artifact where the documented change occurred.
 \noindent\textbf{Author initials:} \textbf{DDM}: David Darian Muresan;
 \textbf{CDX}: OpenAI Codex. A comma identifies joint authorship or implementation.
 
-\begin{tabularx}{\linewidth}{L{3.1cm}L{2.2cm}YL{2.0cm}}
+\begin{tabularx}{\linewidth}{L{3.1cm}L{2.2cm}YL{2.5cm}}
 \caption{Document Update History\label{Table:DocumentHistory}}\\
 \toprule
 \textbf{Date / Version} & \textbf{Author Initials} & \textbf{Change} & \textbf{Changed At}\\
@@ -32,6 +120,7 @@ controlled artifact where the documented change occurred.
 \endfoot
 \bottomrule
 \endlastfoot
+November 24, 2026 / 0.6 & Jack Marino, CDX & Prepared Section 2.9 submission: primary OMS/AMS GRA research and conformance deferral recommendation; three main use cases with retained supporting links; source/build inventory and teammate review Pending. & \hyperref[Section:OMSResearch]{Research}, \ChapterRef{UseCases}, \hyperref[Section:SubmissionPackage]{Package}\\
 \textit{[date / version]} & \textit{[initials]} & \textit{[approved change and rationale]} & \textit{[link]}\\
 October 26, 2026 / 2.33 & CDX & Added a responsibility and expected result to every chapter and appendix; required the same structure for future chapters. & \hyperref[Section:ChapterResponsibilityConvention]{Chapter responsibility convention}\\
 October 26, 2026 / 2.32 & CDX & Linked references to authoritative definitions and made class-responsibility rows the class targets. & \hyperref[Requirement:DOCLINK001]{DOC-LINK-001}\\
@@ -44,7 +133,7 @@ October 13, 2026 / 2.26 & CDX & Added other AI tools and application-specific de
 October 13, 2026 / 2.25 & CDX & Clarified Codex tool availability, human delegation authorization, and aiaCoordinator decision and invocation; synchronized starting prompts, sequence diagrams, and Week 03 slides. & \hyperref[Section:AIImplementationStart]{Starting the workflow}, \hyperref[Section:AIAgentDelegation]{Delegation}, \hyperref[Figure:AIImplementationSequence]{Sequence}\\
 October 13, 2026 / 2.24 & CDX & Renamed reusable task types as AI Skills with AIS IDs; standardized AI agent role identifiers with the aia prefix; synchronized diagrams, bootstrap pointers, and Week 03 slides. & \hyperref[Table:AISkills]{AI Skills}, \hyperref[Rule:AITerminologyConsistency]{Terminology}, \ChapterRef{AIImplementationWorkflow}\\
 October 11, 2026 / 2.23 & CDX & Added a shared activity diagram connecting Appendix C task definitions and Acceptance to Appendix D execution; synchronized the Week 03 slides. & \hyperref[Figure:AITaskExecutionActivity]{C-to-D activity}, \ChapterRef{AIAgentGuide}, \ChapterRef{AIImplementationWorkflow}\\
-October 5, 2026 / 2.22 & CDX & Consolidated Introduction initialization and AI entry points into brief links to authoritative task definitions, appendix prompts, and the execution workflow. & \hyperref[Section:InitializeNewProject]{Initialization}, \hyperref[Section:UsingTemplateAI]{AI entry point}, \hyperref[Section:AIInitializePrompt]{Initialization prompt}, \hyperref[Section:AIStartSelectedTaskPrompt]{Starting prompt}\\
+October 5, 2026 / 2.22 & CDX & Consolidated Introduction initialization and AI entry points into brief links to authoritative task definitions, appendix prompts, and the execution workflow. & \hyperref[Section:InitializeNewProject]{Init.}, \hyperref[Section:UsingTemplateAI]{AI entry point}, \hyperref[Section:AIInitializePrompt]{Initialization prompt}, \hyperref[Section:AIStartSelectedTaskPrompt]{Starting prompt}\\
 October 5, 2026 / 2.21 & CDX & Restored typewriter font for continuous AI prompt paragraphs and clarified the prompt formatting convention. & \hyperref[Section:AIPromptFormatting]{Prompt format}, \hyperref[Section:AIExamplePrompts]{Examples}, \hyperref[Section:AIImplementationStart]{Workflow prompts}\\
 October 5, 2026 / 2.20 & CDX & Reformatted example AI requests as continuous paragraphs with automatic line wrapping and updated the shared prompt formatting convention. & \hyperref[Section:AIPromptFormatting]{Prompt format}, \hyperref[Section:AIExamplePrompts]{Examples}, \hyperref[Section:AIImplementationStart]{Workflow prompts}, \hyperref[Section:InitializeNewProject]{Initialization}\\
 October 5, 2026 / 2.19 & CDX & Linked AITT references to individual register rows and added reciprocal task navigation and an AI requirement for linked architecture references. & \hyperref[Table:AISkills]{Task routing}, \hyperref[Rule:AIReferenceLinks]{AI rule}, \hyperref[Requirement:DOCAI003]{DOC-AI-003}\\
@@ -54,7 +143,7 @@ October 5, 2026 / 2.16 & CDX & Separated task definitions from the shared execut
 October 5, 2026 / 2.15 & CDX & Linked each AI task type to explicit context guidance and added the activity from repository bootstrap files through task selection, work, and checks. & \hyperref[Table:AISkills]{Task routing}, \hyperref[Figure:AIGuideActivity]{guide activity}\\
 October 5, 2026 / 2.14 & CDX & Renamed the AI task-type ID prefix to \texttt{AITT} and defined its meaning in the routing table. & \hyperref[Table:AISkills]{Task routing}\\
 October 5, 2026 / 2.13 & CDX & Assigned stable AI task-type IDs and added a planning and estimation task before substantial or delegated work. & \hyperref[Table:AISkills]{Task routing}, \hyperref[Section:AIPlanningEstimateContext]{estimation context}, \hyperref[Chapter:AIImplementationWorkflow]{workflow}\\
-October 5, 2026 / 2.12 & CDX & Renamed the development and verification stage; added stakeholder validation, evidence, rework routing, and a validation handoff to the AI workflow. & \hyperref[Section:AIImplementationVerification]{Verification}, \hyperref[Section:AIImplementationValidation]{validation}, \hyperref[Figure:AIImplementationSequence]{sequence}\\
+October 5, 2026 / 2.12 & CDX & Renamed the development and verification stage; added stakeholder validation, evidence, rework routing, and a validation handoff to the AI workflow. & \hyperref[Section:AIImplementationVerification]{Checks}, \hyperref[Section:AIImplementationValidation]{validation}, \hyperref[Figure:AIImplementationSequence]{sequence}\\
 October 5, 2026 / 2.11 & CDX & Standardized AI prompts as titled, unboxed verbatim blocks with manually wrapped lines; removed project-specific content from the generic implementation workflow. & \hyperref[Section:AIPromptFormatting]{Prompt format}, \hyperref[Section:AIImplementationStart]{workflow prompts}\\
 October 5, 2026 / 2.10 & CDX & Added copy-and-paste requests for starting the AI workflow in implementation and requirements work, with delegation, checks, review, and human decision gates. & \hyperref[Section:AIImplementationStart]{Starting the workflow}\\
 October 5, 2026 / 2.9 & CDX & Standardized implementation-role names and bounded failed-check correction with human escalation; clarified and spaced the sequence diagram. & \ChapterRef{AIImplementationWorkflow}, \hyperref[Figure:AIImplementationSequence]{workflow sequence}, \ChapterRef{AIAgentGuide}\\

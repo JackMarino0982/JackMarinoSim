@@ -1,0 +1,69 @@
+ADC SIMULATOR — SOFTWARE PROTOTYPE
+
+No real hardware is supported. Hardware details: TBD. OMS: Proposed.
+Separate human review: Pending. Synthetic input is not ADC test evidence.
+
+START
+Windows: double-click dsnLaunchSimulator.cmd in the repository folder.
+Other systems with an existing Python 3/Tkinter environment:
+  python3 dsnSimulator.py
+Windows launchers use py -3 or python, or an existing executable specified
+in DSN_PYTHON. They do not install or download anything.
+
+LOCAL RUNTIME READY — NOVEMBER 23, 2026
+The initial Codex-bundled Tcl/Tk error is resolved for this app by a separate
+workspace deployment of official Python 3.14.10 / Tcl 9.0.4 / Tk 9.0.4.
+The installer and component packages have valid Python Software Foundation
+signatures; the installer checksum matches the official release page.
+Windows Installer could not write its normal profile/cache, so the signed
+component payloads were unpacked into work/dsnPython314 instead. This private
+deployment changes no PATH/file associations and leaves Codex's runtime alone.
+The local launcher detects the sibling runtime and sets Tcl/Tk paths for its
+own process. An app launcher is also supplied in this chat's outputs folder.
+Both desktop startup and the graphical smoke check now succeed. The layout
+was inspected at 1280x720 and adjusted to keep Settings visible.
+This verifies one Windows configuration, not macOS/Linux or hardware support.
+
+TRY THE WINDOW ONCE THE RUNTIME IS WORKING
+1. Keep Simulator selected and click Start.
+2. Move the slider; code and sequence should change. Values are synthetic.
+3. Check Pause simulated input. After approximately 100 ms, output should
+   show STALE (SIMULATOR). Uncheck it to resume synthetic publications.
+4. Click Start Recording, choose a NEW .jsonl filename and save.
+   Move the slider, then click Stop Recording and Stop.
+5. Click Open Recording and choose that file. The mode changes to Replay.
+6. Click Play. Original codes, timestamps, sequences and session identity
+   are preserved. Output is labeled Replay; it cannot refresh live status.
+7. Pause Replay holds playback. Play resumes it. Stop Replay closes playback;
+   Play after Stop restarts the selected file from its beginning.
+8. Stop before changing modes. Live Hardware is visibly unavailable.
+9. Settings shows the demonstration profile. Protected acquisition changes
+   are unavailable at the core API as well as the user interface; the actual
+   identity/access policy and hardware settings remain TBD.
+
+SOFTWARE-ONLY DEMONSTRATION DEFAULTS
+20 synthetic samples/second; 128-record bounded queue; drop oldest with a
+visible loss count and recorded gap when recording is active. Replay delivers
+20 records/second, including gap records, rather than reconstructing original
+wall-clock timing. These are prototype defaults, not hardware allocations.
+The Tk event loop has no hard-real-time guarantee. No 10 ms hardware timing
+claim is made. The 100 ms check uses an independent fake clock in core tests;
+the real Tk event loop is checked by a graphical stale-status smoke test, but it is not a hard-real-time or physical ADC guarantee.
+
+RECORDINGS
+UTF-8 JSON Lines, schema dsn-simulator-v1. First line is a session header.
+Sample lines preserve code, validity, timestamp_ns, sequence, session_id,
+timing_quality and source. Source is simulator; timestamps use the simulator
+process's monotonic nanosecond clock, not ADC conversion time or calendar time.
+Only this version's simulator records are supported. The reader rejects invalid
+headers, corrupt/truncated/oversized lines and duplicate/regressing sequences.
+Recording uses exclusive file creation; existing files are never overwritten.
+Write errors stop recording visibly and leave acquisition running. A failed
+recording may be incomplete; inspect its error before using it as evidence.
+
+CHECKS
+  python -m unittest dsnSimulatorTests dsnSimulatorGuiTests -v
+  python dsnSimulator.py --smoke-test
+The first runs 14 core checks and four real-Tk integration checks (file dialog selections are test fixtures). The second runs an automated start/pause/stale/close window smoke test. The approved workspace runtime and local launcher provide the necessary Tcl/Tk environment.
+Results are recorded separately in dsnSimulatorTestResults.txt. They do not
+complete the planned physical tests or the separate human/stakeholder review.

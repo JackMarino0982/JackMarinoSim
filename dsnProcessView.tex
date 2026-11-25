@@ -8,5 +8,75 @@ Explain how the system behaves while it is running.
 
 \section{How to Use This Chapter}
 Describe runtime behavior, concurrency, state transitions, workflows, error handling, and significant sequences. Use activity, sequence, or state diagrams when prose is insufficient.
+\section{Proposed Acquisition and Publication Flow}
+\label{Section:SoftwareRuntime}
+Runtime coordination implements the responsibilities in
+\hyperref[Table:SoftwareResponsibilities]{the software register} under
+\ArchitectureRef{ARC-003}. All mechanisms, hardware choices and unresolved
+values are TBD; owner: Jack Marino; decision date TBD. OMS remains Proposed.
+\begin{enumerate}
+\item Settings access evaluates the identity and requested protected operation.
+Denied changes leave effective settings unchanged. The acquisition adapter
+applies only permitted configuration under the approved lifecycle rules.
+\item The adapter observes conversion completion and captures the 8-bit code
+through the selected hardware path. Ready capture, control logic and FT245R
+driver behavior remain TBD; no electrical sequence is assumed.
+\item Sample service evaluates qualification, source event time and acquisition
+epoch. Status/recovery observes the prerequisites, including a newly completed
+sample, before authorizing valid output after reset/disconnect. Sequence and
+timestamp ownership are preserved across the publication boundary.
+\item Buffer and local publication accepts qualified records under the approved
+finite-load policy and publishes them to receiving software. Record ready and
+publication observations independently for \TestCaseRef{TC-019}; queue delay is
+inside the 10 ms testing-target interval. A lost/missing ready event cannot be
+excluded merely because the software failed to accept it.
+\item Publication observations update live status only for the actual published
+valid sample. Track any in-flight/buffered output after input pauses; the actual
+last valid live publication anchors the 100 ms stale-state testing target in
+\TestCaseRef{TC-027}. Status evaluation continues without new device reads.
+\item Selected records are offered to recording with original fields/order and
+epoch context. Any buffering between publication and storage, its budget, loss
+accounting and file-failure response remain TBD. A slow recorder or downstream
+consumer must be handled through the approved overload policy, not an assumed
+unlimited queue or unmeasured timing guarantee.
+\end{enumerate}
+
+\section{Recovery, Overload and Timing Coordination}
+Startup, stale, disconnected, faulted and recovering describe conceptual
+conditions, not an approved enumeration or transition API. Formal state
+encoding and allowed transitions remain TBD under
+\hyperref[Parameter:PAR-06]{PAR-06}. After disconnect/reset, capture the
+device/configuration/time qualification evidence, settle obsolete queued data
+and establish the epoch policy before valid output resumes with a newly
+completed sample. The individual recovery prerequisites must be observable
+for \TestCaseRef{TC-029}. No retry count, reconnect deadline or automatic
+device-selection behavior is chosen here.
+
+Overload accounting belongs at the finite queue/publication boundary.
+\TestCaseRef{TC-026} observes input, delivered, queued and lost/uncertain
+records against the selected policy. Timestamp event, publication observation
+time and consumer arrival are separate observations; clock correlation,
+reset/drift handling and measurement uncertainty remain TBD under
+\hyperref[Parameter:PAR-03]{PAR-03}. The 10 ms/100 ms values are testing
+targets pending results and final approval; the supporting 1 ms allocation
+is not silently adopted by this design.
+
+\section{Recording, Replay and Mission Status}
+\TestCaseRef{TC-050} compares saved records with original source records;
+\TestCaseRef{TC-051} compares replay with the saved dataset and checks the
+replay indication. Recording and replay can be separate activities, but the basic controls and JSON Lines format are approved under \ArchitectureRef{ARC-004}. Pacing, detailed selection and file-schema compatibility remain TBD. Replay does not
+refresh live sensor status, change original timestamps or fulfill a live
+recovery predicate. The approved controls change modes while stopped; concurrent live/replay presentation is not selected. An explicit mode distinction remains required.
+
+The proposed mission gateway consumes local status and correlated source
+metadata. Sample-related products preserve source time and represent timing
+quality, including unavailable/unqualified time. It does not substitute send
+or arrival time for source sample time. Execution of OMS-specific checks is
+gated by \ArchitectureRef{ARC-002}, \TestCaseRef{TC-032} and
+\TestCaseRef{TC-054}; gateway service ownership, mapping and delivery-fault
+semantics remain TBD. No OMS exchange is implemented by this document.
+
+\section{Retained Template State Example}
+The following request-state example is outside the ADC design.
 \section{Example State Model}
 Request states are Draft, Submitted, Under Review, Approved, Rejected, and Cancelled. Submission moves Draft to Submitted only when required data is valid. Approval and rejection are terminal except for an authorized correction workflow.

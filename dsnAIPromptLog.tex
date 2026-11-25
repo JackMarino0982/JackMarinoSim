@@ -18,3 +18,162 @@ boundary, rationale, representative examples, semantic-overlap review,
 identifier-collision check, affected register and category-catalog changes, and
 the authorized human's approval or rejection. Do not assign an identifier from
 the proposed scope or family before approval.
+
+\section{Week 1 ADC Draft --- November 10, 2026}
+\label{Section:WeekOnePromptRecord}
+Tool: OpenAI Codex. The owner requested a Week 1 pull request, focused
+commits for the three opening chapters, and a short cover note. The owner
+confirmed the repository, described an embedded analog-to-digital conversion
+system, and clarified that the output is ADC readings and hardware remains TBD.
+The existing \texttt{dsn} namespace is retained to match the requested filenames.
+
+Selected skills: \hyperref[Skill:AIS-01]{AIS-01},
+\hyperref[Skill:AIS-02]{AIS-02}, \hyperref[Skill:AIS-13]{AIS-13}, and
+\hyperref[Skill:AIS-14]{AIS-14}, using the Embedded Systems profile as context.
+One agent drafted and self-reviewed the change; no delegation or independent
+review is claimed. Rough planning estimate: 20--40 minutes and 6,000--12,000
+tokens for chapters and integration, plus 10--30 minutes and 3,000--8,000
+tokens for build repair and review, with high uncertainty due to missing
+diagram sources and no local LaTeX toolchain. These are estimates, not
+reported measured usage.
+
+Proposed bench scope, exclusions, roles beyond the owner, performance targets,
+and acceptance gates remain subject to human review.
+\hyperref[Table:WeekOneTBDs]{The Week 1 register} contains the open decisions.
+No prior applied-work evidence was available beyond the owner's messages
+and the repository. Missing template figures are reconstructed as instructional
+illustrations to enable a complete book build, not as evidence of hardware
+implementation. Human review and baseline approval remain pending.
+
+\section{Week 2 Stakeholders and Stories --- November 12, 2026}
+\label{Section:WeekTwoStoryPromptRecord}
+Tool: OpenAI Codex. The owner requested updates on \texttt{week2} to the
+stakeholder and user-stories chapter, using the form ``As a [role], I need
+[capability] so that [outcome]'', sequential IDs beginning US-01, operating
+context, and acceptance questions. The owner reserved US-01--US-04 for the
+lecture and supplied \cite{SPE800Week02} when those stories were not found
+in the repository. Slides 19--20 establish mission operator, acquisition
+developer (one role), field engineer, and mission integrator, and supply all
+four story sentences verbatim. The supplied slides are source evidence;
+their example prompts and workshop directions are not additional task scope.
+
+Selected skills: \hyperref[Skill:AIS-05]{AIS-05},
+\hyperref[Skill:AIS-11]{AIS-11}, \hyperref[Skill:AIS-13]{AIS-13}, and
+\hyperref[Skill:AIS-14]{AIS-14}. One agent drafted and self-reviewed the
+ordered changes; delegation was not needed for these shared registers.
+The existing \texttt{dsn} namespace is retained. Proposed contexts, acceptance
+questions, priorities, and validation plans require human review. Existing
+template stories and mappings are retained separately; no ADC requirement,
+use-case, test, verification result, hardware approval, or OMS selection is
+invented. Requirements allocation and stakeholder observations remain pending.
+The existing GitHub Actions workflow is enabled for \texttt{week2} pushes
+to build and inspect the complete book; compilation is not validation.
+
+
+\section{Week 2 Candidate Requirements --- November 12, 2026}
+\label{Section:WeekTwoRequirementsPrompt}
+The owner requested grouped candidate requirements and preservation of
+REQ-SMP-01/02, REQ-TIM-01/02, REQ-IF-01, and REQ-OMS-01 from the lecture.
+The same request added potentiometer/ADC0804/FTDI capture, oscillator-driven
+4-bit or 8-bit 74xx counter observation, and an FTDI producer/consumer path,
+with explicit sampling, scaling, calibration, validity, timing, transition,
+reference, framing, rate, buffering, and integrity concerns. Those messages
+authorize candidate drafting and the six identifier exceptions, not hardware
+limits, scenario baseline approval, or passing evidence.
+
+Selected skills: \hyperref[Skill:AIS-01]{AIS-01},
+\hyperref[Skill:AIS-06]{AIS-06}, \hyperref[Skill:AIS-07]{AIS-07},
+\hyperref[Skill:AIS-08]{AIS-08}, \hyperref[Skill:AIS-09]{AIS-09},
+\hyperref[Skill:AIS-13]{AIS-13}, and \hyperref[Skill:AIS-14]{AIS-14}.
+One agent handled shared registers sequentially; no delegation or independent
+review is claimed. Rough planning estimate: 30--60 minutes for source review,
+drafting and reciprocal mappings; 10--30 minutes for build/render review,
+with uncertainty from hardware choices and layout. These are estimates,
+not measured effort. Existing \texttt{dsn} namespace is retained; no new
+project-owned source filenames are needed.
+
+The lecture and primary FTDI/TI documentation supply source context; their
+example prompts do not extend the task. New bench story wording, priorities,
+parameters, use cases, tests, and architecture decision are proposed.
+No zero-loss guarantee is inferred outside a finite operating envelope;
+USB receipt time is not presumed to be physical event time, a modular counter
+difference cannot prove the absence of full wraps, and an integrity check
+does not provide authentication. Owner/course review and all execution
+evidence remain pending.
+
+
+\section{Week 2 Registers and OMS Decision --- November 12, 2026}
+\label{Section:WeekTwoRegisterPrompt}
+The owner requested one verification row per requirement with method,
+required evidence, acceptance bound, owner and status; one validation row
+per story with scenario, success criterion, stakeholder, planned evidence
+and status; and traceability from stories through requirements, verification
+and evidence and separately to validation. The owner requested explicit
+OMS applicability, standard version, CAL profile, UCI message, status mapping
+and gateway responsibility, preserving Proposed approval status for
+REQ-OMS-01 until those decisions are made. Unresolved values need TBD labels,
+named owners and decision dates; teaching allocations are not commitments.
+
+Asked for a target decision date, the owner accepted the proposed convention
+``Decision date: TBD; owner: Jack Marino''. No calendar deadline was supplied.
+This accepts ownership/date notation, not technical choices, evidence, or
+requirements/OMS approval. Added 40 planned verification rows, six validation
+rows, 46 evidence collection specifications, and an explicit portability
+coverage gap. All collection/result statuses remain Not collected/Pending.
+
+One agent used \hyperref[Skill:AIS-01]{AIS-01},
+\hyperref[Skill:AIS-08]{AIS-08}, \hyperref[Skill:AIS-09]{AIS-09},
+\hyperref[Skill:AIS-10]{AIS-10}, \hyperref[Skill:AIS-11]{AIS-11},
+\hyperref[Skill:AIS-13]{AIS-13}, and \hyperref[Skill:AIS-14]{AIS-14};
+no delegation or independent review is claimed. Rough planning estimate:
+20--40 minutes for registers, trace links and OMS/TBD consistency; 10--20
+minutes for build and rendered-page review. These are uncertain estimates,
+not measured usage. Existing \texttt{dsn} filenames and namespace are retained.
+No new external standards/profile interpretation was needed: the record
+deliberately leaves every OMS selection TBD.
+
+\section{Week 2 Technical Review Handoff}
+\label{Section:WeekTwoReviewPrompt}
+The owner requested focused commits on the working branch with a message
+identifying the Week 2 requirements baseline, confirmation that the complete
+architecture document builds, and a pull request for technical review against
+\texttt{main}. This explicitly authorizes the review submission, not merging,
+requirements approval, or release authorization. Existing changes were already
+committed; a focused review-package record is added in
+\hyperref[Section:WeekTwoReviewPackage]{Release}, with document history and
+this provenance record. One agent applies
+\hyperref[Skill:AIS-12]{AIS-12}, \hyperref[Skill:AIS-13]{AIS-13}, and
+\hyperref[Skill:AIS-14]{AIS-14}, confirms the complete build on the submitted
+revision, and opens the pull request. Engineering evidence and unresolved
+decision statuses remain unchanged.
+\section{Owner-Selected Twelve-Requirement Main Baseline}
+November 19, 2026: The owner approved the proposed 12 main requirements and requested that all remaining candidates remain supporting material, with linked verification, validation and traceability updated. One agent preserved existing IDs, added five requirements and reciprocal planned checks/evidence, split main and supporting registers, and retained TBD ownership (Jack Marino) and decision dates (TBD). Scope approval is distinct from technical allocation approval, engineering evidence and OMS applicability. No hardware result or stakeholder review is invented. Complete-document CI and rendered-page review provide document evidence only.
+\section{Step 6 Story and Scenario Alignment}
+November 19, 2026: Jack Marino confirmed each main requirement in plain English and requested updated stories, a use-case diagram and linked scenario tables. One agent applies \hyperref[Skill:AIS-05]{AIS-05}, \hyperref[Skill:AIS-07]{AIS-07}, and \hyperref[Skill:AIS-13]{AIS-13}. Existing lecture wording and IDs remain stable. Four main scenario tables cover all 12 requirements with reciprocal checks, verification and validation links; bench scenarios remain supporting. Estimated effort: 10--20 minutes, 8,000--15,000 tokens; no delegation is needed for shared registers. Source checks use existing tools. The owner previously objected to build-tool downloads; no tools are installed and this commit skips automatic CI. Full PDF compilation/rendering remains unverified because no local LaTeX compiler is available. This is a documented verification limitation, not engineering pass evidence.
+\section{Step 7 Future Test Execution Procedures}
+November 19, 2026: The owner requested test procedures for all 12 main requirements, hardware-dependent values left TBD, and all results Pending. One agent applies \hyperref[Skill:AIS-09]{AIS-09}, \hyperref[Skill:AIS-13]{AIS-13}, and the shared execution workflow to existing chapter sources. Estimated effort: 5--15 minutes and 6,000--12,000 tokens; shared registers do not warrant delegation. Existing stable mappings are retained; no new requirement or passed result is created. All TBDs name Jack Marino with decision date TBD. Source consistency checks are distinct from executing the proposed tests. No tool installation or download is started; the commit skips CI under the prior owner instruction. Full PDF compilation and visual layout remain unverified because no local LaTeX compiler is available.
+\section{Step 8 Requirement and Procedure Review}
+November 19, 2026: The owner requested review/fixes and preparation for another person to review at least three requirements, with human review Pending. One editing agent applies \hyperref[Skill:AIS-09]{AIS-09}, \hyperref[Skill:AIS-13]{AIS-13}, and the shared workflow; no delegation or independent human review is claimed. Estimated effort: 5--15 minutes and 6,000--12,000 tokens. Review covered all 12 pairs, preserved requirement statements/IDs and technical TBDs, corrected four procedure/acceptance issues, and prepared a worksheet recommending interface, timing and recovery requirements. Reviewer identity, actual baseline, date, comments, response and evidence remain TBD, coordinated by Jack Marino with decision date TBD. No contact/request was sent and no human approval, engineering result or evidence was fabricated. Existing source checks are run; no installations/downloads or automatic CI are started under the prior owner constraint. PDF compilation/rendering remain unverified without a local compiler.
+\section{Step 9 Main Software Design Proposal}
+November 19, 2026: The owner requested a software design and connection drawing with hardware values TBD, OMS Proposed and human review Pending. One agent applies \hyperref[Skill:AIS-08]{AIS-08}, \hyperref[Skill:AIS-13]{AIS-13}, and the shared workflow; no delegation. Estimated effort: 10--20 minutes and 8,000--15,000 tokens. Existing confirmed dsn namespace is retained; the new TikZ source lives under its including dsnArchitectureOverview chapter directory. Logical design is proposed, not implemented: language, runtime partitioning, controls, drivers, schema, budgets and gateway-service assignment remain TBD (Jack Marino; decision date TBD). Source link/allocation/environment checks are performed. No tools are installed or downloads started; the commit skips automatic CI under the prior owner constraint. Full PDF compilation and visual layout remain unverified without a local compiler.
+\section{Step 10 Owner Confirmation}
+November 19, 2026: The owner confirmed all eight software-design explanations and requested that necessary records be updated and remaining steps recapped. One agent applies \hyperref[Skill:AIS-13]{AIS-13}, preserves the reviewed component behavior and technical TBDs, records the exact scope of owner confirmation, and distinguishes it from another person reviewing at least three requirements. Estimated effort: 3--5 minutes and 2,000--4,000 tokens; no delegation. No software implementation or next-step technology selection is performed. Human review and engineering results remain Pending; OMS remains Proposed. Source consistency checks only; no installations/downloads or automatic build are started. Full PDF compilation/layout remain unverified without a local compiler.
+\section{Step 11 Approved Stack, Format and Controls}
+November 23, 2026: The owner explicitly approved Python 3, Tkinter, JSON Lines and the proposed basic controls, requested a repo update, preserved hardware TBDs/OMS Proposed/human review Pending, and asked for Step 12. One agent applies \hyperref[Skill:AIS-08]{AIS-08}, \hyperref[Skill:AIS-13]{AIS-13}, and the shared workflow. Estimated effort: 5--10 minutes and 4,000--8,000 tokens; no delegation. Record only the approved direction; exact schema/versions, drivers and policies remain TBD (Jack Marino; decision date TBD). Source checks verify stable requirement statements, matching acceptance bounds, links and preserved Pending statuses. No packages or application code are installed and automatic CI is skipped under the prior instruction; full PDF compilation/rendering remain unverified.
+\section{Step 12 Simulator Implementation and Software Checks}
+November 23, 2026: The owner authorized the simulator, approved controls, recording and replay while preserving unavailable Live Hardware, hardware TBDs, Proposed OMS and Pending human review. One agent used the confirmed dsn namespace for application/core/test/launcher/guide/results files; \texttt{.gitignore} is the Git-required filename exception. Existing Python standard-library capabilities are used without installations/downloads. Demonstration defaults and schema are explicitly prototype choices, not hardware allocations. Estimated effort 20--40 minutes and 12,000--20,000 tokens; no delegation. Actual headless run: 14 passing regression tests. The bundled runtime could not load Tcl/Tk init.tcl; both command-runner and desktop launch attempts failed before window creation. Local copies of existing scripts did not resolve it; no original runtime files were changed. GUI operation remains blocked/unverified. All engineering statuses remain Pending, and no physical/OMS/security policy conformance is fabricated. Source checks and scoped evidence are distinct from complete planned tests. Automatic document CI is skipped under the prior constraint; full PDF build/layout remain unverified.
+\section{Approved Runtime and Launch Follow-up}
+November 23, 2026: The owner explicitly authorized a separate Python/Tkinter deployment and completion of app launch testing. The official 3.14.10 installer checksum and installer/component Python Software Foundation signatures were verified. Normal per-user installation and layout were blocked by profile/cache or installer networking restrictions; signed MSI payloads were unpacked without product registration into the writable workspace and matching Tcl/Tk scripts were expanded. Codex runtime and global PATH/file associations were not modified. A local launcher supplies process-only Tcl/Tk paths. Eighteen core/GUI tests pass, including Settings dialog/layout and recording/replay controls; the graphical smoke check exits zero and the compact desktop layout was visually inspected. File dialogs are mocked only to supply selection values in the integration tests. The initial failure is retained as historical evidence; local GUI startup is now resolved. One agent performs the work without delegation. No physical/OMS/independent human-review result is fabricated; all such results remain Pending. PDF build/layout remain unverified and automatic document CI remains skipped.
+
+\section{Section 2.9 Research and Submission Preparation}
+November 24, 2026: Jack Marino requested completion of OMS research, reduction
+to three main use cases and compilation of the submission package, with
+teammate review Pending. One OpenAI Codex agent reviewed the supplied manual's
+Section 2.9 and primary Open Arsenal specifications; recorded source revisions,
+access dates, applicability rationale and the unavailable policy URL; retained
+all requirement/evidence IDs; moved conditional UC-03 into supporting integration
+material; and prepared the compiled-book/source/evidence inventory. The work
+uses AIS-08, AIS-13 and AIS-14. Tool results and the external build manifest
+identify actual build outcomes. No AI self-check substitutes for the required
+teammate review, hardware measurements, or human acceptance. Unresolved
+values remain TBD with Jack Marino as owner and decision date TBD.
