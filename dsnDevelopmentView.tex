@@ -12,8 +12,9 @@ Show how source code, modules, services, libraries, and build artifacts are orga
 \label{Section:SoftwareOrganization}
 Organize implementation responsibilities around
 \hyperref[Table:SoftwareResponsibilities]{the logical components}. The
-Python 3 language, Tkinter GUI and JSON Lines recording choices are approved in \hyperref[Section:ApprovedSoftwareChoices]{Implementation}. Actual filenames, package/dependency management, exact versions and build/run commands remain TBD.
-Step 12 adds \texttt{dsnSimulatorCore.py}, \texttt{dsnSimulator.py}, \texttt{dsnSimulatorTests.py}, launcher and guide as described in \hyperref[Section:SimulatorPrototype]{Implementation}. The approved separate Python/Tcl/Tk runtime is deployed in the workspace; GUI startup now succeeds. Application dependencies remain standard-library only, and Codex's runtime is unchanged.
+Python 3 language, Tkinter GUI and JSON Lines recording choices are approved in \hyperref[Section:ApprovedSoftwareChoices]{Implementation}. Future hardware-adapter packaging remains TBD. Current simulator filenames, runtime and launch commands are recorded below.
+
+The simulator core, GUI, tests, launcher and guide are described in \hyperref[Section:SimulatorPrototype]{Implementation}. The approved separate Python/Tcl/Tk runtime is deployed in the workspace; GUI startup now succeeds. Application dependencies remain standard-library only, and Codex's runtime is unchanged.
 Share record/status meanings across platform adapters and recording/replay;
 keep device/OS driver calls behind the acquisition boundary. Settings mutation
 must pass through the approved access enforcement boundary. The proposed
