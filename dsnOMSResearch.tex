@@ -1,0 +1,88 @@
+% Research supplement owned by the architecture chapter.
+\subsection{Section 2.9 OMS and AMS GRA Research}
+\label{Section:OMSResearch}
+Research date: November 24, 2026. Research and decision owner: Jack Marino.
+The course-cited Open Arsenal architecture and Platforms portals were accessed
+on that date; both identify an October 21, 2026 update. The Platforms page places
+OMS within the evolving AMS GRA context and links public standards material
+\cite{OpenArsenalArchitectures,OpenArsenalPlatforms}. The course-cited GitLab
+OMS standard landing page was accessible (project 82033122, created May 8,
+2026). The official Open Arsenal GitHub repositories supplied the controlled
+documents reviewed below; their immutable revisions make this research reproducible
+\cite{OpenArsenalGitLabOMS}.
+
+\paragraph{Applicability recommendation: defer conformance.}
+\UserStoryRef{US-04} supplies a prospective mission-integration need, but no
+actual mission consumer, acquisition-program mandate or approved interface
+contract has been identified. Keep the local sample/JSON Lines boundary separate
+from a future gateway. Research identifies possible standards, not an adopted
+standard release, CAL binding or UCI message. Jack Marino must obtain the
+consumer/program decision and approve the fields in
+\hyperref[Table:OMSDecisionFields]{the decision register}; decision date: TBD.
+\RequirementRef{REQ-OMS-01} remains Proposed. A deferral is a recommendation,
+not a final determination that OMS is inapplicable or a conformance claim.
+
+\paragraph{Reviewed sources and specific evidence.}
+All sources below were accessed November 24, 2026. Bibliography links identify
+the full titles, exact revision paths and immutable repository commits.
+\begin{enumerate}
+\item \textbf{OMS Design and Development Standard v2.5, OMSC-STD-001 Rev M,
+January 22, 2026}. Reviewed repository commit
+\texttt{726272bd0390}. Sections 3.2--3.3 describe the reference architecture
+and message/schema separation; 3.4.2--3.4.3 address state/status and time;
+3.4.5 and 6.5.2.2 identify CAL boundaries. These establish relevant integration
+concepts, not a mandated mapping of this project's local valid/stale/faulted
+labels \cite{OMS25Standard}.
+\item \textbf{OMS CAL Specification v2.5, OMSC-SPC-001 Rev L,
+January 22, 2026}, same OMS commit. Sections 1--2, 4.2, 4.8, 4.12 and 5.1.3
+cover API scope, publish/subscribe, architectural service bus and schema
+compatibility. A CAL selection requires an actual API/service and compatible
+schema contract; USB capture alone does not supply these \cite{OMS25CAL}.
+\item \textbf{OMS Language Agnostic CAL Specification v2.5,
+OMSC-SPC-013 Rev B, January 22, 2026}, same OMS commit. Sections 5--5.1
+specify protocols including WebSocket; 6--6.1 and 6.1.5 define OMS JSON message
+format and validation. The simulator's JSON Lines file is not that protocol or
+proof of its validation. No transport/binding is selected by this research
+\cite{OMS25LACAL}.
+\item \textbf{UCI Standard Document v2.6, UCI-STD-001 Rev 10,
+July 30, 2026}. Reviewed commit \texttt{78eb61b6112c}. Sections 1.2.2,
+1.2.5, 2.1, 3 and 5.2 cover UCI/program schemas, data format, compliance and
+versioning. The repository README calls the v2.6 release July 8, while the
+reviewed document cover/revision is July 30; this register uses the document
+revision date. Compatibility between this UCI revision and OMS v2.5 is not
+assumed. Exact message/schema and compatibility decision: TBD; owner Jack
+Marino; decision date TBD \cite{UCI26Standard}.
+\item \textbf{AMS GRA Executive Summary and Document Catalog v14.0,
+AFLCMC/WA, April 24, 2026}. Reviewed commit \texttt{3645c6916761}.
+Sections 1.3 and 2.1 describe the wider mission-system architecture context;
+2.1.2 describes the architectural service bus and building blocks; Section 3
+is the document catalog. This informs the future gateway's context without
+allocating an AMS building block or imposing a new platform architecture on
+the bench prototype \cite{AMSGRA14}.
+\end{enumerate}
+\paragraph{Unavailable policy source.}
+The course cites DoWI 8430.01, \emph{Accelerated Mission Software}, September
+2026, Sections 2.8.c and 3.2.e. The cited official URL returned HTTP 403 on
+November 24, 2026 \cite{DoWI843001}. Its contents and applicability were not
+independently verified; no policy obligation is asserted. Obtain an accessible
+controlled copy and assess applicability: TBD; owner Jack Marino; decision
+date TBD. The public standards reviewed above are sufficient for the present
+research recommendation, not for final policy or conformance approval.
+
+\paragraph{Mission-interface candidate classification.}
+\RequirementRef{REQ-OMS-01} is a \emph{lecture/project-derived conditional
+candidate}: publish the selected local health/freshness semantics through an
+approved mission interface if applicable. OMS Sections 3.3--3.4 motivate
+schema/state/time analysis, but no reviewed clause mandates this project's
+three local state names or their destination encoding.
+\RequirementRef{REQ-I-006} is a \emph{project-derived conditional candidate}:
+retain source sample time and timing quality across a future gateway.
+The rationale is to prevent an old sample becoming apparently fresh on
+republication; OMS Section 3.4.3 and UCI Sections 2.1/5.2 inform contract
+selection but are not cited as requiring this exact field mapping.
+These two candidates satisfy the mission-interface investigation scope.
+Any eventual \emph{standard-mandated} obligation needs a selected applicable
+version, exact clause and approved allocation first. Their checkable mappings,
+bounds and gateway owner remain TBD (decision owner Jack Marino; date TBD);
+\TestCaseRef{TC-032}, \TestCaseRef{TC-054} and \ValidationRef{VAL-04}
+remain Pending. No message identifier or CAL profile has been invented.

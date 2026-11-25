@@ -440,6 +440,34 @@ Scope selection is approved by the owner. Engineering verification remains Pendi
 \end{tabularx}
 \normalsize
 \end{landscape}
+
+\subsection{Main Candidate Rationale and Logical Allocation}
+\label{Section:MainRationale}
+The source stories in the baseline rows supply the stakeholder need; the following
+allocations explain necessity without selecting hardware. All 12 remain
+engineering candidates pending dependent TBDs and evidence; OMS approval remains
+Proposed. Owner intent is confirmed. Jack Marino owns unresolved allocations;
+decision date TBD. See \hyperref[Table:SoftwareAllocation]{the detailed design allocation}.
+\begin{tabularx}{\linewidth}{L{2.8cm}Y}
+\caption{Main Candidate Rationale and Allocation\label{Table:MainRationale}}\\
+\toprule Requirement & Rationale and logical responsibility\\
+\midrule\endfirsthead
+Requirement & Rationale and logical responsibility\\
+\midrule\endhead
+\bottomrule\endlastfoot
+\RequirementRef{REQ-SMP-01} & Read only completed conversions; acquisition adapter.\\
+\RequirementRef{REQ-IF-01} & Interpret records consistently; record builder/local publisher.\\
+\RequirementRef{REQ-TIM-01} & Keep readings timely; acquisition adapter and publisher.\\
+\RequirementRef{REQ-SMP-02} & Expose aging data; freshness/status manager.\\
+\RequirementRef{REQ-F-009} & Make overload loss visible; buffer and status manager.\\
+\RequirementRef{REQ-F-018} & Retain observations; recorder.\\
+\RequirementRef{REQ-F-019} & Reproduce observations without live-data confusion; replay source.\\
+\RequirementRef{REQ-F-010} & Prevent false recovery; acquisition supervisor/status manager.\\
+\RequirementRef{REQ-Q-016} & Support field computers consistently; host workflow and adapters.\\
+\RequirementRef{REQ-S-002} & Protect acquisition configuration; configuration/access controller.\\
+\RequirementRef{REQ-OMS-01} & Offer conditional mission interoperability; future gateway, Proposed.\\
+\RequirementRef{REQ-I-006} & Prevent gateway republication appearing newly sampled; future gateway.\\
+\end{tabularx}
 \subsection{Supporting Candidate Requirements}
 These 33 candidates retain their IDs and evidence plans for later refinement. They are outside the selected 12-item main assignment baseline. Supporting detail may inform implementation, but is not silently promoted into the main baseline.
 \subsubsection{Functional behavior}

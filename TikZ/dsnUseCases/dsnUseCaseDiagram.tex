@@ -2,19 +2,19 @@
 \begin{tikzpicture}[
  actor/.style={draw,align=center,text width=2.0cm,font=\small,minimum height=0.9cm},
  uc/.style={draw=dsnBlue,ellipse,align=center,text width=4.0cm,minimum height=1.35cm,font=\small}]
-\node[uc] (acquire) at (0,4.5) {\hyperref[UseCase:UC-01]{UC-01: Acquire and publish qualified readings}};
-\node[uc] (recover) at (0,1.5) {\hyperref[UseCase:UC-02]{UC-02: Observe stale data, overload and recovery}};
-\node[uc] (record) at (0,-1.5) {\hyperref[UseCase:UC-06]{UC-06: Record and replay datasets}};
-\node[uc,dashed] (mission) at (0,-4.5) {\hyperref[UseCase:UC-03]{UC-03: Exchange mission status (OMS Proposed)}};
-\node[draw=dsnGray,fit=(acquire)(recover)(record)(mission),inner sep=0.35cm,
+\node[uc] (acquire) at (0,3) {\hyperref[UseCase:UC-01]{UC-01: Acquire and publish qualified readings}};
+\node[uc] (recover) at (0,0) {\hyperref[UseCase:UC-02]{UC-02: Observe stale data, overload and recovery}};
+\node[uc] (record) at (0,-3) {\hyperref[UseCase:UC-06]{UC-06: Record and replay datasets}};
+\node[draw=dsnGray,fit=(acquire)(recover)(record),inner sep=0.35cm,
  label=above:{\small Main ADC acquisition system}] (boundary) {};
-\node[actor] (operator) at (-5,1.5) {Mission operator};
-\node[actor] (developer) at (-5,-1.5) {Acquisition developer};
-\node[actor] (engineer) at (5,4.5) {Field engineer};
-\node[actor] (integrator) at (5,-4.5) {Mission integrator};
+\node[actor] (operator) at (-5,0) {Mission operator};
+\node[actor] (developer) at (-5,-3) {Acquisition developer};
+\node[actor] (engineer) at (5,3) {Field engineer};
+\node[actor] (integrator) at (5,0) {Mission integrator};
 \draw (operator.east) -- (recover.west);
+\draw (operator.east) -- (-3.7,0) -- (-3.7,3) -- (acquire.west);
 \draw (developer.east) -- (record.west);
-\draw (developer.east) -- (-3.5,-1.5) -- (-3.5,4.5) -- (acquire.west);
+\draw (developer.east) -- (-3.2,-3) -- (-3.2,3) -- (acquire.west);
 \draw (engineer.west) -- (acquire.east);
-\draw (integrator.west) -- (mission.east);
+\draw (integrator.west) -- (3.5,0) -- (3.5,3) -- (acquire.east);
 \end{tikzpicture}

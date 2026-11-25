@@ -15,14 +15,14 @@ requirements, use cases, and tests in \ChapterRef{Traceability}.
 
 \section{Main Project Use-Case Model}
 \label{Section:WeekTwoUseCases}
-Jack Marino confirmed the intended behavior of all 12 main requirements during the step-by-step review on November 19, 2026. The four scenarios below organize that behavior into actor goals. They are planned scenarios, not executed validation evidence. The 10 ms publication and 100 ms stale-state values are testing targets pending results and final approval. OMS remains Proposed.
+Jack Marino confirmed the intended behavior of all 12 main requirements during the step-by-step review on November 19, 2026. The three main scenarios below organize that behavior into actor goals. They are planned scenarios, not executed validation evidence. The 10 ms publication and 100 ms stale-state values are testing targets pending results and final approval. OMS remains Proposed.
 
 \section[High-Level Use Case Diagram]{High-Level Use Case Diagram}
-Figure~\ref{Figure:UseCaseDiagram} shows the main potentiometer--ADC0804--FT245R--computer system and its stakeholder roles. Each ellipse links to its authoritative scenario table. Associations show participation, not data flow or execution order. Counter and paired-FTDI experiments are supporting material outside this diagram.
+Figure~\ref{Figure:UseCaseDiagram} shows the main potentiometer--ADC0804--FT245R--computer system and its stakeholder roles. Each ellipse links to its authoritative scenario table. Associations show participation, not data flow or execution order. Conditional OMS integration, counter and paired-FTDI experiments are supporting scenarios outside this diagram. The system boundary is defined in \ChapterRef{SystemContext}.
 \begin{figure}[htbp]
 \centering
 \input{TikZ/dsnUseCases/dsnUseCaseDiagram.tex}
-\caption{Main project use cases; mission status exchange is conditional on the proposed OMS decision.}
+\caption{Three main project use cases; conditional mission integration is documented separately.}
 \label{Figure:UseCaseDiagram}
 \end{figure}
 \section{Linked Main Scenario Tables}
@@ -126,6 +126,8 @@ Open decisions & Each unresolved choice above is TBD; owner: Jack Marino; decisi
 Navigation & \hyperref[Figure:UseCaseDiagram]{Main use-case diagram}; \hyperref[Table:TraceabilityMatrix]{main trace matrix}.\\
 \end{tabularx}
 \normalsize
+\section{Supporting Conditional Mission Integration}
+The following retained scenario supports two main-baseline interface candidates but does not add a fourth main use case. Its stable ID and all trace links are preserved. OMS remains Proposed.
 \subsection{Exchange proposed mission status}
 \small
 \begin{tabularx}{\linewidth}{L{3.2cm}Y}

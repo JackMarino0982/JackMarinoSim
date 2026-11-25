@@ -5,6 +5,10 @@ on:
     branches: [week1-adc-architecture, week2]
   workflow_dispatch:
 
+concurrency:
+  group: dsn-document-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -14,12 +18,19 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Install document tools
         run: |
-          sudo apt-get update
+          sudo sed -i -E 's|http://[^ /]*ec2.archive.ubuntu.com/ubuntu/?|https://archive.ubuntu.com/ubuntu/|g' /etc/apt/sources.list.d/ubuntu.sources
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update
           sudo apt-get install -y --no-install-recommends texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra texlive-extra-utils latexmk lmodern poppler-utils
       - name: Build complete architecture book
         run: |
+          git rev-parse HEAD > dsnBuildRevision.txt
+          git ls-files > dsnSourceInventory.txt
+          git ls-files -z | xargs -0 sha256sum > dsnSourceSHA256.txt
+          git archive --format=zip --output=dsnSubmissionSources.zip HEAD
           make -f makefileMacLinux pdf
           latexmk -pdf -interaction=nonstopmode -halt-on-error dsnManual.tex
       - name: Check references and render review pages
@@ -36,6 +47,10 @@ jobs:
         with:
           name: dsnArchitecture
           path: |
+            dsnBuildRevision.txt
+            dsnSourceInventory.txt
+            dsnSourceSHA256.txt
+            dsnSubmissionSources.zip
             dsnManual.pdf
             dsnManual.log
             dsnManual.blg
